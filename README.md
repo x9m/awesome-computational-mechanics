@@ -83,10 +83,27 @@ A collection of public repositories for computational mechanics: solid and struc
     15.1 [Mesh generation](#user-content-open-meshing-pre--and-post-processing--mesh-generation) (13)<br>
     15.2 [Mesh processing and formats](#user-content-open-meshing-pre--and-post-processing--mesh-processing-and-formats) (5)<br>
     15.3 [Visualization and export](#user-content-open-meshing-pre--and-post-processing--visualization-and-export) (5)
-16. [Courses, references and agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics) (16)<br>
-    16.1 [Courses and tutorials](#user-content-open-courses-references-and-agents-for-mechanics--courses-and-tutorials) (8)<br>
-    16.2 [Curated lists](#user-content-open-courses-references-and-agents-for-mechanics--curated-lists) (5)<br>
-    16.3 [Agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics--agents-for-mechanics) (3)
+16. [Linear, eigenvalue and nonlinear solvers](#user-content-open-linear-eigenvalue-and-nonlinear-solvers) (35)<br>
+    16.1 [Solver toolkits](#user-content-open-linear-eigenvalue-and-nonlinear-solvers--solver-toolkits) (4)<br>
+    16.2 [Dense linear algebra](#user-content-open-linear-eigenvalue-and-nonlinear-solvers--dense-linear-algebra) (4)<br>
+    16.3 [Sparse direct solvers](#user-content-open-linear-eigenvalue-and-nonlinear-solvers--sparse-direct-solvers) (6)<br>
+    16.4 [Iterative solvers and preconditioners](#user-content-open-linear-eigenvalue-and-nonlinear-solvers--iterative-solvers-and-preconditioners) (8)<br>
+    16.5 [Nonlinear solvers, time integration and continuation](#user-content-open-linear-eigenvalue-and-nonlinear-solvers--nonlinear-solvers-time-integration-and-continuation) (5)<br>
+    16.6 [Eigenvalue solvers](#user-content-open-linear-eigenvalue-and-nonlinear-solvers--eigenvalue-solvers) (4)<br>
+    16.7 [Matrix-free operators and partitioning](#user-content-open-linear-eigenvalue-and-nonlinear-solvers--matrix-free-operators-and-partitioning) (4)
+17. [Verification, validation and uncertainty](#user-content-open-verification-validation-and-uncertainty) (33)<br>
+    17.1 [Code and solution verification](#user-content-open-verification-validation-and-uncertainty--code-and-solution-verification) (4)<br>
+    17.2 [Benchmarks and reference solutions](#user-content-open-verification-validation-and-uncertainty--benchmarks-and-reference-solutions) (8)<br>
+    17.3 [Experimental data for validation](#user-content-open-verification-validation-and-uncertainty--experimental-data-for-validation) (4)<br>
+    17.4 [Calibration and Bayesian inference](#user-content-open-verification-validation-and-uncertainty--calibration-and-bayesian-inference) (4)<br>
+    17.5 [Uncertainty and sensitivity analysis](#user-content-open-verification-validation-and-uncertainty--uncertainty-and-sensitivity-analysis) (13)
+18. [Courses, references and agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics) (31)<br>
+    18.1 [Courses and tutorials](#user-content-open-courses-references-and-agents-for-mechanics--courses-and-tutorials) (8)<br>
+    18.2 [Textbooks and numerical tutorials](#user-content-open-courses-references-and-agents-for-mechanics--textbooks-and-numerical-tutorials) (8)<br>
+    18.3 [Element definitions and form languages](#user-content-open-courses-references-and-agents-for-mechanics--element-definitions-and-form-languages) (5)<br>
+    18.4 [Reproducible research software](#user-content-open-courses-references-and-agents-for-mechanics--reproducible-research-software) (2)<br>
+    18.5 [Curated lists](#user-content-open-courses-references-and-agents-for-mechanics--curated-lists) (5)<br>
+    18.6 [Agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics--agents-for-mechanics) (3)
 
 [Archived and unmaintained projects](archive.md) (6)
 
@@ -1107,12 +1124,219 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><a id="courses-references-and-agents-for-mechanics"></a><h2>16. Courses, references and agents for mechanics</h2></summary>
-<p id="open-courses-references-and-agents-for-mechanics"><sub><b>16. Courses, references and agents for mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="linear-eigenvalue-and-nonlinear-solvers"></a><h2>16. Linear, eigenvalue and nonlinear solvers</h2></summary>
+<p id="open-linear-eigenvalue-and-nonlinear-solvers"><sub><b>16. Linear, eigenvalue and nonlinear solvers</b> · <a href="#contents">Back to contents</a></sub></p>
+
+The right solver depends on the structure of the discrete problem.
+
+- **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, or conjugate gradients with a preconditioner. For algebraic multigrid, supply the rigid body modes.
+- **Symmetric indefinite**, as in mixed formulations and Lagrange multiplier contact: use an LDLᵀ factorization, or MINRES or GMRES with a suitable block preconditioner.
+- **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB with a preconditioner.
+- **Buckling and snap-through**: the tangent becomes singular at limit points, so load-controlled Newton fails there. Use continuation, such as an arc-length method.
+- **Any system**: a small residual does not guarantee a small error when the matrix is ill-conditioned.
+
+Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076) on direct methods, [Saad (2003)](https://doi.org/10.1137/1.9780898718003) on iterative methods, [Benzi et al. (2005)](https://doi.org/10.1017/S0962492904000212) on saddle point problems and [Higham (2002)](https://doi.org/10.1137/1.9780898718027) on accuracy and stability.
 
 <details>
-<summary><a id="courses-and-tutorials"></a><h3>16.1 Courses and tutorials</h3></summary>
-<p id="open-courses-references-and-agents-for-mechanics--courses-and-tutorials"><sub>Courses, references and agents for mechanics › <b>16.1 Courses and tutorials</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="solver-toolkits"></a><h3>16.1 Solver toolkits</h3></summary>
+<p id="open-linear-eigenvalue-and-nonlinear-solvers--solver-toolkits"><sub>Linear, eigenvalue and nonlinear solvers › <b>16.1 Solver toolkits</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [ginkgo-project/<br>ginkgo](https://github.com/ginkgo-project/ginkgo) | Sparse linear algebra library for multicore processors and GPUs. | C++ | BSD-3-Clause |  |
+| [petsc/<br>petsc](https://gitlab.com/petsc/petsc) | Parallel toolkit of linear, nonlinear and time-stepping solvers for PDE-based models. | C | BSD-2-Clause |  |
+| [polyfem/<br>polysolve](https://github.com/polyfem/polysolve) | Common interface to external linear solvers, with its own nonlinear solvers. | C++ | MIT |  |
+| [trilinos/<br>Trilinos](https://github.com/trilinos/Trilinos) | Collection of packages for large-scale solvers, discretization and optimization. | C++ | BSD and (L)GPL, by package |  |
+
+</details>
+
+<details>
+<summary><a id="dense-linear-algebra"></a><h3>16.2 Dense linear algebra</h3></summary>
+<p id="open-linear-eigenvalue-and-nonlinear-solvers--dense-linear-algebra"><sub>Linear, eigenvalue and nonlinear solvers › <b>16.2 Dense linear algebra</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [flame/<br>blis](https://github.com/flame/blis) | Framework for building BLAS-like dense linear algebra libraries. | C | BSD-3-Clause |  |
+| [libeigen/<br>eigen](https://gitlab.com/libeigen/eigen) | C++ template library for dense and sparse linear algebra. | C++ | MPL-2.0, with permissive third-party files |  |
+| [OpenMathLib/<br>OpenBLAS](https://github.com/OpenMathLib/OpenBLAS) | Optimized implementation of the BLAS kernels used by many solvers. | C | BSD-3-Clause |  |
+| [Reference-LAPACK/<br>lapack](https://github.com/Reference-LAPACK/lapack) | Reference routines for linear systems, least squares and eigenvalue problems. | Fortran | BSD-3-Clause |  |
+
+</details>
+
+<details>
+<summary><a id="sparse-direct-solvers"></a><h3>16.3 Sparse direct solvers</h3></summary>
+<p id="open-linear-eigenvalue-and-nonlinear-solvers--sparse-direct-solvers"><sub>Linear, eigenvalue and nonlinear solvers › <b>16.3 Sparse direct solvers</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [DrTimothyAldenDavis/<br>SuiteSparse](https://github.com/DrTimothyAldenDavis/SuiteSparse) | Sparse matrix packages, including the CHOLMOD, UMFPACK and KLU factorizations. | C | BSD, Apache-2.0, LGPL and GPL, by package | Some packages, including UMFPACK, are GPL. |
+| [pghysels/<br>STRUMPACK](https://github.com/pghysels/STRUMPACK) | Sparse direct solvers and preconditioners that use rank-structured compression. | C++ | BSD-3-Clause, with restricted MC64 code | Bundled MC64 may not be passed to third parties without its authors' consent. |
+| [ralna/<br>spral](https://github.com/ralna/spral) | Sparse algorithms, including factorizations for symmetric systems. | Fortran | BSD-3-Clause |  |
+| [scivision/<br>mumps-superbuild](https://github.com/scivision/mumps-superbuild) | CMake build of the MUMPS parallel multifrontal solver and its dependencies. | CMake | MIT build scripts, CeCILL-C MUMPS | Build scripts, not the official MUMPS repository. |
+| [xiaoyeli/<br>superlu](https://github.com/xiaoyeli/superlu) | Sequential supernodal LU factorization for sparse nonsymmetric systems. | C | BSD-3-Clause, with restricted MC64 code | Bundled MC64 may not be passed to third parties without its authors' consent. |
+| [xiaoyeli/<br>superlu_dist](https://github.com/xiaoyeli/superlu_dist) | Distributed-memory sparse LU factorization with static pivoting. | C | BSD-3-Clause, with restricted MC64 code | Bundled MC64 may not be passed to third parties without its authors' consent. |
+
+</details>
+
+<details>
+<summary><a id="iterative-solvers-and-preconditioners"></a><h3>16.4 Iterative solvers and preconditioners</h3></summary>
+<p id="open-linear-eigenvalue-and-nonlinear-solvers--iterative-solvers-and-preconditioners"><sub>Linear, eigenvalue and nonlinear solvers › <b>16.4 Iterative solvers and preconditioners</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [anishida/<br>lis](https://github.com/anishida/lis) | Parallel iterative solvers for linear systems and eigenvalue problems. | C | BSD-3-Clause |  |
+| [ddemidov/<br>amgcl](https://github.com/ddemidov/amgcl) | Header-only algebraic multigrid for large sparse linear systems. | C++ | MIT |  |
+| [gridap/<br>GridapSolvers.jl](https://github.com/gridap/GridapSolvers.jl) | Block, multigrid and other physics-tailored solvers for Gridap. | Julia | MIT |  |
+| [hpddm/<br>hpddm](https://github.com/hpddm/hpddm) | Domain decomposition methods, including overlapping Schwarz, FETI and BDD. | C++ | LGPL-3.0 |  |
+| [hypre-space/<br>hypre](https://github.com/hypre-space/hypre) | Parallel preconditioners and solvers with algebraic and structured multigrid. | C | MIT or Apache-2.0 |  |
+| [JuliaSmoothOptimizers/<br>Krylov.jl](https://github.com/JuliaSmoothOptimizers/Krylov.jl) | Collection of Krylov methods for linear and least-squares problems. | Julia | MPL-2.0 |  |
+| [NVIDIA/<br>AMGX](https://github.com/NVIDIA/AMGX) | Distributed algebraic multigrid and Krylov solvers for GPUs. | Cuda | BSD-3-Clause, with Apache-2.0 CUSP | Requires CUDA. |
+| [pyamg/<br>pyamg](https://github.com/pyamg/pyamg) | Algebraic multigrid solvers in Python. | Python | MIT |  |
+
+</details>
+
+<details>
+<summary><a id="nonlinear-solvers-time-integration-and-continuation"></a><h3>16.5 Nonlinear solvers, time integration and continuation</h3></summary>
+<p id="open-linear-eigenvalue-and-nonlinear-solvers--nonlinear-solvers-time-integration-and-continuation"><sub>Linear, eigenvalue and nonlinear solvers › <b>16.5 Nonlinear solvers, time integration and continuation</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [bifurcationkit/<br>BifurcationKit.jl](https://github.com/bifurcationkit/BifurcationKit.jl) | Continuation and bifurcation analysis, for tracing instabilities and solution branches. | Julia | MIT |  |
+| [coin-or/<br>Ipopt](https://github.com/coin-or/Ipopt) | Interior point solver for large constrained nonlinear optimization. | C++ | EPL-2.0 | Optional HSL and Pardiso solvers have separate licenses. |
+| [llnl/<br>sundials](https://github.com/llnl/sundials) | Time integrators and nonlinear solvers for ODE and differential-algebraic systems. | C | BSD-3-Clause |  |
+| [pprachas/<br>fenics_arclength](https://github.com/pprachas/fenics_arclength) | Riks arc-length solver for tracing unstable equilibrium paths in FEniCS. | Python | MIT | Requires legacy FEniCS 2019.1, not FEniCSx. |
+| [SciML/<br>NonlinearSolve.jl](https://github.com/SciML/NonlinearSolve.jl) | Newton-type and other root-finding methods for nonlinear systems. | Julia | MIT |  |
+
+</details>
+
+<details>
+<summary><a id="eigenvalue-solvers"></a><h3>16.6 Eigenvalue solvers</h3></summary>
+<p id="open-linear-eigenvalue-and-nonlinear-solvers--eigenvalue-solvers"><sub>Linear, eigenvalue and nonlinear solvers › <b>16.6 Eigenvalue solvers</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [opencollab/<br>arpack-ng](https://github.com/opencollab/arpack-ng) | Community-maintained ARPACK routines for large eigenvalue problems. | Fortran | BSD-3-Clause |  |
+| [primme/<br>primme](https://github.com/primme/primme) | Preconditioned eigenvalue and singular value solvers for large problems. | C | BSD-3-Clause, with LGPL test files |  |
+| [slepc/<br>slepc](https://gitlab.com/slepc/slepc) | Parallel solvers for large sparse eigenvalue problems, built on PETSc. | C | BSD-2-Clause |  |
+| [yixuan/<br>spectra](https://github.com/yixuan/spectra) | Header-only C++ library for computing a few eigenvalues of large matrices. | C++ | MPL-2.0 |  |
+
+</details>
+
+<details>
+<summary><a id="matrix-free-operators-and-partitioning"></a><h3>16.7 Matrix-free operators and partitioning</h3></summary>
+<p id="open-linear-eigenvalue-and-nonlinear-solvers--matrix-free-operators-and-partitioning"><sub>Linear, eigenvalue and nonlinear solvers › <b>16.7 Matrix-free operators and partitioning</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [CEED/<br>libCEED](https://github.com/CEED/libCEED) | Matrix-free evaluation of finite element operators on CPUs and GPUs. | C | BSD-2-Clause, with LGPL deal.II examples |  |
+| [KaHIP/<br>KaHIP](https://github.com/KaHIP/KaHIP) | Multilevel graph partitioning and node ordering. | C++ | MIT |  |
+| [KarypisLab/<br>METIS](https://github.com/KarypisLab/METIS) | Graph and mesh partitioning, and fill-reducing orderings for sparse matrices. | C | Apache-2.0 |  |
+| [KarypisLab/<br>ParMETIS](https://github.com/KarypisLab/ParMETIS) | MPI library for parallel partitioning and fill-reducing ordering. | C | custom, with non-commercial restrictions | Free only for non-profit and US government education and research, other users may only evaluate it. |
+
+</details>
+
+</details>
+
+<details>
+<summary><a id="verification-validation-and-uncertainty"></a><h2>17. Verification, validation and uncertainty</h2></summary>
+<p id="open-verification-validation-and-uncertainty"><sub><b>17. Verification, validation and uncertainty</b> · <a href="#contents">Back to contents</a></sub></p>
+
+These answer different questions, and passing one does not imply passing the others.
+
+- **Code verification**: are the equations implemented correctly? Compare observed and expected convergence rates on exact or manufactured solutions ([Roache, 2002](https://doi.org/10.1115/1.1436090)).
+- **Solution verification**: how large is the numerical error in this result? Study mesh, time step and solver tolerances ([Roy, 2005](https://doi.org/10.1016/j.jcp.2004.10.036)).
+- **Validation**: does the model represent reality for its intended use? Compare with experiments that were not used for calibration. Agreement with another simulation is not validation.
+- **Uncertainty quantification**: how much do uncertain inputs, model form and numerical error affect the prediction ([Roy and Oberkampf, 2011](https://doi.org/10.1016/j.cma.2011.03.016))?
+
+Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025) for solid mechanics (paid), [NASA-STD-7009B](https://standards.nasa.gov/sites/default/files/standards/NASA/B/1/NASA-STD-7009B-Final-3-5-2024.pdf) for models and simulations, [ten rules for credible simulation in healthcare](https://doi.org/10.1186/s12967-020-02540-4) and the book by [Oberkampf and Roy (2010)](https://doi.org/10.1017/CBO9780511760396). Published cardiac benchmarks: [Land et al. (2015)](https://doi.org/10.1098/rspa.2015.0641) and [Aróstica et al. (2025)](https://doi.org/10.1016/j.cma.2024.117485).
+
+<details>
+<summary><a id="code-and-solution-verification"></a><h3>17.1 Code and solution verification</h3></summary>
+<p id="open-verification-validation-and-uncertainty--code-and-solution-verification"><sub>Verification, validation and uncertainty › <b>17.1 Code and solution verification</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [lanl/<br>ExactPack](https://github.com/lanl/ExactPack) | Exact solutions of verification problems in solids, heat conduction and hydrodynamics. | Python | BSD-3-Clause | Solid mechanics covers the Blake and elastic-plastic piston problems. |
+| [manufactured-solutions/<br>MASA](https://github.com/manufactured-solutions/MASA) | Library of manufactured solutions for verifying PDE solvers. | C++ | LGPL-2.1 | Examples are mainly heat transfer and fluid flow. |
+| [OSEL-DAM/<br>SimEval](https://github.com/OSEL-DAM/SimEval) | Notebooks on code and calculation verification, including for physics-informed networks. | HTML | CC0-1.0 |  |
+| [tomrobin-teschner/<br>pyGCS](https://github.com/tomrobin-teschner/pyGCS) | Grid convergence index calculations for estimating discretization error. | Python | MIT |  |
+
+</details>
+
+<details>
+<summary><a id="benchmarks-and-reference-solutions"></a><h3>17.2 Benchmarks and reference solutions</h3></summary>
+<p id="open-verification-validation-and-uncertainty--benchmarks-and-reference-solutions"><sub>Verification, validation and uncertainty › <b>17.2 Benchmarks and reference solutions</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [febiosoftware/<br>TestSuite](https://github.com/febiosoftware/TestSuite) | FEBio test problems with stored results for regression testing. | Python | none found | Regression results are not independent reference solutions. |
+| [finsberg/<br>cardiac_benchmark](https://github.com/finsberg/cardiac_benchmark) | Simula's implementation of a published cardiac elastodynamics benchmark. | Python | MIT (stated in README) |  |
+| [javijv4/<br>arostica-benchmark](https://github.com/javijv4/arostica-benchmark) | Cardiac elastodynamics test against the envelope of published results from ten groups. | Python | none found | Requires svMultiPhysics. |
+| [KratosMultiphysics/<br>Examples](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation) | Kratos benchmarks for beams, trusses and membranes, including large deflection and snap-through. | Python | none found |  |
+| [KratosMultiphysics/<br>Examples](https://github.com/KratosMultiphysics/Examples/tree/master/contact_structural_mechanics/validation) | Kratos contact benchmarks, including Hertz, press-fit and ironing cases. | Python | none found |  |
+| [Simulation-Benchmarks/<br>linear-elastic-plate-with-hole](https://github.com/Simulation-Benchmarks/linear-elastic-plate-with-hole) | Plate-with-hole benchmark comparing finite element codes with the Kirsch solution. | Python | MIT code, CC-BY-4.0 docs, CC0-1.0 data |  |
+| [Simulation-Benchmarks/<br>NFDI4IngModelValidationPlatform](https://github.com/Simulation-Benchmarks/NFDI4IngModelValidationPlatform) | Registry and shared workflows for reproducible simulation benchmarks. | Jupyter Notebook | MIT |  |
+| [TadeasSvetlik/<br>Elastoplastic-contact-2D-benchmarks](https://github.com/TadeasSvetlik/Elastoplastic-contact-2D-benchmarks) | Inputs and reference results for 2D elastic and elastoplastic contact benchmarks. | MATLAB | none found | No README. |
+
+</details>
+
+<details>
+<summary><a id="experimental-data-for-validation"></a><h3>17.3 Experimental data for validation</h3></summary>
+<p id="open-verification-validation-and-uncertainty--experimental-data-for-validation"><sub>Verification, validation and uncertainty › <b>17.3 Experimental data for validation</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [dlr-wf/<br>crackmnist](https://github.com/dlr-wf/crackmnist) | Annotated displacement fields measured by image correlation in fatigue crack growth tests. | Python | MIT code, CC-BY-4.0 data (stated in README) |  |
+| [llamm-de/<br>thermalCANN](https://github.com/llamm-de/thermalCANN/tree/main/data/Treloar) | Treloar's rubber data for uniaxial, equibiaxial and pure shear loading, as republished in 2012. | Python | MIT | The Arruda-Boyce file is a model fit, not measured data. |
+| [sanjayg0/<br>epcms](https://github.com/sanjayg0/epcms) | Continuum mechanics example codes with tension test data for steel and aluminum. | MATLAB | MIT |  |
+| [Simulation-Benchmarks/<br>four-point-bending-test](https://github.com/Simulation-Benchmarks/four-point-bending-test) | Reinforced concrete beam benchmark with deflections and strains from a 1963 experiment. | Python | none found | The finite element models require Ansys. |
+
+</details>
+
+<details>
+<summary><a id="calibration-and-bayesian-inference"></a><h3>17.4 Calibration and Bayesian inference</h3></summary>
+<p id="open-verification-validation-and-uncertainty--calibration-and-bayesian-inference"><sub>Verification, validation and uncertainty › <b>17.4 Calibration and Bayesian inference</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [BAMresearch/<br>probeye](https://github.com/BAMresearch/probeye) | Solver-independent definition of parameter estimation problems, mainly solved by sampling. | Python | MIT |  |
+| [CUQI-DTU/<br>CUQIpy](https://github.com/CUQI-DTU/CUQIpy) | Bayesian modeling and uncertainty quantification for inverse problems. | Python | Apache-2.0 |  |
+| [hippylib/<br>hippylib](https://github.com/hippylib/hippylib) | Deterministic and Bayesian inversion for models governed by PDEs. | Jupyter Notebook | GPL-2.0 |  |
+| [sandialabs/<br>matcal](https://github.com/sandialabs/matcal) | Calibration of material models to experimental data. | Python | BSD-3-Clause | Built-in characterization test models are for SierraSM. |
+
+</details>
+
+<details>
+<summary><a id="uncertainty-and-sensitivity-analysis"></a><h3>17.5 Uncertainty and sensitivity analysis</h3></summary>
+<p id="open-verification-validation-and-uncertainty--uncertainty-and-sensitivity-analysis"><sub>Verification, validation and uncertainty › <b>17.5 Uncertainty and sensitivity analysis</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [damar-wicaksono/<br>uqtestfuns](https://github.com/damar-wicaksono/uqtestfuns) | Test functions for benchmarking uncertainty quantification methods. | Python | MIT |  |
+| [febiosoftware/<br>FEBioUncertainSCI](https://github.com/febiosoftware/FEBioUncertainSCI) | Uncertainty and sensitivity analysis of FEBio models with UncertainSCI. | Python | MIT |  |
+| [idaholab/<br>raven](https://github.com/idaholab/raven) | Sampling-based risk, validation and uncertainty analysis of complex system codes. | Python | Apache-2.0 |  |
+| [jonathf/<br>chaospy](https://github.com/jonathf/chaospy) | Uncertainty propagation with polynomial chaos expansions and quasi-Monte Carlo sampling. | Python | MIT |  |
+| [openturns/<br>openturns](https://github.com/openturns/openturns) | Probabilistic modeling, reliability and uncertainty propagation. | C++ | LGPL-3.0-or-later |  |
+| [SALib/<br>SALib](https://github.com/SALib/SALib) | Global sensitivity analysis with Sobol, Morris, FAST and other methods. | Python | MIT |  |
+| [sandialabs/<br>pyapprox](https://github.com/sandialabs/pyapprox) | Surrogate, multifidelity and uncertainty methods for expensive simulations. | Python | MIT |  |
+| [SCIInstitute/<br>UncertainSCI](https://github.com/SCIInstitute/UncertainSCI) | Non-intrusive parametric uncertainty analysis for biomedical simulations. | Python | MIT |  |
+| [snl-dakota/<br>dakota](https://github.com/snl-dakota/dakota) | Toolkit for uncertainty, sensitivity, calibration and design studies around existing solvers. | C++ | LGPL-2.1-or-later |  |
+| [SURGroup/<br>UQpy](https://github.com/SURGroup/UQpy) | Toolbox for modeling uncertainty in physical and mathematical systems. | Python | MIT |  |
+| [UCL-CCS/<br>EasyVVUQ](https://github.com/UCL-CCS/EasyVVUQ) | Workflow manager for verification, validation and uncertainty studies of costly simulations. | Jupyter Notebook | LGPL-3.0-or-later or GPL-3.0-or-later |  |
+| [UM-Bridge/<br>benchmarks](https://github.com/UM-Bridge/benchmarks) | Containerized models and reference problems for testing uncertainty algorithms. | Python | GPL-3.0-or-later in some files |  |
+| [UM-Bridge/<br>umbridge](https://github.com/UM-Bridge/umbridge) | Language-independent interface between simulation models and uncertainty software. | C++ | MIT |  |
+
+</details>
+
+</details>
+
+<details>
+<summary><a id="courses-references-and-agents-for-mechanics"></a><h2>18. Courses, references and agents for mechanics</h2></summary>
+<p id="open-courses-references-and-agents-for-mechanics"><sub><b>18. Courses, references and agents for mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+
+<details>
+<summary><a id="courses-and-tutorials"></a><h3>18.1 Courses and tutorials</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--courses-and-tutorials"><sub>Courses, references and agents for mechanics › <b>18.1 Courses and tutorials</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -1128,8 +1352,50 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><a id="curated-lists"></a><h3>16.2 Curated lists</h3></summary>
-<p id="open-courses-references-and-agents-for-mechanics--curated-lists"><sub>Courses, references and agents for mechanics › <b>16.2 Curated lists</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="textbooks-and-numerical-tutorials"></a><h3>18.2 Textbooks and numerical tutorials</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--textbooks-and-numerical-tutorials"><sub>Courses, references and agents for mechanics › <b>18.2 Textbooks and numerical tutorials</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [albower/<br>Applied_Mechanics_of_Solids](https://github.com/albower/Applied_Mechanics_of_Solids) | Problem sets and finite element codes for Bower's Applied Mechanics of Solids. | MATLAB | none found | Requires MATLAB. |
+| [bleyerj/<br>comet-fenicsx](https://github.com/bleyerj/comet-fenicsx) | Numerical tours of computational mechanics with FEniCSx. | Python | CC-BY-SA-4.0 |  |
+| [bueler/<br>p4pdes](https://github.com/bueler/p4pdes) | Example programs from a book on solving PDEs with PETSc and Firedrake. | C | MIT |  |
+| [finite-element/<br>finite-element-course](https://github.com/finite-element/finite-element-course) | Imperial College course on finite element analysis and implementation. | Python | MIT (stated in pyproject.toml) |  |
+| [gridap/<br>Tutorials](https://github.com/gridap/Tutorials) | Worked tutorials on solving PDEs with Gridap. | Julia | MIT |  |
+| [jorgensd/<br>dolfinx-tutorial](https://github.com/jorgensd/dolfinx-tutorial) | Tutorial book on solving PDEs with FEniCSx, including elasticity and hyperelasticity. | Jupyter Notebook | CC-BY-4.0 content, MIT in some files |  |
+| [Kevin-Mattheus-Moerman/<br>NonlinearContinuumMechanics](https://github.com/Kevin-Mattheus-Moerman/NonlinearContinuumMechanics) | Notebooks deriving stresses in Ogden hyperelasticity. | Jupyter Notebook | MIT |  |
+| [mitmath/<br>18335](https://github.com/mitmath/18335) | MIT course notes on numerical linear algebra, stability and iterative methods. | Jupyter Notebook | none found |  |
+
+</details>
+
+<details>
+<summary><a id="element-definitions-and-form-languages"></a><h3>18.3 Element definitions and form languages</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--element-definitions-and-form-languages"><sub>Courses, references and agents for mechanics › <b>18.3 Element definitions and form languages</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [DefElement/<br>DefElement](https://github.com/DefElement/DefElement) | Source of DefElement, an encyclopedia of finite element definitions. | Python | MIT code, CC-BY-4.0 content |  |
+| [FEniCS/<br>basix](https://github.com/FEniCS/basix) | Runtime tabulation of finite element basis functions, quadrature and mappings. | C++ | MIT |  |
+| [FEniCS/<br>ufl](https://github.com/FEniCS/ufl) | Language for writing variational forms in notation close to the mathematics. | Python | LGPL-3.0-or-later |  |
+| [firedrakeproject/<br>fiat](https://github.com/firedrakeproject/fiat) | Tabulation of arbitrary-order finite elements and quadrature rules. | Python | LGPL-3.0-or-later |  |
+| [mscroggs/<br>symfem](https://github.com/mscroggs/symfem) | Symbolic definitions of finite elements and their basis functions. | Python | MIT |  |
+
+</details>
+
+<details>
+<summary><a id="reproducible-research-software"></a><h3>18.4 Reproducible research software</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--reproducible-research-software"><sub>Courses, references and agents for mechanics › <b>18.4 Reproducible research software</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [betterscientificsoftware/<br>bssw.io](https://github.com/betterscientificsoftware/bssw.io) | Articles on testing, sustaining and improving scientific software. | Python | MIT |  |
+| [the-turing-way/<br>the-turing-way](https://github.com/the-turing-way/the-turing-way) | Handbook on reproducible, ethical and collaborative research. | TeX | MIT code, CC-BY-4.0 content |  |
+
+</details>
+
+<details>
+<summary><a id="curated-lists"></a><h3>18.5 Curated lists</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--curated-lists"><sub>Courses, references and agents for mechanics › <b>18.5 Curated lists</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -1142,8 +1408,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><a id="agents-for-mechanics"></a><h3>16.3 Agents for mechanics</h3></summary>
-<p id="open-courses-references-and-agents-for-mechanics--agents-for-mechanics"><sub>Courses, references and agents for mechanics › <b>16.3 Agents for mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="agents-for-mechanics"></a><h3>18.6 Agents for mechanics</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--agents-for-mechanics"><sub>Courses, references and agents for mechanics › <b>18.6 Agents for mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |

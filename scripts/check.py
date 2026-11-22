@@ -111,8 +111,27 @@ TOPICS = {
         "Mesh processing and formats",
         "Visualization and export",
     ],
+    "Linear, eigenvalue and nonlinear solvers": [
+        "Solver toolkits",
+        "Dense linear algebra",
+        "Sparse direct solvers",
+        "Iterative solvers and preconditioners",
+        "Nonlinear solvers, time integration and continuation",
+        "Eigenvalue solvers",
+        "Matrix-free operators and partitioning",
+    ],
+    "Verification, validation and uncertainty": [
+        "Code and solution verification",
+        "Benchmarks and reference solutions",
+        "Experimental data for validation",
+        "Calibration and Bayesian inference",
+        "Uncertainty and sensitivity analysis",
+    ],
     "Courses, references and agents for mechanics": [
         "Courses and tutorials",
+        "Textbooks and numerical tutorials",
+        "Element definitions and form languages",
+        "Reproducible research software",
         "Curated lists",
         "Agents for mechanics",
     ],
@@ -138,6 +157,41 @@ INTROS = {
         "Some links open the relevant file inside a larger project. DTU's MATLAB TopTMC code is not in a "
         "repository and can be downloaded from the [TopOpt software page]"
         "(https://www.topopt.mek.dtu.dk/apps-and-software).",
+    "Linear, eigenvalue and nonlinear solvers":
+        "The right solver depends on the structure of the discrete problem.\n\n"
+        "- **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, "
+        "or conjugate gradients with a preconditioner. For algebraic multigrid, supply the rigid body modes.\n"
+        "- **Symmetric indefinite**, as in mixed formulations and Lagrange multiplier contact: use an LDLᵀ "
+        "factorization, or MINRES or GMRES with a suitable block preconditioner.\n"
+        "- **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB "
+        "with a preconditioner.\n"
+        "- **Buckling and snap-through**: the tangent becomes singular at limit points, so load-controlled "
+        "Newton fails there. Use continuation, such as an arc-length method.\n"
+        "- **Any system**: a small residual does not guarantee a small error when the matrix is ill-conditioned.\n\n"
+        "Further reading: "
+        "[Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076) on direct methods, "
+        "[Saad (2003)](https://doi.org/10.1137/1.9780898718003) on iterative methods, "
+        "[Benzi et al. (2005)](https://doi.org/10.1017/S0962492904000212) on saddle point problems and "
+        "[Higham (2002)](https://doi.org/10.1137/1.9780898718027) on accuracy and stability.",
+    "Verification, validation and uncertainty":
+        "These answer different questions, and passing one does not imply passing the others.\n\n"
+        "- **Code verification**: are the equations implemented correctly? Compare observed and expected "
+        "convergence rates on exact or manufactured solutions "
+        "([Roache, 2002](https://doi.org/10.1115/1.1436090)).\n"
+        "- **Solution verification**: how large is the numerical error in this result? Study mesh, time step "
+        "and solver tolerances ([Roy, 2005](https://doi.org/10.1016/j.jcp.2004.10.036)).\n"
+        "- **Validation**: does the model represent reality for its intended use? Compare with experiments "
+        "that were not used for calibration. Agreement with another simulation is not validation.\n"
+        "- **Uncertainty quantification**: how much do uncertain inputs, model form and numerical error affect "
+        "the prediction ([Roy and Oberkampf, 2011](https://doi.org/10.1016/j.cma.2011.03.016))?\n\n"
+        "Guidance: "
+        "[ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025) for solid mechanics (paid), "
+        "[NASA-STD-7009B](https://standards.nasa.gov/sites/default/files/standards/NASA/B/1/NASA-STD-7009B-Final-3-5-2024.pdf) "
+        "for models and simulations, "
+        "[ten rules for credible simulation in healthcare](https://doi.org/10.1186/s12967-020-02540-4) and "
+        "the book by [Oberkampf and Roy (2010)](https://doi.org/10.1017/CBO9780511760396). "
+        "Published cardiac benchmarks: [Land et al. (2015)](https://doi.org/10.1098/rspa.2015.0641) and "
+        "[Aróstica et al. (2025)](https://doi.org/10.1016/j.cma.2024.117485).",
 }
 
 

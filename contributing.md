@@ -3,7 +3,8 @@
 ## What belongs here
 
 - A public repository that is directly useful for computational mechanics: solid or structural mechanics, soft bodies, biomechanics, particle methods, or machine learning applied to them.
-- General-purpose tools that computational mechanics work builds on, such as meshing, visualization, simulation languages and physics-informed learning libraries.
+- General-purpose tools that computational mechanics work builds on, such as solvers, meshing, visualization, simulation languages and physics-informed learning libraries.
+- Material that helps make or judge a simulation: reference texts, verification cases, benchmarks, measured data, and calibration or uncertainty tools. Say in `note` when results could be mistaken for measured data or independent reference solutions.
 - A README or code that shows what it does.
 - Not other general machine learning, trading, or programming resources.
 
