@@ -159,6 +159,34 @@ DISPLAY_NAMES = {
 FORMER_TITLES = {
     "Courses and tutorials": ["Textbooks and numerical tutorials"],
 }
+# The "Start here" table: (goal, link text, URL of an entry, topic to browse next, sub-topic or None).
+START = [
+    ("Learn finite elements", "Imperial College course", "https://github.com/finite-element/finite-element-course",
+     "Finite and boundary element methods", "Teaching and compact codes"),
+    ("Write a solver in Python", "scikit-fem", "https://github.com/kinnala/scikit-fem",
+     "Finite and boundary element methods", "General-purpose frameworks"),
+    ("Simulate soft tissue", "FEBio", "https://github.com/febiosoftware/FEBio",
+     "Soft-body, real-time and differentiable simulation", "Real-time finite elements"),
+    ("Model contact", "IPC Toolkit", "https://github.com/ipc-sim/ipc-toolkit",
+     "Contact mechanics", None),
+    ("Learn material laws from data", "EUCLID", "https://github.com/EUCLID-code/EUCLID-hyperelasticity",
+     "Constitutive modeling and material identification", "Unsupervised model discovery"),
+    ("Try virtual elements", "50 lines of VEM", "https://github.com/oliversutton/50LinesOfVEM",
+     "Virtual element method", None),
+    ("Solve large systems", "PETSc", "https://gitlab.com/petsc/petsc",
+     "Linear, eigenvalue and nonlinear solvers", None),
+    ("Verify and validate a model", "SimEval", "https://github.com/OSEL-DAM/SimEval",
+     "Verification, validation and uncertainty", None),
+]
+BANNER = [
+    '<p align="center">',
+    '<img src="assets/banner.png" width="420" '
+    'alt="A soft cube with circular cuts at 0, 25 and 50 mm of stretch, colored by displacement">',
+    "<br>",
+    '<sub>Soft-tissue cube simulated with <a href="https://github.com/x9m/JANP-DJTLED-GPU">JANP-DJTLED</a> '
+    '(<a href="assets/LICENSE">MIT</a>)</sub>',
+    "</p>",
+]
 INTROS = {
     "Virtual element method":
         "The virtual element method (VEM) generalizes finite elements to polygonal and polyhedral elements.",
@@ -288,6 +316,19 @@ def load():
     return entries, errors
 
 
+def start_problems(entries):
+    """Return what is wrong with the "Start here" table."""
+    listed = {e["url"]: e for e in entries if e["status"] == "listed"}
+    used = {(e["category"], sub) for e in listed.values() for sub in (None, e["subtopic"])}
+    found = []
+    for goal, _, url, topic, sub in START:
+        if url not in listed:
+            found.append(f"START, {goal}: {url} is not a listed entry")
+        if (topic, sub) not in used:
+            found.append(f"START, {goal}: no section {sub or topic}")
+    return found
+
+
 def anchor(title):
     # ASCII only: GitHub percent-encodes other characters in links but not in IDs, so they would not match.
     plain = unicodedata.normalize("NFKD", title).encode("ascii", "ignore").decode()
@@ -379,10 +420,18 @@ def render(entries):
             topics.append((topic, sum(len(group) for _, group in groups), groups))
     out = [
         "# Awesome Computational Mechanics", "",
-        "A collection of public repositories for computational mechanics: solid and structural mechanics, "
-        "soft bodies, biomechanics, particle methods and machine learning applied to them, "
-        "plus the solvers, validation and reference material they rely on.", "",
-        "## Contents", "",
+        f"**{len(listed)} entries for computational mechanics, from finite elements and soft tissue to solvers "
+        "and validation**, with licenses, commercial-software requirements and known usage restrictions noted.", "",
+        *BANNER, "",
+        "## Start here", "",
+        "| I want to | Start with | Then browse |",
+        "| --- | --- | --- |",
+        *(f"| {goal} | [{text}]({url}) | {link(sub or topic, topic, sub)} |"
+          for goal, text, url, topic, sub in START),
+        "", "## Contents", "",
+        *(f"{number}. {link(topic, topic)} ({size})" for number, (topic, size, _) in enumerate(topics, 1)),
+        "", "<details>",
+        f"<summary>All {sum(len(groups) for _, _, groups in topics)} sub-topics</summary>", "",
     ]
     for number, (topic, size, groups) in enumerate(topics, 1):
         marker = f"{number}. "
@@ -391,7 +440,7 @@ def render(entries):
                   for minor, (sub, group) in enumerate(groups, 1)]
         # <br> keeps the sub-topics in their topic's list item: Markdown lists cannot number 1.1, 1.2.
         out.append(marker + ("<br>\n" + " " * len(marker)).join(lines))
-    out += ["", f"[Archived and unmaintained projects](archive.md) ({len(inactive)})", "",
+    out += ["", "</details>", "", f"[Archived and unmaintained projects](archive.md) ({len(inactive)})", "",
             "[Contributing](#contributing)", ""]
     for number, (topic, _, groups) in enumerate(topics, 1):
         body = [INTROS[topic], ""] if topic in INTROS else []
@@ -544,6 +593,7 @@ def main():
     if args - {"--write", "--online"}:
         sys.exit(__doc__)
     entries, errors = load()
+    errors = errors or start_problems(entries)
     warnings = []
     if not errors:
         for filename, text in render(entries).items():

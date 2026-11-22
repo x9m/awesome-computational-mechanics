@@ -16,7 +16,7 @@
    - {"url": "https://github.com/owner/repo", "category": "Virtual element method", "subtopic": "VEM libraries", "description": "What it does.", "language": "Python", "license": "MIT", "note": "", "status": "listed", "maintainer": false}
    ```
 
-   `category` must match a topic title and `subtopic` one of that topic's sub-topic titles, both exactly and without the numbers, which are generated. To add a sub-topic, edit `TOPICS` in `scripts/check.py`. To change a topic's introduction, edit `INTROS` there. `status` is `listed` or `inactive`. End `description` with a period, but not `note`.
+   `category` must match a topic title and `subtopic` one of that topic's sub-topic titles, both exactly and without the numbers, which are generated. To add a sub-topic, edit `TOPICS` in `scripts/check.py`. To change a topic's introduction, edit `INTROS` there, and for the "Start here" table, edit `START`. `status` is `listed` or `inactive`. End `description` with a period, but not `note`.
 2. Write one factual sentence in your own words. Avoid "best", "fastest" and similar claims.
 3. Copy the license from the repository, checking the license file, the README and source file headers. Use `none found` if there is none, and never guess.
 4. Put required commercial software and usage restrictions in `note`.

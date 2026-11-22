@@ -1,8 +1,49 @@
 # Awesome Computational Mechanics
 
-A collection of public repositories for computational mechanics: solid and structural mechanics, soft bodies, biomechanics, particle methods and machine learning applied to them, plus the solvers, validation and reference material they rely on.
+**443 entries for computational mechanics, from finite elements and soft tissue to solvers and validation**, with licenses, commercial-software requirements and known usage restrictions noted.
+
+<p align="center">
+<img src="assets/banner.png" width="420" alt="A soft cube with circular cuts at 0, 25 and 50 mm of stretch, colored by displacement">
+<br>
+<sub>Soft-tissue cube simulated with <a href="https://github.com/x9m/JANP-DJTLED-GPU">JANP-DJTLED</a> (<a href="assets/LICENSE">MIT</a>)</sub>
+</p>
+
+## Start here
+
+| I want to | Start with | Then browse |
+| --- | --- | --- |
+| Learn finite elements | [Imperial College course](https://github.com/finite-element/finite-element-course) | [Teaching and compact codes](#user-content-open-finite-and-boundary-element-methods--teaching-and-compact-codes) |
+| Write a solver in Python | [scikit-fem](https://github.com/kinnala/scikit-fem) | [General-purpose frameworks](#user-content-open-finite-and-boundary-element-methods--general-purpose-frameworks) |
+| Simulate soft tissue | [FEBio](https://github.com/febiosoftware/FEBio) | [Real-time finite elements](#user-content-open-soft-body-real-time-and-differentiable-simulation--real-time-finite-elements) |
+| Model contact | [IPC Toolkit](https://github.com/ipc-sim/ipc-toolkit) | [Contact mechanics](#user-content-open-contact-mechanics) |
+| Learn material laws from data | [EUCLID](https://github.com/EUCLID-code/EUCLID-hyperelasticity) | [Unsupervised model discovery](#user-content-open-constitutive-modeling-and-material-identification--unsupervised-model-discovery) |
+| Try virtual elements | [50 lines of VEM](https://github.com/oliversutton/50LinesOfVEM) | [Virtual element method](#user-content-open-virtual-element-method) |
+| Solve large systems | [PETSc](https://gitlab.com/petsc/petsc) | [Linear, eigenvalue and nonlinear solvers](#user-content-open-linear-eigenvalue-and-nonlinear-solvers) |
+| Verify and validate a model | [SimEval](https://github.com/OSEL-DAM/SimEval) | [Verification, validation and uncertainty](#user-content-open-verification-validation-and-uncertainty) |
 
 ## Contents
+
+1. [Finite and boundary element methods](#user-content-open-finite-and-boundary-element-methods) (77)
+2. [Finite volume methods](#user-content-open-finite-volume-methods) (1)
+3. [Virtual element method](#user-content-open-virtual-element-method) (30)
+4. [Contact mechanics](#user-content-open-contact-mechanics) (9)
+5. [Third medium contact](#user-content-open-third-medium-contact) (13)
+6. [Meshfree and particle methods](#user-content-open-meshfree-and-particle-methods) (28)
+7. [Soft-body, real-time and differentiable simulation](#user-content-open-soft-body-real-time-and-differentiable-simulation) (26)
+8. [Multibody dynamics and biomechanics](#user-content-open-multibody-dynamics-and-biomechanics) (10)
+9. [Constitutive modeling and material identification](#user-content-open-constitutive-modeling-and-material-identification) (38)
+10. [Multiscale and homogenization](#user-content-open-multiscale-and-homogenization) (12)
+11. [Thermal, multiphysics and additive manufacturing](#user-content-open-thermal-multiphysics-and-additive-manufacturing) (11)
+12. [Optimization and inverse problems](#user-content-open-optimization-and-inverse-problems) (18)
+13. [Physics-informed learning and energy methods](#user-content-open-physics-informed-learning-and-energy-methods) (14)
+14. [Surrogates and reduced-order models](#user-content-open-surrogates-and-reduced-order-models) (34)
+15. [Meshing, pre- and post-processing](#user-content-open-meshing-pre--and-post-processing) (23)
+16. [Linear, eigenvalue and nonlinear solvers](#user-content-open-linear-eigenvalue-and-nonlinear-solvers) (35)
+17. [Verification, validation and uncertainty](#user-content-open-verification-validation-and-uncertainty) (33)
+18. [Courses, references and agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics) (31)
+
+<details>
+<summary>All 81 sub-topics</summary>
 
 1. [Finite and boundary element methods](#user-content-open-finite-and-boundary-element-methods) (77)<br>
    1.1 [General-purpose frameworks](#user-content-open-finite-and-boundary-element-methods--general-purpose-frameworks) (20)<br>
@@ -103,6 +144,8 @@ A collection of public repositories for computational mechanics: solid and struc
     18.3 [Reproducible research software](#user-content-open-courses-references-and-agents-for-mechanics--reproducible-research-software) (2)<br>
     18.4 [Curated lists](#user-content-open-courses-references-and-agents-for-mechanics--curated-lists) (5)<br>
     18.5 [Agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics--agents-for-mechanics) (3)
+
+</details>
 
 [Archived and unmaintained projects](archive.md) (6)
 
