@@ -92,7 +92,6 @@ TOPICS = {
         "Mesh generation",
         "Mesh processing and formats",
         "Visualization and export",
-        "Sample geometry",
     ],
     "Courses, references and agents for mechanics": [
         "Courses and tutorials",
@@ -102,12 +101,17 @@ TOPICS = {
 }
 FIELDS = {"url", "category", "subtopic", "description", "language", "license", "note", "status", "source"}
 BATCH = 50  # repositories per GraphQL request
-SOURCES = ("stars", "own", "following", "collaborator", "topic", "major")
+SOURCES = ("stars", "own", "related", "topic", "major")
 URL = re.compile(
     r"https://(github\.com|gitlab\.com|gitlab\.onelab\.info|gitlab\.dune-project\.org)/([\w.-]+/[\w.-]+)"
     # Optionally, a file or folder inside a GitHub repository.
     r"(?:/(?:tree|blob)/([\w.-]+)/([\w./-]+))?"
 )
+# Names to show where owner/repository would not be recognizable.
+DISPLAY_NAMES = {
+    "https://gitlab.com/codeaster/src": "code_aster",
+    "https://gitlab.com/yade-dev/trunk": "YADE",
+}
 INTROS = {
     "Virtual element method":
         "The virtual element method (VEM) generalizes finite elements to polygonal and polyhedral elements.",
@@ -227,6 +231,10 @@ def cell(text):
     return text.replace("|", "\\|")
 
 
+def sort_key(entry):
+    return DISPLAY_NAMES.get(entry["url"], entry["name"]).lower()
+
+
 def row(entry):
     notes = []
     if entry["source"] == "own":
@@ -234,7 +242,7 @@ def row(entry):
     if entry["note"]:
         notes.append(f"{entry['note']}.")
     # Break after the owner so long names do not push the Note column out of view.
-    name = entry["name"].replace("/", "/<br>", 1)
+    name = DISPLAY_NAMES.get(entry["url"], entry["name"]).replace("/", "/<br>", 1)
     cells = [f"[{name}]({entry['url']})", entry["description"],
              entry["language"], entry["license"], " ".join(notes)]
     return "| " + " | ".join(map(cell, cells)) + " |"
@@ -248,27 +256,22 @@ def table(entries):
 
 def render(entries):
     listed = [e for e in entries if e["status"] == "listed"]
-    inactive = sorted((e for e in entries if e["status"] == "inactive"), key=lambda e: e["name"].lower())
+    inactive = sorted((e for e in entries if e["status"] == "inactive"), key=sort_key)
     topics = []  # (topic, number of entries, [(sub-topic, its entries)])
     for topic, subtopics in TOPICS.items():
         groups = [(sub, sorted((e for e in listed if e["category"] == topic and e["subtopic"] == sub),
-                               key=lambda e: e["name"].lower()))
+                               key=sort_key))
                   for sub in subtopics]
         groups = [(sub, group) for sub, group in groups if group]
         if groups:
             topics.append((topic, sum(len(group) for _, group in groups), groups))
-    count = {s: sum(e["source"] == s for e in listed) for s in SOURCES}
-
     out = [
         "# Awesome Computational Mechanics", "",
         "A collection of public repositories for computational mechanics: solid and structural mechanics, "
         "soft bodies, biomechanics, particle methods, and machine learning applied to them.", "",
-        f"It has {len(listed)} entries: "
-        f"{count['stars']} from the maintainer's GitHub stars, {count['own']} by the maintainer, "
-        f"{count['following']} from accounts the maintainer follows, "
-        f"{count['collaborator']} where those accounts are collaborators, {count['topic']} found by topic search "
-        f"and {count['major']} major projects chosen editorially. "
-        f"Together they cover {len({(e['host'], e['name']) for e in listed})} repositories. "
+        f"It has {len(listed)} entries covering {len({(e['host'], e['name']) for e in listed})} repositories. "
+        "The list started from the maintainer's GitHub stars and grew through searches for related work "
+        "and an editorial selection of major projects. "
         f"Another {len(inactive)} archived or unmaintained ones are in [archive.md](archive.md).", "",
         "> **Before you rely on this list:** it is not complete. "
         "Descriptions were drafted with AI from README excerpts, file listings and repository metadata. "

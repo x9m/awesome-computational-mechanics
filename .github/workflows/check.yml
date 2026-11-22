@@ -16,6 +16,11 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - run: python3 scripts/check.py --online
+      - name: Check data and generated files
+        run: python3 scripts/check.py
+      # Links are checked on a schedule, so a dead upstream link cannot fail unrelated changes.
+      - name: Check links
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python3 scripts/check.py --online
         env:
           GH_TOKEN: ${{ github.token }}

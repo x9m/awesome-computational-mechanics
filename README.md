@@ -2,7 +2,7 @@
 
 A collection of public repositories for computational mechanics: solid and structural mechanics, soft bodies, biomechanics, particle methods, and machine learning applied to them.
 
-It has 220 entries: 112 from the maintainer's GitHub stars, 2 by the maintainer, 33 from accounts the maintainer follows, 4 where those accounts are collaborators, 31 found by topic search and 38 major projects chosen editorially. Together they cover 218 repositories. Another 5 archived or unmaintained ones are in [archive.md](archive.md).
+It has 221 entries covering 219 repositories. The list started from the maintainer's GitHub stars and grew through searches for related work and an editorial selection of major projects. Another 5 archived or unmaintained ones are in [archive.md](archive.md).
 
 > **Before you rely on this list:** it is not complete. Descriptions were drafted with AI from README excerpts, file listings and repository metadata. The code was not run or validated, and a listing is not an endorsement. License labels are a convenience, not legal advice. "None found" means no license was found in the places checked, so do not assume you may reuse that code. Public does not always mean open source.
 
@@ -30,10 +30,10 @@ It has 220 entries: 112 from the maintainer's GitHub stars, 2 by the maintainer,
   - [Topology optimization solvers](#user-content-open-optimization-and-inverse-problems--topology-optimization-solvers) (3) · [Learning-based topology optimization](#user-content-open-optimization-and-inverse-problems--learning-based-topology-optimization) (3) · [Inverse problems](#user-content-open-optimization-and-inverse-problems--inverse-problems) (2)
 - [Physics-informed learning and energy methods](#user-content-open-physics-informed-learning-and-energy-methods) (13)
   - [Deep energy methods](#user-content-open-physics-informed-learning-and-energy-methods--deep-energy-methods) (7) · [Residual-based networks](#user-content-open-physics-informed-learning-and-energy-methods--residual-based-networks) (4) · [PINN libraries and examples](#user-content-open-physics-informed-learning-and-energy-methods--pinn-libraries-and-examples) (2)
-- [Surrogates and reduced-order models](#user-content-open-surrogates-and-reduced-order-models) (24)
-  - [Stress-field prediction](#user-content-open-surrogates-and-reduced-order-models--stress-field-prediction) (5) · [Deformation and reduced dynamics](#user-content-open-surrogates-and-reduced-order-models--deformation-and-reduced-dynamics) (5) · [Graph neural networks](#user-content-open-surrogates-and-reduced-order-models--graph-neural-networks) (4) · [Biomechanical surrogates](#user-content-open-surrogates-and-reduced-order-models--biomechanical-surrogates) (2) · [Response histories and operator learning](#user-content-open-surrogates-and-reduced-order-models--response-histories-and-operator-learning) (5) · [Frameworks and introductory studies](#user-content-open-surrogates-and-reduced-order-models--frameworks-and-introductory-studies) (3)
-- [Meshing, pre- and post-processing](#user-content-open-meshing-pre--and-post-processing) (15)
-  - [Mesh generation](#user-content-open-meshing-pre--and-post-processing--mesh-generation) (7) · [Mesh processing and formats](#user-content-open-meshing-pre--and-post-processing--mesh-processing-and-formats) (3) · [Visualization and export](#user-content-open-meshing-pre--and-post-processing--visualization-and-export) (4) · [Sample geometry](#user-content-open-meshing-pre--and-post-processing--sample-geometry) (1)
+- [Surrogates and reduced-order models](#user-content-open-surrogates-and-reduced-order-models) (26)
+  - [Stress-field prediction](#user-content-open-surrogates-and-reduced-order-models--stress-field-prediction) (5) · [Deformation and reduced dynamics](#user-content-open-surrogates-and-reduced-order-models--deformation-and-reduced-dynamics) (6) · [Graph neural networks](#user-content-open-surrogates-and-reduced-order-models--graph-neural-networks) (4) · [Biomechanical surrogates](#user-content-open-surrogates-and-reduced-order-models--biomechanical-surrogates) (2) · [Response histories and operator learning](#user-content-open-surrogates-and-reduced-order-models--response-histories-and-operator-learning) (6) · [Frameworks and introductory studies](#user-content-open-surrogates-and-reduced-order-models--frameworks-and-introductory-studies) (3)
+- [Meshing, pre- and post-processing](#user-content-open-meshing-pre--and-post-processing) (14)
+  - [Mesh generation](#user-content-open-meshing-pre--and-post-processing--mesh-generation) (7) · [Mesh processing and formats](#user-content-open-meshing-pre--and-post-processing--mesh-processing-and-formats) (3) · [Visualization and export](#user-content-open-meshing-pre--and-post-processing--visualization-and-export) (4)
 - [Courses, references and agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics) (6)
   - [Courses and tutorials](#user-content-open-courses-references-and-agents-for-mechanics--courses-and-tutorials) (3) · [Curated lists](#user-content-open-courses-references-and-agents-for-mechanics--curated-lists) (2) · [Agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics--agents-for-mechanics) (1)
 - [Contributing](#contributing)
@@ -59,12 +59,12 @@ It has 220 entries: 112 from the maintainer's GitHub stars, 2 by the maintainer,
 | [kinnala/<br>scikit-fem](https://github.com/kinnala/scikit-fem) | Lightweight library for finite element assembly. | Python | BSD-3-Clause |  |
 | [KratosMultiphysics/<br>Kratos](https://github.com/KratosMultiphysics/Kratos) | Framework for parallel multidisciplinary simulation software. | C++ | BSD-4-Clause (core) | Each application has its own license. |
 | [libMesh/<br>libmesh](https://github.com/libMesh/libmesh) | Library for parallel adaptive finite element simulations. | C++ | LGPL-2.1 |  |
-| [lyc102/<br>ifem](https://github.com/lyc102/ifem) | Adaptive finite element package for 2D and 3D simplicial grids. | MATLAB | GPL-3.0 | Requires MATLAB. |
+| [lyc102/<br>ifem](https://github.com/lyc102/ifem) | Adaptive finite element package for 2D and 3D simplicial grids. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
 | [mfem/<br>mfem](https://github.com/mfem/mfem) | Modular parallel library for scalable finite element methods. | C++ | BSD-3-Clause |  |
 | [NGSolve/<br>ngsolve](https://github.com/NGSolve/ngsolve) | Multiphysics finite element software with a Python interface. | C++ | LGPL-2.1 |  |
 | [polyfem/<br>polyfem](https://github.com/polyfem/polyfem) | General-purpose C++ finite element library. | C++ | MIT |  |
 | [sfepy/<br>sfepy](https://github.com/sfepy/sfepy) | Finite element solver and library for coupled PDEs in 1D, 2D and 3D. | Python | BSD-3-Clause |  |
-| [Terenceyuyue/<br>varFEM](https://github.com/Terenceyuyue/varFEM) | Finite element programming in a variational-form style. | MATLAB | GPL-3.0 | Requires MATLAB. |
+| [Terenceyuyue/<br>varFEM](https://github.com/Terenceyuyue/varFEM) | Finite element programming in a variational-form style. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
 | [weihuayi/<br>fealpy](https://github.com/weihuayi/fealpy) | Python finite element library for algorithm research and computer-aided engineering. | Python | GPL-3.0-or-later with added notice | License notice also restricts commercial use. |
 
 </details>
@@ -75,7 +75,7 @@ It has 220 entries: 112 from the maintainer's GitHub stars, 2 by the maintainer,
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [codeaster/<br>src](https://gitlab.com/codeaster/src) | Source of code_aster, a finite element solver for structural mechanics. | Python, C++ and Fortran | GPL-3.0 | Some validation and material data are not freely distributed. |
+| [code_aster](https://gitlab.com/codeaster/src) | Source of code_aster, a finite element solver for structural mechanics. | Python, C++ and Fortran | GPL-3.0 | Some validation and material data are not freely distributed. |
 | [Dhondtguido/<br>CalculiX](https://github.com/Dhondtguido/CalculiX) | Three-dimensional structural finite element program. | Fortran | GPL-2.0 |  |
 | [dmitryikh/<br>nla3d](https://github.com/dmitryikh/nla3d) | C++ framework for writing nonlinear finite element codes in solid mechanics. | C++ | MIT |  |
 | [febiosoftware/<br>FEBio](https://github.com/febiosoftware/FEBio) | Nonlinear finite element solver designed for biomechanics. | C++ | MIT |  |
@@ -95,7 +95,7 @@ It has 220 entries: 112 from the maintainer's GitHub stars, 2 by the maintainer,
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
 | [deepmodeling/<br>jax-fem](https://github.com/deepmodeling/jax-fem) | Differentiable finite element package built on JAX. | Python | GPL-3.0 |  |
-| [liangbright/<br>pytorch_fea_paper](https://github.com/liangbright/pytorch_fea_paper) | Differentiable finite element analysis applied to human aorta biomechanics. | Python | none found | Paper code. |
+| [liangbright/<br>pytorch_fea_paper](https://github.com/liangbright/pytorch_fea_paper) | Differentiable finite element analysis applied to human aorta biomechanics. | Python | none found | Paper code; the author's refactored successor is [pytorch_fea](https://github.com/liangbright/pytorch_fea). |
 | [mo-hanxuan/<br>FEMcy](https://github.com/mo-hanxuan/FEMcy) | Taichi-based parallel structural finite element solver with small and large deformation. | Python | MIT |  |
 | [sandialabs/<br>optimism](https://github.com/sandialabs/optimism) | JAX finite element library that poses nonlinear solid mechanics as optimization. | Python | MIT |  |
 
@@ -107,9 +107,9 @@ It has 220 entries: 112 from the maintainer's GitHub stars, 2 by the maintainer,
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [Qinxiaoye/<br>SBFEM2D](https://github.com/Qinxiaoye/SBFEM2D) | Scaled boundary finite element method for 2D linear elasticity. | MATLAB | none found | Modified from code by Chongmin Song. |
-| [ShelvanLee/<br>XFEM](https://github.com/ShelvanLee/XFEM) | Extended finite element program for multiple crack propagation in 2D linear elastic solids. | MATLAB | MIT | Requires MATLAB. |
-| [Timmmdavis/<br>CutAndDisplace](https://github.com/Timmmdavis/CutAndDisplace) | Boundary element code for faults and deformation. | MATLAB | GPL-3.0 | Requires MATLAB; README restricts use to academia, although the license is GPL-3.0. |
+| [Qinxiaoye/<br>SBFEM2D](https://github.com/Qinxiaoye/SBFEM2D) | Scaled boundary finite element method for 2D linear elasticity. | MATLAB | none found | Written for MATLAB, Octave support not documented; modified from code by Chongmin Song; some files are copyright Terence Yu, with no license in this repository. |
+| [ShelvanLee/<br>XFEM](https://github.com/ShelvanLee/XFEM) | Extended finite element program for multiple crack propagation in 2D linear elastic solids. | MATLAB | MIT | Written for MATLAB, Octave support not documented. |
+| [Timmmdavis/<br>CutAndDisplace](https://github.com/Timmmdavis/CutAndDisplace) | Boundary element code for faults and deformation. | MATLAB | GPL-3.0 | Runs in MATLAB, also tested in Octave with some issues; README restricts use to academia, although the license is GPL-3.0. |
 
 </details>
 
@@ -135,9 +135,9 @@ It has 220 entries: 112 from the maintainer's GitHub stars, 2 by the maintainer,
 | [hplgit/<br>fenics-tutorial](https://github.com/hplgit/fenics-tutorial) | Sources and example programs for the FEniCS Tutorial book. | TeX | none found |  |
 | [jjcremmers/<br>PyFEM](https://github.com/jjcremmers/PyFEM) | Educational and research finite element code for nonlinear solid mechanics. | Python | MIT |  |
 | [largurajr/<br>FEA-Protus](https://github.com/largurajr/FEA-Protus) | Teaching code for 2D plane stress and plane strain finite element analysis. | Python | none found | Python 2.7. |
-| [Qinxiaoye/<br>FEM2D](https://github.com/Qinxiaoye/FEM2D) | MATLAB code for 2D finite element analysis. | MATLAB | none found | Input scripts use Ansys or Abaqus. |
-| [Qinxiaoye/<br>FEM2D_dynamic](https://github.com/Qinxiaoye/FEM2D_dynamic) | Finite element elastodynamics with Newmark time integration. | MATLAB | none found | Input scripts use Ansys or Abaqus. |
-| [Qinxiaoye/<br>FEM3D-C3D8-](https://github.com/Qinxiaoye/FEM3D-C3D8-) | MATLAB finite element code with 3D hexahedral element routines. | MATLAB | none found | README calls it 2D; input scripts use Ansys or Abaqus. |
+| [Qinxiaoye/<br>FEM2D](https://github.com/Qinxiaoye/FEM2D) | MATLAB code for 2D finite element analysis. | MATLAB | none found | Written for MATLAB, Octave support not documented; input scripts use Ansys or Abaqus. |
+| [Qinxiaoye/<br>FEM2D_dynamic](https://github.com/Qinxiaoye/FEM2D_dynamic) | Finite element elastodynamics with Newmark time integration. | MATLAB | none found | Written for MATLAB, Octave support not documented; input scripts use Ansys or Abaqus. |
+| [Qinxiaoye/<br>FEM3D-C3D8-](https://github.com/Qinxiaoye/FEM3D-C3D8-) | MATLAB finite element code with 3D hexahedral element routines. | MATLAB | none found | Written for MATLAB, Octave support not documented; README calls it 2D; input scripts use Ansys or Abaqus. |
 | [Qinxiaoye/<br>xpfem](https://github.com/Qinxiaoye/xpfem) | Linear elastic finite element package with quadrilateral, hexahedral and B-bar elements. | Python | none found |  |
 | [tjfulle/<br>fem-with-python](https://github.com/tjfulle/fem-with-python) | Course notes, assignments and code for an introductory finite element course. | Python | MIT (stated in README) |  |
 
@@ -157,11 +157,11 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [CAMLAB-UChile/<br>vemlab](https://github.com/CAMLAB-UChile/vemlab) | MATLAB library for linear VEM in 2D elastostatics and Poisson problems. | MATLAB | GPL-3.0 |  |
+| [CAMLAB-UChile/<br>vemlab](https://github.com/CAMLAB-UChile/vemlab) | MATLAB library for linear VEM in 2D elastostatics and Poisson problems. | MATLAB | GPL-3.0 | Runs in MATLAB, or in Octave with small changes described in its README. |
 | [cemcen/<br>Veamy](https://github.com/cemcen/Veamy) | Object-oriented C++ library for VEM in 2D elastostatics and Poisson problems. | C++ | GPL (stated in README) |  |
 | [dune-fem/<br>dune-vem](https://gitlab.dune-project.org/dune-fem/dune-vem) | DUNE module with a range of virtual element spaces and a Python interface. | C++ and Python | GPL-2.0-or-later |  |
-| [SINTEF-AppliedCompSci/<br>MRST](https://github.com/SINTEF-AppliedCompSci/MRST/tree/main/solvers/vemmech) | VEM mechanics module of the MATLAB Reservoir Simulation Toolbox. | MATLAB | GPL-3.0 | Part of a larger toolbox. |
-| [Terenceyuyue/<br>mVEM](https://github.com/Terenceyuyue/mVEM) | MATLAB package of virtual element methods published in the literature. | MATLAB | GPL-3.0 | Requires MATLAB. |
+| [SINTEF-AppliedCompSci/<br>MRST](https://github.com/SINTEF-AppliedCompSci/MRST/tree/main/solvers/vemmech) | VEM mechanics module of the MATLAB Reservoir Simulation Toolbox. | MATLAB | GPL-3.0 | Part of a larger toolbox that runs in MATLAB or Octave. |
+| [Terenceyuyue/<br>mVEM](https://github.com/Terenceyuyue/mVEM) | MATLAB package of virtual element methods published in the literature. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
 
 </details>
 
@@ -171,13 +171,13 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [chauj96/<br>vem_implementation](https://github.com/chauj96/vem_implementation) | Mixed and hybridized VEM for 3D linear elasticity on polyhedral meshes. | MATLAB | none found | Main code is MATLAB. |
-| [DongxiaoLyu/<br>polymesh](https://github.com/DongxiaoLyu/polymesh) | VEM Studio Online, a browser-based polygonal mesher and VEM solver for 2D elasticity and heat conduction. | JavaScript | MIT | Qinxiaoye is a collaborator. |
-| [Moopz99/<br>VEMK2](https://github.com/Moopz99/VEMK2) | Quadratic VEM for 2D elasticity. | MATLAB | GPL-3.0 | Requires MATLAB. |
+| [chauj96/<br>vem_implementation](https://github.com/chauj96/vem_implementation) | Mixed and hybridized VEM for 3D linear elasticity on polyhedral meshes. | MATLAB | none found | Written for MATLAB, Octave support not documented. |
+| [DongxiaoLyu/<br>polymesh](https://github.com/DongxiaoLyu/polymesh) | VEM Studio Online, a browser-based polygonal mesher and VEM solver for 2D elasticity and heat conduction. | JavaScript | MIT |  |
+| [Moopz99/<br>VEMK2](https://github.com/Moopz99/VEMK2) | Quadratic VEM for 2D elasticity. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
 | [mySimpleProjects/<br>SimpleVEM](https://github.com/mySimpleProjects/SimpleVEM) | Comparison of FEM and VEM for 2D structural analysis. | MATLAB | GPL-3.0 | Requires MATLAB with the Curve Fitting and Optimization toolboxes. |
 | [nsundar/<br>VEM_in_Abaqus](https://github.com/nsundar/VEM_in_Abaqus) | Implementation of the virtual element method as Abaqus subroutines. | Fortran | GPL-3.0 | Requires Abaqus. |
-| [Qinxiaoye/<br>VEM_mechanics2D](https://github.com/Qinxiaoye/VEM_mechanics2D) | Teaching code for VEM in 2D linear elasticity, with a theory note. | MATLAB | none found | Requires MATLAB. |
-| [tytrusty/<br>Shape-Matching-Element-Method](https://github.com/tytrusty/Shape-Matching-Element-Method) | Shape-matching VEM for direct simulation of CAD models. | MATLAB and C++ | none found |  |
+| [Qinxiaoye/<br>VEM_mechanics2D](https://github.com/Qinxiaoye/VEM_mechanics2D) | Teaching code for VEM in 2D linear elasticity, with a theory note. | MATLAB | none found | Written for MATLAB, Octave support not documented; some files are copyright Terence Yu and Long Chen, with no license in this repository. |
+| [tytrusty/<br>Shape-Matching-Element-Method](https://github.com/tytrusty/Shape-Matching-Element-Method) | Shape-matching VEM for direct simulation of CAD models. | MATLAB and C++ | none found | Written for MATLAB, Octave support not documented; depends on gptoolbox. |
 | [ZhouRuopu/<br>GNE-VEM](https://github.com/ZhouRuopu/GNE-VEM) | Graph neural network approach to VEM stabilization. | Python | none found |  |
 
 </details>
@@ -188,9 +188,9 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [MinhNguyenIKM/<br>vem](https://github.com/MinhNguyenIKM/vem) | VEM code for 2D linear elastic fracture. | MATLAB | none found |  |
-| [Qinxiaoye/<br>VEM-spcae-time-dynamic](https://github.com/Qinxiaoye/VEM-spcae-time-dynamic) | Space-time VEM for elastodynamics. | MATLAB | none found | Requires MATLAB. |
-| [Qinxiaoye/<br>VEMdynamic_Newmark](https://github.com/Qinxiaoye/VEMdynamic_Newmark) | VEM for 2D linear elastodynamics with Newmark time integration. | MATLAB | none found | Requires MATLAB. |
+| [MinhNguyenIKM/<br>vem](https://github.com/MinhNguyenIKM/vem) | VEM code for 2D linear elastic fracture. | MATLAB | none found | Written for MATLAB, Octave support not documented. |
+| [Qinxiaoye/<br>VEM-spcae-time-dynamic](https://github.com/Qinxiaoye/VEM-spcae-time-dynamic) | Space-time VEM for elastodynamics. | MATLAB | none found | Written for MATLAB, Octave support not documented; some files are copyright Terence Yu and Long Chen, with no license in this repository. |
+| [Qinxiaoye/<br>VEMdynamic_Newmark](https://github.com/Qinxiaoye/VEMdynamic_Newmark) | VEM for 2D linear elastodynamics with Newmark time integration. | MATLAB | none found | Written for MATLAB, Octave support not documented; some files are copyright Terence Yu and Long Chen, with no license in this repository. |
 
 </details>
 
@@ -200,8 +200,8 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [aerubianoma/<br>vem_stress_assisted_diffusion](https://github.com/aerubianoma/vem_stress_assisted_diffusion) | Robust VEM experiments for stress-assisted diffusion in elastic materials. | MATLAB | GPL-3.0 |  |
-| [Qinxiaoye/<br>VEMpiezo](https://github.com/Qinxiaoye/VEMpiezo) | VEM for 2D piezoelasticity. | MATLAB | none found | Requires MATLAB. |
+| [aerubianoma/<br>vem_stress_assisted_diffusion](https://github.com/aerubianoma/vem_stress_assisted_diffusion) | Robust VEM experiments for stress-assisted diffusion in elastic materials. | MATLAB | GPL-3.0 | Requires MATLAB, README lists R2023a. |
+| [Qinxiaoye/<br>VEMpiezo](https://github.com/Qinxiaoye/VEMpiezo) | VEM for 2D piezoelasticity. | MATLAB | none found | Written for MATLAB, Octave support not documented; some files are copyright Terence Yu, with no license in this repository. |
 | [yanpeng-gong/<br>FeVeCoupled-ElectronicPackaging](https://github.com/yanpeng-gong/FeVeCoupled-ElectronicPackaging) | Coupled finite and virtual element analysis of multiscale electronic packaging structures. | MATLAB | MIT | Requires MATLAB. |
 | [yanpeng-gong/<br>VEM-electronic-packaging](https://github.com/yanpeng-gong/VEM-electronic-packaging) | Standard and stabilization-free VEM for thermomechanical analysis of electronic packaging. | MATLAB | MIT (README badge) | Requires MATLAB; no license file. |
 
@@ -213,7 +213,7 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [Qinxiaoye/<br>TOPvem](https://github.com/Qinxiaoye/TOPvem) | Density-based topology optimization with VEM. | MATLAB | none found | Requires MATLAB. |
+| [Qinxiaoye/<br>TOPvem](https://github.com/Qinxiaoye/TOPvem) | Density-based topology optimization with VEM. | MATLAB | none found | Written for MATLAB, Octave support not documented; some files are copyright Terence Yu, with no license in this repository. |
 | [redcican/<br>vem-concurrent-topopt](https://github.com/redcican/vem-concurrent-topopt) | Concurrent multiscale topology optimization with VEM on polygonal and polyhedral meshes. | Python | MIT |  |
 
 </details>
@@ -225,9 +225,9 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
 | [justachetan/<br>VirtualElementMethods](https://github.com/justachetan/VirtualElementMethods) | Python translation of the 50-line introductory VEM code. | Python | MIT | Solves the Poisson equation, not elasticity. |
-| [oliversutton/<br>50LinesOfVEM](https://github.com/oliversutton/50LinesOfVEM) | Introductory 50-line MATLAB implementation of VEM. | MATLAB | MIT | Solves the Poisson equation, not elasticity. |
-| [Qinxiaoye/<br>VEM_Poisson](https://github.com/Qinxiaoye/VEM_Poisson) | Introductory 2D VEM code with a theory note. | MATLAB | none found | Solves the Poisson equation, not elasticity. |
-| [Qinxiaoye/<br>VEMbook](https://github.com/Qinxiaoye/VEMbook) | VEM teaching scripts, including a 1D truss. | MATLAB | none found | Sparse documentation. |
+| [oliversutton/<br>50LinesOfVEM](https://github.com/oliversutton/50LinesOfVEM) | Introductory 50-line MATLAB implementation of VEM. | MATLAB | MIT | Written for MATLAB, Octave support not documented; solves the Poisson equation, not elasticity. |
+| [Qinxiaoye/<br>VEM_Poisson](https://github.com/Qinxiaoye/VEM_Poisson) | Introductory 2D VEM code with a theory note. | MATLAB | none found | Written for MATLAB, Octave support not documented; solves the Poisson equation, not elasticity; some files are copyright Terence Yu, with no license in this repository. |
+| [Qinxiaoye/<br>VEMbook](https://github.com/Qinxiaoye/VEMbook) | VEM teaching scripts, including a 1D truss. | MATLAB | none found | Written for MATLAB, Octave support not documented; sparse documentation. |
 
 </details>
 
@@ -294,8 +294,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [adevaucorbeil/<br>karamelo](https://github.com/adevaucorbeil/karamelo) | Parallel material point method simulator with CPU and GPU support. | C++ | GPL-2.0 | GPU support is on a separate branch. |
 | [bcolloran/<br>tlmpm](https://github.com/bcolloran/tlmpm) | Teaching implementation of the total Lagrangian material point method in Taichi. | Python | none found |  |
 | [cb-geo/<br>mpm](https://github.com/cb-geo/mpm) | High-performance material point method code for computational geomechanics. | C++ | MIT |  |
-| [taichi-dev/<br>mpm_3d_exercise](https://github.com/taichi-dev/mpm_3d_exercise) | Exercise for writing a 3D material point method, with a 2D reference implementation. | Python | MIT | Starter code with the main step left blank; yuanming-hu is a collaborator. |
-| [taichi-dev/<br>taichi_elements](https://github.com/taichi-dev/taichi_elements) | Multi-material MPM engine for elastic solids, water, snow and sand in Taichi. | Python | MIT | README describes it as work in progress; yuanming-hu is a collaborator. |
+| [taichi-dev/<br>mpm_3d_exercise](https://github.com/taichi-dev/mpm_3d_exercise) | Exercise for writing a 3D material point method, with a 2D reference implementation. | Python | MIT | Starter code with the main step left blank. |
+| [taichi-dev/<br>taichi_elements](https://github.com/taichi-dev/taichi_elements) | Multi-material MPM engine for elastic solids, water, snow and sand in Taichi. | Python | MIT | README describes it as work in progress. |
 | [yuanming-hu/<br>GPUMPM](https://github.com/yuanming-hu/GPUMPM) | GPU-optimized material point method from a SIGGRAPH Asia 2018 paper. | C++ and CUDA | GPL-3.0 | README asks commercial users to contact the authors. |
 | [yuanming-hu/<br>taichi_mpm](https://github.com/yuanming-hu/taichi_mpm) | MLS-MPM solver with cutting and two-way rigid body coupling. | C++ | MIT |  |
 
@@ -340,8 +340,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [yade-dev/<br>trunk](https://gitlab.com/yade-dev/trunk) | Framework for the discrete element method. | C++ and Python | GPL-2.0-or-later |  |
-| [yhtang/<br>OpenRBC](https://github.com/yhtang/OpenRBC) | Coarse-grained particle simulator of red blood cells at protein resolution. | C++ | GPL-3.0 | lululxvi is a collaborator. |
+| [YADE](https://gitlab.com/yade-dev/trunk) | Framework for the discrete element method. | C++ and Python | GPL-2.0-or-later |  |
+| [yhtang/<br>OpenRBC](https://github.com/yhtang/OpenRBC) | Coarse-grained particle simulator of red blood cells at protein resolution. | C++ | GPL-3.0 |  |
 | [yuanming-hu/<br>taichi_dem_mid_autumn](https://github.com/yuanming-hu/taichi_dem_mid_autumn) | Minimal discrete element method demo in Taichi. | Python | MIT |  |
 
 </details>
@@ -407,7 +407,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
 | [hzaskywalker/<br>PlasticineLab](https://github.com/hzaskywalker/PlasticineLab) | Differentiable physics benchmark for soft-body manipulation. | Python | none found | Only some bundled algorithm folders have license files. |
-| [Xingyu-Lin/<br>softgym](https://github.com/Xingyu-Lin/softgym) | Deformable object manipulation benchmarks for cloth, rope and fluid. | C++ | BSD-3-Clause | Depends on NVIDIA FleX. |
+| [Xingyu-Lin/<br>softgym](https://github.com/Xingyu-Lin/softgym) | Deformable object manipulation benchmarks for cloth, rope and fluid. | C++ | BSD-3-Clause, with separately licensed NVIDIA FleX | Bundles NVIDIA FleX under the NVIDIA Source Code License (1-Way Commercial); some FleX headers also forbid use without an agreement with NVIDIA. |
 
 </details>
 
@@ -453,7 +453,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | --- | --- | --- | --- | --- |
 | [abuganza/<br>NN_aniso_UMAT](https://github.com/abuganza/NN_aniso_UMAT) | Neural network models of anisotropic hyperelastic materials, with a UMAT. | Jupyter Notebook | GPL-3.0 | Requires Abaqus for the UMAT. |
 | [FuhgJan/<br>ExtremeSparsificationConstitutiveLaws](https://github.com/FuhgJan/ExtremeSparsificationConstitutiveLaws) | Sparse physics-augmented neural networks for interpretable constitutive laws. | Python | GPL (stated in README) |  |
-| [FuhgJan/<br>invariant_DD_CM](https://github.com/FuhgJan/invariant_DD_CM) | Space-filling sampling of invariant space for data-driven constitutive models. | MATLAB | conflicting statements | README states both GPL-3.0 and a non-commercial Creative Commons license. |
+| [FuhgJan/<br>invariant_DD_CM](https://github.com/FuhgJan/invariant_DD_CM) | Space-filling sampling of invariant space for data-driven constitutive models. | MATLAB | conflicting statements | Requires MATLAB R2017a or later; README states both GPL-3.0 and a non-commercial Creative Commons license. |
 | [FuhgJan/<br>modelDataDriven_YieldFunction](https://github.com/FuhgJan/modelDataDriven_YieldFunction) | Hybrid model-data-driven yield functions. | Python | conflicting statements | README states both GPL-3.0 and a non-commercial Creative Commons license. |
 | [hyoungsuksuh/<br>ABAQUS_NN](https://github.com/hyoungsuksuh/ABAQUS_NN) | PyTorch-to-UMAT framework for deep-learning level-set plasticity. | Python | none found | Requires Abaqus. |
 | [LivingMatterLab/<br>CANN](https://github.com/LivingMatterLab/CANN) | Constitutive artificial neural networks for automated material model discovery. | Jupyter Notebook | none found |  |
@@ -475,9 +475,9 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [EUCLID-code/<br>EUCLID-hyperelasticity-bayesian](https://github.com/EUCLID-code/EUCLID-hyperelasticity-bayesian) | Bayesian discovery of hyperelastic laws with uncertainty. | Python | GPL-3.0 |  |
 | [EUCLID-code/<br>EUCLID-hyperelasticity-NN](https://github.com/EUCLID-code/EUCLID-hyperelasticity-NN) | Neural network hyperelasticity learned without stress data. | Python | GPL-3.0 |  |
 | [EUCLID-code/<br>EUCLID-hyperelasticity-PlaneStress-ExperimentalData](https://github.com/EUCLID-code/EUCLID-hyperelasticity-PlaneStress-ExperimentalData) | Discovery of plane-stress hyperelastic laws from experimental data. | Python | none found |  |
-| [EUCLID-code/<br>EUCLID-plasticity](https://github.com/EUCLID-code/EUCLID-plasticity) | Discovery of plasticity and generalized standard material models without stress data. | MATLAB | GPL-3.0 |  |
-| [EUCLID-code/<br>EUCLID-plasticity-pressure-sensitive-non-associated](https://github.com/EUCLID-code/EUCLID-plasticity-pressure-sensitive-non-associated) | Discovery of non-associated pressure-sensitive plasticity models. | MATLAB | none found |  |
-| [EUCLID-code/<br>EUCLID-viscoelasticity](https://github.com/EUCLID-code/EUCLID-viscoelasticity) | Automated identification of linear viscoelastic laws. | MATLAB | GPL-3.0 |  |
+| [EUCLID-code/<br>EUCLID-plasticity](https://github.com/EUCLID-code/EUCLID-plasticity) | Discovery of plasticity and generalized standard material models without stress data. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
+| [EUCLID-code/<br>EUCLID-plasticity-pressure-sensitive-non-associated](https://github.com/EUCLID-code/EUCLID-plasticity-pressure-sensitive-non-associated) | Discovery of non-associated pressure-sensitive plasticity models. | MATLAB | none found | Written for MATLAB, Octave support not documented. |
+| [EUCLID-code/<br>EUCLID-viscoelasticity](https://github.com/EUCLID-code/EUCLID-viscoelasticity) | Automated identification of linear viscoelastic laws. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
 
 </details>
 
@@ -688,7 +688,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [AlbanOdot/<br>DeepPhysics-article](https://github.com/AlbanOdot/DeepPhysics-article) | Paper code for physics-aware deep learning in real-time simulation. | Python | CC0-1.0 |  |
 | [lawsonfulton/<br>AutoDef](https://github.com/lawsonfulton/AutoDef) | Latent-space dynamics for reduced deformable simulation. | C++ | MIT | Install script can overwrite your Keras configuration. |
 | [lrquad/<br>NNWarp](https://github.com/lrquad/NNWarp) | Neural network-based nonlinear deformable simulator. | C++ | MIT |  |
-| [saurabhdeshpande93/<br>convolution-aggregation-attention](https://github.com/saurabhdeshpande93/convolution-aggregation-attention) | CNN, graph and attention surrogates for nonlinear finite element simulations. | Mathematica | MIT | Data generation uses AceFEM. |
+| [saurabhdeshpande93/<br>convolution-aggregation-attention](https://github.com/saurabhdeshpande93/convolution-aggregation-attention) | CNN, graph and attention surrogates for nonlinear finite element simulations. | Python and Mathematica | MIT | Data generation uses AceFEM. |
+| [stefaniafresca/<br>POD-DL-ROM](https://github.com/stefaniafresca/POD-DL-ROM) | Deep learning reduced-order models enhanced by proper orthogonal decomposition. | Python | none found | README reports nonlinear elastodynamics tests; the example scripts are templates with blank settings. |
 | [vividda/<br>3D-PhysNet](https://github.com/vividda/3D-PhysNet) | Learned prediction of non-rigid 3D object deformation. | Python | none found | Python 2.7. |
 
 </details>
@@ -728,6 +729,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [Jasiuk-Research-Group/<br>LatticeResponse_NN_Prediction](https://github.com/Jasiuk-Research-Group/LatticeResponse_NN_Prediction) | Recurrent network prediction of lattice stress-strain curves and energy absorption. | Python | none found |  |
 | [Jasiuk-Research-Group/<br>S-DeepONet](https://github.com/Jasiuk-Research-Group/S-DeepONet) | Sequential operator network with plasticity and heat transfer examples. | Python | none found |  |
 | [Jasiuk-Research-Group/<br>S-DeepONet-transient-predictions](https://github.com/Jasiuk-Research-Group/S-DeepONet-transient-predictions) | Sequential operator network for transient full-field predictions, including plasticity. | Python | none found |  |
+| [JinshuaiBai/<br>Discrete-Solution-Operator-Learning-DiSOL](https://github.com/JinshuaiBai/Discrete-Solution-Operator-Learning-DiSOL) | Discrete solution operator learning for geometry-dependent PDEs, including linear elasticity. | Python and MATLAB | MIT | Training datasets are downloaded from Zenodo; MATLAB is used for data generation. |
 
 </details>
 
@@ -787,16 +789,6 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [Liujie-SYSU/<br>odb2vtk](https://github.com/Liujie-SYSU/odb2vtk) | Converter from Abaqus ODB results to VTK for ParaView. | Python | none found | Input is Abaqus output. |
 | [paulo-herrera/<br>PyEVTK](https://github.com/paulo-herrera/PyEVTK) | Pure-Python export of data to binary VTK files. | Python | MIT (stated in source) |  |
 | [pyvista/<br>pyvista](https://github.com/pyvista/pyvista) | 3D visualization and mesh analysis with a NumPy-based interface. | Python | MIT |  |
-
-</details>
-
-<details>
-<summary><h3>Sample geometry</h3></summary>
-<p id="open-meshing-pre--and-post-processing--sample-geometry"><sub>Meshing, pre- and post-processing › <b>Sample geometry</b> · <a href="#contents">Back to contents</a></sub></p>
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [Qinxiaoye/<br>geometry](https://github.com/Qinxiaoye/geometry) | Sample CAD and surface geometry files, including torsion, hook, bunny and wind turbine models. |  | none found | Geometry only, no code or README; model origins are undocumented. |
 
 </details>
 
