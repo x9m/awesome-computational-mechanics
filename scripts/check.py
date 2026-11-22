@@ -32,7 +32,6 @@ CATEGORIES = [
 ]
 FIELDS = {"url", "category", "description", "language", "license", "note", "status", "source"}
 SOURCES = ("stars", "own", "following", "collaborator", "topic", "major")
-MAJOR = "Major projects beyond the starred list"
 URL = re.compile(
     r"https://(github\.com|gitlab\.com|gitlab\.onelab\.info|gitlab\.dune-project\.org)/([\w.-]+/[\w.-]+)"
     # Optionally, a file or folder inside a GitHub repository.
@@ -127,22 +126,11 @@ def table(entries):
 def render(entries):
     listed = [e for e in entries if e["status"] == "listed"]
     inactive = sorted((e for e in entries if e["status"] == "inactive"), key=lambda e: e["name"].lower())
-    def grouped(sources):
-        groups = {c: sorted((e for e in listed if e["category"] == c and e["source"] in sources),
-                            key=lambda e: e["name"].lower())
-                  for c in CATEGORIES}
-        return {c: g for c, g in groups.items() if g}
-
-    count = {s: sum(e["source"] == s for e in listed) for s in SOURCES}
+    groups = {c: sorted((e for e in listed if e["category"] == c), key=lambda e: e["name"].lower())
+              for c in CATEGORIES}
     sections = [(c, len(g), ([INTROS[c], ""] if c in INTROS else []) + table(g))
-                for c, g in grouped(SOURCES[:-1]).items()]
-    if count["major"]:
-        body = ["Widely used or influential projects, plus successors to them, added to fill gaps in the "
-                "starred list. This is an editorial selection, not a ranking, and it is not exhaustive.", ""]
-        for category, group in grouped(("major",)).items():
-            # Bold labels, not headings, so the category anchors above stay unique.
-            body += [f"**{category}**", "", *table(group), ""]
-        sections.append((MAJOR, count["major"], body[:-1]))
+                for c, g in groups.items() if g]
+    count = {s: sum(e["source"] == s for e in listed) for s in SOURCES}
 
     out = [
         "# Awesome Mechanical Simulation", "",
@@ -152,7 +140,7 @@ def render(entries):
         f"{count['stars']} from the maintainer's GitHub stars, {count['own']} by the maintainer, "
         f"{count['following']} from accounts the maintainer follows, "
         f"{count['collaborator']} where those accounts are collaborators, {count['topic']} found by topic search "
-        f"and {count['major']} major projects. "
+        f"and {count['major']} major projects chosen editorially. "
         f"Another {len(inactive)} archived or unmaintained ones are in [archive.md](archive.md).", "",
         "> **Before you rely on this list:** it is not complete. "
         "Descriptions were drafted with AI from README excerpts, file listings and repository metadata. "

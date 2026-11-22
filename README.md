@@ -2,26 +2,26 @@
 
 A collection of public repositories for mechanical simulation: solid and structural mechanics, soft bodies, biomechanics, particle methods, and machine learning applied to them.
 
-It has 220 entries covering 218 repositories: 112 from the maintainer's GitHub stars, 2 by the maintainer, 33 from accounts the maintainer follows, 4 where those accounts are collaborators, 31 found by topic search and 38 major projects. Another 5 archived or unmaintained ones are in [archive.md](archive.md).
+It has 220 entries covering 218 repositories: 112 from the maintainer's GitHub stars, 2 by the maintainer, 33 from accounts the maintainer follows, 4 where those accounts are collaborators, 31 found by topic search and 38 major projects chosen editorially. Another 5 archived or unmaintained ones are in [archive.md](archive.md).
 
 > **Before you rely on this list:** it is not complete. Descriptions were drafted with AI from README excerpts, file listings and repository metadata. The code was not run or validated, and a listing is not an endorsement. License labels are a convenience, not legal advice. "None found" means no license was found in the places checked, so do not assume you may reuse that code. Public does not always mean open source.
 
 ## Contents
 
-- [Finite and boundary element methods](#user-content-open-finite-and-boundary-element-methods) (26)
+- [Finite and boundary element methods](#user-content-open-finite-and-boundary-element-methods) (47)
 - [Virtual element method](#user-content-open-virtual-element-method) (26)
 - [Third medium contact](#user-content-open-third-medium-contact) (13)
-- [Meshfree and particle methods](#user-content-open-meshfree-and-particle-methods) (14)
-- [Soft-body, real-time and differentiable simulation](#user-content-open-soft-body-real-time-and-differentiable-simulation) (11)
-- [Constitutive modeling and material identification](#user-content-open-constitutive-modeling-and-material-identification) (23)
-- [Multiscale and homogenization](#user-content-open-multiscale-and-homogenization) (2)
-- [Thermal, multiphysics and additive manufacturing](#user-content-open-thermal-multiphysics-and-additive-manufacturing) (6)
-- [Optimization and inverse problems](#user-content-open-optimization-and-inverse-problems) (7)
+- [Meshfree and particle methods](#user-content-open-meshfree-and-particle-methods) (16)
+- [Soft-body, real-time and differentiable simulation](#user-content-open-soft-body-real-time-and-differentiable-simulation) (14)
+- [Multibody dynamics and biomechanics](#user-content-open-multibody-dynamics-and-biomechanics) (4)
+- [Constitutive modeling and material identification](#user-content-open-constitutive-modeling-and-material-identification) (24)
+- [Multiscale and homogenization](#user-content-open-multiscale-and-homogenization) (3)
+- [Thermal, multiphysics and additive manufacturing](#user-content-open-thermal-multiphysics-and-additive-manufacturing) (7)
+- [Optimization and inverse problems](#user-content-open-optimization-and-inverse-problems) (8)
 - [Physics-informed learning and energy methods](#user-content-open-physics-informed-learning-and-energy-methods) (13)
 - [Surrogates and reduced-order models](#user-content-open-surrogates-and-reduced-order-models) (24)
-- [Meshing, pre- and post-processing](#user-content-open-meshing-pre--and-post-processing) (11)
+- [Meshing, pre- and post-processing](#user-content-open-meshing-pre--and-post-processing) (15)
 - [Courses, references and agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics) (6)
-- [Major projects beyond the starred list](#user-content-open-major-projects-beyond-the-starred-list) (38)
 - [Contributing](#contributing)
 
 <details>
@@ -32,18 +32,39 @@ It has 220 entries covering 218 repositories: 112 from the maintainer's GitHub s
 | --- | --- | --- | --- | --- |
 | [ansys/<br>pymapdl](https://github.com/ansys/pymapdl) | Python interface to the Ansys MAPDL solver. | Python | MIT | Requires a licensed copy of Ansys. |
 | [AppliedMechanics-EAFIT/<br>SolidsPy](https://github.com/AppliedMechanics-EAFIT/SolidsPy) | Simple finite element code for 2D elasticity. | Python | MIT |  |
+| [codeaster/<br>src](https://gitlab.com/codeaster/src) | Source of code_aster, a finite element solver for structural mechanics. | Python, C++ and Fortran | GPL-3.0 | Some validation and material data are not freely distributed. |
+| [dealii/<br>dealii](https://github.com/dealii/dealii) | Library for solving PDEs with adaptive finite elements. | C++ | Apache-2.0 with LLVM exception, or LGPL-2.1-or-later |  |
+| [deepmodeling/<br>jax-fem](https://github.com/deepmodeling/jax-fem) | Differentiable finite element package built on JAX. | Python | GPL-3.0 |  |
+| [Dhondtguido/<br>CalculiX](https://github.com/Dhondtguido/CalculiX) | Three-dimensional structural finite element program. | Fortran | GPL-2.0 |  |
 | [dilevin/<br>CSC417-a3-finite-elements-3d](https://github.com/dilevin/CSC417-a3-finite-elements-3d) | Course assignment on 3D finite element simulation of elastic objects. | C++ | none found | Starter code for an assignment. |
 | [dmitryikh/<br>nla3d](https://github.com/dmitryikh/nla3d) | C++ framework for writing nonlinear finite element codes in solid mechanics. | C++ | MIT |  |
+| [ElmerCSC/<br>elmerfem](https://github.com/ElmerCSC/elmerfem) | Multiphysics finite element suite that includes structural mechanics. | Fortran | GPL-2.0 and LGPL-2.1, by component |  |
+| [febiosoftware/<br>FEBio](https://github.com/febiosoftware/FEBio) | Nonlinear finite element solver designed for biomechanics. | C++ | MIT |  |
+| [FEniCS/<br>dolfinx](https://github.com/FEniCS/dolfinx) | Computational environment of FEniCSx for solving PDEs with finite elements in C++ and Python. | C++ | LGPL-3.0 |  |
+| [Ferrite-FEM/<br>Ferrite.jl](https://github.com/Ferrite-FEM/Ferrite.jl) | Finite element toolbox for Julia. | Julia | MIT |  |
+| [firedrakeproject/<br>firedrake](https://github.com/firedrakeproject/firedrake) | Automated system for solving PDEs with the finite element method. | Python | LGPL-3.0-or-later |  |
+| [FreeFem/<br>FreeFem-sources](https://github.com/FreeFem/FreeFem-sources) | Finite element solver for nonlinear multiphysics PDEs in 2D and 3D. | C++ | LGPL-3.0 |  |
+| [gridap/<br>Gridap.jl](https://github.com/gridap/Gridap.jl) | Tools for grid-based approximation of linear and nonlinear PDEs. | Julia | MIT |  |
 | [hplgit/<br>fenics-tutorial](https://github.com/hplgit/fenics-tutorial) | Sources and example programs for the FEniCS Tutorial book. | TeX | none found |  |
+| [idaholab/<br>moose](https://github.com/idaholab/moose) | Finite element and finite volume framework for multiphysics simulation. | C++ | LGPL-2.1 |  |
 | [isaar/<br>MSolve](https://github.com/isaar/MSolve) | C# solver for computational mechanics problems. | C# | Apache-2.0 |  |
 | [jjcremmers/<br>PyFEM](https://github.com/jjcremmers/PyFEM) | Educational and research finite element code for nonlinear solid mechanics. | Python | MIT |  |
 | [JWock82/<br>Pynite](https://github.com/JWock82/Pynite) | 3D structural analysis library with static, P-Delta, modal and pushover analysis. | Python | MIT |  |
+| [kinnala/<br>scikit-fem](https://github.com/kinnala/scikit-fem) | Lightweight library for finite element assembly. | Python | BSD-3-Clause |  |
+| [KratosMultiphysics/<br>Kratos](https://github.com/KratosMultiphysics/Kratos) | Framework for parallel multidisciplinary simulation software. | C++ | BSD-4-Clause (core) | Each application has its own license. |
 | [largurajr/<br>FEA-Protus](https://github.com/largurajr/FEA-Protus) | Teaching code for 2D plane stress and plane strain finite element analysis. | Python | none found | Python 2.7. |
 | [lcharleux/<br>abapy](https://github.com/lcharleux/abapy) | Finite element pre- and post-processing in Python. | Python | GPL-2.0 | No README. |
 | [liangbright/<br>pytorch_fea_paper](https://github.com/liangbright/pytorch_fea_paper) | Differentiable finite element analysis applied to human aorta biomechanics. | Python | none found | Paper code. |
+| [libMesh/<br>libmesh](https://github.com/libMesh/libmesh) | Library for parallel adaptive finite element simulations. | C++ | LGPL-2.1 |  |
 | [lyc102/<br>ifem](https://github.com/lyc102/ifem) | Adaptive finite element package for 2D and 3D simplicial grids. | MATLAB | GPL-3.0 | Requires MATLAB. |
+| [mfem/<br>mfem](https://github.com/mfem/mfem) | Modular parallel library for scalable finite element methods. | C++ | BSD-3-Clause |  |
 | [mo-hanxuan/<br>FEMcy](https://github.com/mo-hanxuan/FEMcy) | Taichi-based parallel structural finite element solver with small and large deformation. | Python | MIT |  |
 | [nasa/<br>NASTRAN-95](https://github.com/nasa/NASTRAN-95) | NASA's historical structural analysis system for static, dynamic and stability problems. | Fortran | NASA Open Source Agreement 1.3 | No technical support. |
+| [NGSolve/<br>ngsolve](https://github.com/NGSolve/ngsolve) | Multiphysics finite element software with a Python interface. | C++ | LGPL-2.1 |  |
+| [oofem/<br>oofem](https://github.com/oofem/oofem) | Object-oriented finite element code for mechanical, transport and fluid problems. | C++ | LGPL-2.1 |  |
+| [OpenCourant/<br>OpenCourant](https://github.com/OpenCourant/OpenCourant) | Explicit finite element solver for crash, impact and other dynamic events. | Fortran | AGPL-3.0 | Community fork created after OpenRadioss was withdrawn in October 2026; not affiliated with Siemens or Altair. |
+| [OpenSees/<br>OpenSees](https://github.com/OpenSees/OpenSees) | Framework for structural and geotechnical earthquake engineering simulation. | C++ | custom, with commercial restrictions | Commercial distribution requires permission from the University of California. |
+| [polyfem/<br>polyfem](https://github.com/polyfem/polyfem) | General-purpose C++ finite element library. | C++ | MIT |  |
 | [Qinxiaoye/<br>FEM2D](https://github.com/Qinxiaoye/FEM2D) | MATLAB code for 2D finite element analysis. | MATLAB | none found | Input scripts use Ansys or Abaqus. |
 | [Qinxiaoye/<br>FEM2D_dynamic](https://github.com/Qinxiaoye/FEM2D_dynamic) | Finite element elastodynamics with Newmark time integration. | MATLAB | none found | Input scripts use Ansys or Abaqus. |
 | [Qinxiaoye/<br>FEM3D-C3D8-](https://github.com/Qinxiaoye/FEM3D-C3D8-) | MATLAB finite element code with 3D hexahedral element routines. | MATLAB | none found | README calls it 2D; input scripts use Ansys or Abaqus. |
@@ -131,11 +152,13 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [cb-geo/<br>mpm](https://github.com/cb-geo/mpm) | High-performance material point method code for computational geomechanics. | C++ | MIT |  |
 | [iwf-inspire/<br>mfree_iwf](https://github.com/iwf-inspire/mfree_iwf) | Comparison of meshless methods for large-deformation elastodynamics. | C++ | GPL-3.0 | Paper code. |
 | [JinshuaiBai/<br>RPIM_NNS](https://github.com/JinshuaiBai/RPIM_NNS) | Radial point interpolation meshless method with neural network solvers. | MATLAB | none found | Requires MATLAB. |
+| [peridigm/<br>peridigm](https://github.com/peridigm/peridigm) | Parallel peridynamics code for solid mechanics with material failure. | C++ | BSD-3-Clause |  |
 | [pypr/<br>pysph](https://github.com/pypr/pysph) | Smoothed particle hydrodynamics framework with OpenMP, OpenCL and MPI support. | Python | BSD-3-Clause | Some directories may carry other licenses. |
 | [saullocastro/<br>meshless](https://github.com/saullocastro/meshless) | Meshless methods for computational mechanics, including ES-PIM. | Python | BSD-2-Clause |  |
 | [taichi-dev/<br>mpm_3d_exercise](https://github.com/taichi-dev/mpm_3d_exercise) | Exercise for writing a 3D material point method, with a 2D reference implementation. | Python | MIT | Starter code with the main step left blank; yuanming-hu is a collaborator. |
 | [taichi-dev/<br>taichi_elements](https://github.com/taichi-dev/taichi_elements) | Multi-material MPM engine for elastic solids, water, snow and sand in Taichi. | Python | MIT | README describes it as work in progress; yuanming-hu is a collaborator. |
 | [Xiangyu-Hu/<br>SPHinXsys](https://github.com/Xiangyu-Hu/SPHinXsys) | SPH-based multiphysics library for coupled simulation and optimization. | C++ | Apache-2.0 |  |
+| [yade-dev/<br>trunk](https://gitlab.com/yade-dev/trunk) | Framework for the discrete element method. | C++ and Python | GPL-2.0-or-later |  |
 | [yhtang/<br>OpenRBC](https://github.com/yhtang/OpenRBC) | Coarse-grained particle simulator of red blood cells at protein resolution. | C++ | GPL-3.0 | lululxvi is a collaborator. |
 | [yuanming-hu/<br>GPUMPM](https://github.com/yuanming-hu/GPUMPM) | GPU-optimized material point method from a SIGGRAPH Asia 2018 paper. |  | GPL-3.0 | README asks commercial users to contact the authors. |
 | [yuanming-hu/<br>taichi_dem_mid_autumn](https://github.com/yuanming-hu/taichi_dem_mid_autumn) | Minimal discrete element method demo in Taichi. | Python | MIT |  |
@@ -150,9 +173,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
 | [hzaskywalker/<br>PlasticineLab](https://github.com/hzaskywalker/PlasticineLab) | Differentiable physics benchmark for soft-body manipulation. | Python | none found | Only some bundled algorithm folders have license files. |
+| [InteractiveComputerGraphics/<br>PositionBasedDynamics](https://github.com/InteractiveComputerGraphics/PositionBasedDynamics) | Position-based simulation of rigid bodies, deformable solids and fluids. | C++ | MIT |  |
+| [ipc-sim/<br>IPC](https://github.com/ipc-sim/IPC) | Reference implementation of Incremental Potential Contact for large-deformation elastodynamics. | C++ | MIT |  |
 | [jinaojakezhang/<br>DJTLED](https://github.com/jinaojakezhang/DJTLED) | Direct-Jacobian explicit dynamics finite elements for real-time hyperelastic simulation. | C++ | MIT |  |
 | [NVlabs/<br>DiSECt](https://github.com/NVlabs/DiSECt) | Differentiable finite element simulator for robotic cutting of deformable materials. | Python | NVIDIA Source Code License (non-commercial) | Code and dataset are restricted to non-commercial use. |
 | [Q-Minh/<br>position-based-dynamics](https://github.com/Q-Minh/position-based-dynamics) | Academic prototype of soft-body simulation with extended position-based dynamics. | C++ | BSL-1.0 |  |
+| [sofa-framework/<br>sofa](https://github.com/sofa-framework/sofa) | Interactive finite element physics framework for medical simulation and robotics. | C++ | LGPL-2.1 |  |
 | [SofaDefrost/<br>CondensedFEMModel](https://github.com/SofaDefrost/CondensedFEMModel) | Learned condensed finite element models for soft robot control and design. | Python | GPL-3.0 | Requires SOFA. |
 | [SofaDefrost/<br>SoftRobots](https://github.com/SofaDefrost/SoftRobots) | SOFA components for modeling, actuating and controlling soft robots. | C++ | LGPL-3.0 | Requires SOFA. |
 | [taichi-dev/<br>difftaichi](https://github.com/taichi-dev/difftaichi) | Examples of differentiable physical simulators written in Taichi. |  | none found |  |
@@ -160,6 +186,19 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [x9m/<br>DJTLED_fast](https://github.com/x9m/DJTLED_fast) | Speed-optimized DJ-TLED soft-tissue solver, with Jinao Zhang's original solver for comparison. | C++ | MIT | **By the list maintainer.** Derived from jinaojakezhang/DJTLED; developed and tested on macOS. |
 | [x9m/<br>JANP-DJTLED-GPU](https://github.com/x9m/JANP-DJTLED-GPU) | DJTLED with average nodal pressure for nearly incompressible soft tissue, on CPU and GPU. | C++ and CUDA | MIT | **By the list maintainer.** Builds on Jinao Zhang's DJTLED; the GPU solver needs an NVIDIA GPU. |
 | [Xingyu-Lin/<br>softgym](https://github.com/Xingyu-Lin/softgym) | Deformable object manipulation benchmarks for cloth, rope and fluid. | C++ | BSD-3-Clause | Depends on NVIDIA FleX. |
+
+</details>
+
+<details>
+<summary><h2>Multibody dynamics and biomechanics</h2></summary>
+<p id="open-multibody-dynamics-and-biomechanics"><sub><b>Multibody dynamics and biomechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+
+| Name | Descriptions | Languages | License | Note |
+| --- | --- | --- | --- | --- |
+| [google-deepmind/<br>mujoco](https://github.com/google-deepmind/mujoco) | Multibody dynamics engine with contact and deformable bodies. | C++ | Apache-2.0 |  |
+| [newton-physics/<br>newton](https://github.com/newton-physics/newton) | GPU-accelerated physics engine for robotics and simulation research. | Python | Apache-2.0 |  |
+| [opensim-org/<br>opensim-core](https://github.com/opensim-org/opensim-core) | Musculoskeletal modeling and dynamic simulation of movement. | C++ | Apache-2.0 |  |
+| [projectchrono/<br>chrono](https://github.com/projectchrono/chrono) | Multiphysics engine for rigid, deformable and granular system dynamics. | C++ | BSD-3-Clause |  |
 
 </details>
 
@@ -192,6 +231,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [tajtac/<br>hypermodelcomp](https://github.com/tajtac/hypermodelcomp) | Comparison of CANN, input-convex network and neural ODE models of hyperelasticity. | Jupyter Notebook | none found |  |
 | [tajtac/<br>node_diffusion](https://github.com/tajtac/node_diffusion) | Research notebooks combining neural ODE hyperelastic models with diffusion models. | Jupyter Notebook | none found | No README. |
 | [tgulikers/<br>ABAQUS_ANN_constitutive_model](https://github.com/tgulikers/ABAQUS_ANN_constitutive_model) | Thesis code that trains neural network constitutive models and generates a UMAT. | Fortran | none found | Abaqus for the UMAT. |
+| [thelfer/<br>tfel](https://github.com/thelfer/tfel) | TFEL and MFront, a code generator for material knowledge and behavior laws. | C++ | GPL with linking exception, or CeCILL-A |  |
 
 </details>
 
@@ -201,6 +241,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
+| [damask-multiphysics/<br>DAMASK](https://github.com/damask-multiphysics/DAMASK) | Multiscale crystal plasticity simulation kit. | Fortran and Python | AGPL-3.0-or-later | Read-only mirror; development is at git.damask-multiphysics.org. |
 | [tdegeus/<br>GooseFFT](https://github.com/tdegeus/GooseFFT) | Small teaching scripts for FFT-based micromechanical solvers. | Python | MIT |  |
 | [vondrejc/<br>FFTHomPy](https://github.com/vondrejc/FFTHomPy) | FFT-based homogenization with guaranteed bounds on effective properties. | Python | MIT |  |
 
@@ -218,6 +259,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [jinaojakezhang/<br>FEDFEMBioheatDamage](https://github.com/jinaojakezhang/FEDFEMBioheatDamage) | CEM43 thermal damage added to real-time bio-heat simulation. | C++ | MIT |  |
 | [jinaojakezhang/<br>FEDFEMBioheatDeform](https://github.com/jinaojakezhang/FEDFEMBioheatDeform) | Soft tissue thermal response under deformation for surgical simulation. | C++ | MIT |  |
 | [jinaojakezhang/<br>FEDFEMBioheatExpan](https://github.com/jinaojakezhang/FEDFEMBioheatExpan) | Anisotropic thermo-visco-elastodynamics of soft tissue for ablation therapy. | C++ | MIT |  |
+| [precice/<br>precice](https://github.com/precice/precice) | Coupling library for partitioned multiphysics and multiscale simulation. | C++ | LGPL-3.0 |  |
 
 </details>
 
@@ -233,6 +275,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [Jasiuk-Research-Group/<br>LatticeOPT](https://github.com/Jasiuk-Research-Group/LatticeOPT) | Heuristic topology optimization of thin-walled lattice structures. | Python | MIT | Requires Abaqus/Explicit. |
 | [kailaix/<br>PhysGNN](https://github.com/kailaix/PhysGNN) | Physics-constrained generative networks, including a stochastic elasticity example. | Julia | none found |  |
 | [nandakishorebm1995/<br>FOR3022_Code](https://github.com/nandakishorebm1995/FOR3022_Code) | Bayesian damage identification in fiber metal laminates with model order reduction. | MATLAB | none found | Requires MATLAB and COMSOL. |
+| [topopt/<br>TopOpt_in_PETSc](https://github.com/topopt/TopOpt_in_PETSc) | Parallel large-scale 3D topology optimization with PETSc. | C++ | unclear | Includes the LGPL text, but source headers say all rights reserved. |
 | [yuanming-hu/<br>spgrid_topo_opt](https://github.com/yuanming-hu/spgrid_topo_opt) | Narrow-band topology optimization on sparsely populated grids. | C++ | MIT and BSD, by component |  |
 
 </details>
@@ -298,17 +341,21 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
+| [gmsh/<br>gmsh](https://gitlab.onelab.info/gmsh/gmsh) | 3D finite element mesh generator with pre- and post-processing. | C++ | GPL-2.0-or-later with linking exception |  |
 | [inducer/<br>meshpy](https://github.com/inducer/meshpy) | Python interfaces to the Triangle and TetGen mesh generators. | C++ | mixed, including Triangle and AGPL-3.0 | Triangle restricts commercial distribution. |
+| [Kitware/<br>ParaView](https://github.com/Kitware/ParaView) | Parallel data analysis and visualization application built on VTK. | C++ | BSD-3-Clause |  |
 | [Liujie-SYSU/<br>odb2vtk](https://github.com/Liujie-SYSU/odb2vtk) | Converter from Abaqus ODB results to VTK for ParaView. | Python | none found | Input is Abaqus output. |
 | [meshpro/<br>meshplex](https://github.com/meshpro/meshplex) | Geometric quantities such as areas and volumes for simplex meshes. |  | proprietary | No source in the repository; full use requires a paid license. |
 | [meshpro/<br>meshzoo](https://github.com/meshpro/meshzoo) | Generators of meshes for simple canonical domains. |  | none found | No source in the repository. |
 | [meshpro/<br>pygalmesh](https://github.com/meshpro/pygalmesh) | Python front end to CGAL's 2D and 3D mesh generators. | C++ | GPL-3.0 | Commercial license offered separately. |
 | [mikedh/<br>trimesh](https://github.com/mikedh/trimesh) | Python library for loading, editing and analyzing triangular meshes. | Python | MIT |  |
+| [NGSolve/<br>netgen](https://github.com/NGSolve/netgen) | Automatic 3D tetrahedral mesh generator. | C++ | LGPL-2.1 |  |
 | [nschloe/<br>meshio](https://github.com/nschloe/meshio) | Reader, writer and converter for many mesh file formats. | Python | MIT |  |
 | [nschloe/<br>pygmsh](https://github.com/nschloe/pygmsh) | Python abstractions for building geometries and meshes with Gmsh. | Python | GPL-3.0 |  |
 | [paulo-herrera/<br>PyEVTK](https://github.com/paulo-herrera/PyEVTK) | Pure-Python export of data to binary VTK files. | Python | MIT (stated in source) |  |
 | [pyvista/<br>pyvista](https://github.com/pyvista/pyvista) | 3D visualization and mesh analysis with a NumPy-based interface. | Python | MIT |  |
 | [Qinxiaoye/<br>geometry](https://github.com/Qinxiaoye/geometry) | Sample CAD and surface geometry files, including torsion, hook, bunny and wind turbine models. |  | none found | Geometry only, no code or README; model origins are undocumented. |
+| [wildmeshing/<br>fTetWild](https://github.com/wildmeshing/fTetWild) | Fast and robust tetrahedral meshing of imperfect input geometry. | C++ | MPL-2.0 |  |
 
 </details>
 
@@ -324,97 +371,6 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | [matthias-research/<br>pages](https://github.com/matthias-research/pages/tree/master/tenMinutePhysics) | Ten Minute Physics tutorials on soft bodies, cloth, collisions and other simulation methods. | JavaScript | MIT (stated in source) |  |
 | [nschloe/<br>awesome-scientific-computing](https://github.com/nschloe/awesome-scientific-computing) | Curated list of scientific computing tools, including finite element and meshing software. | Python | CC0-1.0 |  |
 | [thunil/<br>Physics-Based-Deep-Learning](https://github.com/thunil/Physics-Based-Deep-Learning) | Curated list of research on physics-based deep learning. |  | none found |  |
-
-</details>
-
-<details>
-<summary><h2>Major projects beyond the starred list</h2></summary>
-<p id="open-major-projects-beyond-the-starred-list"><sub><b>Major projects beyond the starred list</b> · <a href="#contents">Back to contents</a></sub></p>
-
-Widely used or influential projects, plus successors to them, added to fill gaps in the starred list. This is an editorial selection, not a ranking, and it is not exhaustive.
-
-**Finite and boundary element methods**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [codeaster/<br>src](https://gitlab.com/codeaster/src) | Source of code_aster, a finite element solver for structural mechanics. | Python, C++ and Fortran | GPL-3.0 | Some validation and material data are not freely distributed. |
-| [dealii/<br>dealii](https://github.com/dealii/dealii) | Library for solving PDEs with adaptive finite elements. | C++ | Apache-2.0 with LLVM exception, or LGPL-2.1-or-later |  |
-| [deepmodeling/<br>jax-fem](https://github.com/deepmodeling/jax-fem) | Differentiable finite element package built on JAX. | Python | GPL-3.0 |  |
-| [Dhondtguido/<br>CalculiX](https://github.com/Dhondtguido/CalculiX) | Three-dimensional structural finite element program. | Fortran | GPL-2.0 |  |
-| [ElmerCSC/<br>elmerfem](https://github.com/ElmerCSC/elmerfem) | Multiphysics finite element suite that includes structural mechanics. | Fortran | GPL-2.0 and LGPL-2.1, by component |  |
-| [febiosoftware/<br>FEBio](https://github.com/febiosoftware/FEBio) | Nonlinear finite element solver designed for biomechanics. | C++ | MIT |  |
-| [FEniCS/<br>dolfinx](https://github.com/FEniCS/dolfinx) | Computational environment of FEniCSx for solving PDEs with finite elements in C++ and Python. | C++ | LGPL-3.0 |  |
-| [Ferrite-FEM/<br>Ferrite.jl](https://github.com/Ferrite-FEM/Ferrite.jl) | Finite element toolbox for Julia. | Julia | MIT |  |
-| [firedrakeproject/<br>firedrake](https://github.com/firedrakeproject/firedrake) | Automated system for solving PDEs with the finite element method. | Python | LGPL-3.0-or-later |  |
-| [FreeFem/<br>FreeFem-sources](https://github.com/FreeFem/FreeFem-sources) | Finite element solver for nonlinear multiphysics PDEs in 2D and 3D. | C++ | LGPL-3.0 |  |
-| [gridap/<br>Gridap.jl](https://github.com/gridap/Gridap.jl) | Tools for grid-based approximation of linear and nonlinear PDEs. | Julia | MIT |  |
-| [idaholab/<br>moose](https://github.com/idaholab/moose) | Finite element and finite volume framework for multiphysics simulation. | C++ | LGPL-2.1 |  |
-| [kinnala/<br>scikit-fem](https://github.com/kinnala/scikit-fem) | Lightweight library for finite element assembly. | Python | BSD-3-Clause |  |
-| [KratosMultiphysics/<br>Kratos](https://github.com/KratosMultiphysics/Kratos) | Framework for parallel multidisciplinary simulation software. | C++ | BSD-4-Clause (core) | Each application has its own license. |
-| [libMesh/<br>libmesh](https://github.com/libMesh/libmesh) | Library for parallel adaptive finite element simulations. | C++ | LGPL-2.1 |  |
-| [mfem/<br>mfem](https://github.com/mfem/mfem) | Modular parallel library for scalable finite element methods. | C++ | BSD-3-Clause |  |
-| [NGSolve/<br>ngsolve](https://github.com/NGSolve/ngsolve) | Multiphysics finite element software with a Python interface. | C++ | LGPL-2.1 |  |
-| [oofem/<br>oofem](https://github.com/oofem/oofem) | Object-oriented finite element code for mechanical, transport and fluid problems. | C++ | LGPL-2.1 |  |
-| [OpenCourant/<br>OpenCourant](https://github.com/OpenCourant/OpenCourant) | Explicit finite element solver for crash, impact and other dynamic events. | Fortran | AGPL-3.0 | Community fork created after OpenRadioss was withdrawn in October 2026; not affiliated with Siemens or Altair. |
-| [OpenSees/<br>OpenSees](https://github.com/OpenSees/OpenSees) | Framework for structural and geotechnical earthquake engineering simulation. | C++ | custom, with commercial restrictions | Commercial distribution requires permission from the University of California. |
-| [polyfem/<br>polyfem](https://github.com/polyfem/polyfem) | General-purpose C++ finite element library. | C++ | MIT |  |
-
-**Meshfree and particle methods**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [peridigm/<br>peridigm](https://github.com/peridigm/peridigm) | Parallel peridynamics code for solid mechanics with material failure. | C++ | BSD-3-Clause |  |
-| [yade-dev/<br>trunk](https://gitlab.com/yade-dev/trunk) | Framework for the discrete element method. | C++ and Python | GPL-2.0-or-later |  |
-
-**Soft-body, real-time and differentiable simulation**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [InteractiveComputerGraphics/<br>PositionBasedDynamics](https://github.com/InteractiveComputerGraphics/PositionBasedDynamics) | Position-based simulation of rigid bodies, deformable solids and fluids. | C++ | MIT |  |
-| [ipc-sim/<br>IPC](https://github.com/ipc-sim/IPC) | Reference implementation of Incremental Potential Contact for large-deformation elastodynamics. | C++ | MIT |  |
-| [sofa-framework/<br>sofa](https://github.com/sofa-framework/sofa) | Interactive finite element physics framework for medical simulation and robotics. | C++ | LGPL-2.1 |  |
-
-**Multibody dynamics and biomechanics**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [google-deepmind/<br>mujoco](https://github.com/google-deepmind/mujoco) | Multibody dynamics engine with contact and deformable bodies. | C++ | Apache-2.0 |  |
-| [newton-physics/<br>newton](https://github.com/newton-physics/newton) | GPU-accelerated physics engine for robotics and simulation research. | Python | Apache-2.0 |  |
-| [opensim-org/<br>opensim-core](https://github.com/opensim-org/opensim-core) | Musculoskeletal modeling and dynamic simulation of movement. | C++ | Apache-2.0 |  |
-| [projectchrono/<br>chrono](https://github.com/projectchrono/chrono) | Multiphysics engine for rigid, deformable and granular system dynamics. | C++ | BSD-3-Clause |  |
-
-**Constitutive modeling and material identification**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [thelfer/<br>tfel](https://github.com/thelfer/tfel) | TFEL and MFront, a code generator for material knowledge and behavior laws. | C++ | GPL with linking exception, or CeCILL-A |  |
-
-**Multiscale and homogenization**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [damask-multiphysics/<br>DAMASK](https://github.com/damask-multiphysics/DAMASK) | Multiscale crystal plasticity simulation kit. | Fortran and Python | AGPL-3.0-or-later | Read-only mirror; development is at git.damask-multiphysics.org. |
-
-**Thermal, multiphysics and additive manufacturing**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [precice/<br>precice](https://github.com/precice/precice) | Coupling library for partitioned multiphysics and multiscale simulation. | C++ | LGPL-3.0 |  |
-
-**Optimization and inverse problems**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [topopt/<br>TopOpt_in_PETSc](https://github.com/topopt/TopOpt_in_PETSc) | Parallel large-scale 3D topology optimization with PETSc. | C++ | unclear | Includes the LGPL text, but source headers say all rights reserved. |
-
-**Meshing, pre- and post-processing**
-
-| Name | Descriptions | Languages | License | Note |
-| --- | --- | --- | --- | --- |
-| [gmsh/<br>gmsh](https://gitlab.onelab.info/gmsh/gmsh) | 3D finite element mesh generator with pre- and post-processing. | C++ | GPL-2.0-or-later with linking exception |  |
-| [Kitware/<br>ParaView](https://github.com/Kitware/ParaView) | Parallel data analysis and visualization application built on VTK. | C++ | BSD-3-Clause |  |
-| [NGSolve/<br>netgen](https://github.com/NGSolve/netgen) | Automatic 3D tetrahedral mesh generator. | C++ | LGPL-2.1 |  |
-| [wildmeshing/<br>fTetWild](https://github.com/wildmeshing/fTetWild) | Fast and robust tetrahedral meshing of imperfect input geometry. | C++ | MPL-2.0 |  |
 
 </details>
 
