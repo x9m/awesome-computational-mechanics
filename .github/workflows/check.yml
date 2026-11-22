@@ -3,6 +3,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  # GitHub disables this after 60 days without activity. See contributing.md to re-enable it.
   schedule:
     - cron: "17 6 1 * *"
   workflow_dispatch:
@@ -24,3 +25,16 @@ jobs:
         run: python3 scripts/check.py --online
         env:
           GH_TOKEN: ${{ github.token }}
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check and regenerate on Windows
+        shell: bash
+        run: |
+          python scripts/check.py
+          python scripts/check.py --write
+          git diff --exit-code

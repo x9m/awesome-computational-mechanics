@@ -3,13 +3,15 @@
 
   python3 scripts/check.py           check data and generated files
   python3 scripts/check.py --write   regenerate README.md and archive.md
-  python3 scripts/check.py --online  also check every repo (needs network and an authenticated gh)
+  python3 scripts/check.py --online  also check every repo and link (needs network and an authenticated gh)
 """
 import json
+import os
 import re
 import subprocess
 import sys
 import unicodedata
+import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -128,21 +130,22 @@ TOPICS = {
     ],
     "Courses, references and agents for mechanics": [
         "Courses and tutorials",
-        "Textbooks and numerical tutorials",
         "Element definitions and form languages",
         "Reproducible research software",
         "Curated lists",
         "Agents for mechanics",
     ],
 }
-FIELDS = {"url", "category", "subtopic", "description", "language", "license", "note", "status", "source"}
+FIELDS = {"url", "category", "subtopic", "description", "language", "license", "note", "status", "maintainer"}
+NAME_WIDTH = 18  # characters on one line of the name column
 BATCH = 50  # repositories per GraphQL request
-SOURCES = ("stars", "own", "related", "topic", "major")
 URL = re.compile(
     r"https://(github\.com|gitlab\.com|gitlab\.onelab\.info|gitlab\.dune-project\.org)/([\w.-]+/[\w.-]+)"
     # Optionally, a file or folder inside a GitHub repository.
-    r"(?:/(?:tree|blob)/([\w.-]+)/([\w./-]+))?"
+    # A "/" in a branch name is written %2F, to tell it apart from the path.
+    r"(?:/(?:tree|blob)/([\w.-]+(?:%2[Ff][\w.-]+)*)/([\w./-]+))?"
 )
+MARKDOWN_LINK = re.compile(r"\]\((https?://(?:[^()\s]|\([^()\s]*\))+)\)")
 # Names to show where owner/repository would not be recognizable.
 DISPLAY_NAMES = {
     "https://gitlab.com/codeaster/src": "code_aster",
@@ -151,6 +154,10 @@ DISPLAY_NAMES = {
         "KratosMultiphysics/Examples (structural)",
     "https://github.com/KratosMultiphysics/Examples/tree/master/contact_structural_mechanics/validation":
         "KratosMultiphysics/Examples (contact)",
+}
+# Former titles of sub-topics, whose links must keep working.
+FORMER_TITLES = {
+    "Courses and tutorials": ["Textbooks and numerical tutorials"],
 }
 INTROS = {
     "Virtual element method":
@@ -163,9 +170,9 @@ INTROS = {
     "Linear, eigenvalue and nonlinear solvers":
         "The right solver depends on the structure of the discrete problem.\n\n"
         "- **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, "
-        "or conjugate gradients with a preconditioner. For algebraic multigrid, supply the rigid body modes.\n"
+        "or conjugate gradients with a preconditioner. For smoothed-aggregation multigrid, supply the rigid body modes.\n"
         "- **Symmetric indefinite**, as in mixed formulations and frictionless Lagrange multiplier contact: use an LDLᵀ "
-        "factorization, or MINRES or GMRES with a suitable block preconditioner.\n"
+        "factorization, MINRES with a positive definite preconditioner, or GMRES with a block preconditioner.\n"
         "- **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB "
         "with a preconditioner.\n"
         "- **Snap-through and buckling**: the tangent becomes singular. Arc-length continuation can pass a "
@@ -212,10 +219,13 @@ def problems(entry):
         return [f"fields must be {sorted(FIELDS)}"]
     found = []
     for key, value in sorted(entry.items()):
-        if not isinstance(value, str):
+        if key == "maintainer":
+            if not isinstance(value, bool):
+                found.append("maintainer must be true or false, without quotes")
+        elif not isinstance(value, str):
             found.append(f"{key} must be a string")
         elif re.search("[\ud800-\udfff]", value):
-            # Writing one would fail after README.md had already been emptied.
+            # UTF-8 cannot encode these, so the files could not be written.
             found.append(f"{key} must be valid Unicode")
         elif value != value.strip() or len(value.splitlines()) > 1:
             found.append(f"{key} must be one line without surrounding spaces")
@@ -232,8 +242,6 @@ def problems(entry):
             found.append("URL must not contain '.', '..', empty parts or a .git suffix")
         if path and host != "github.com":
             found.append("links into a repository are supported for GitHub only")
-    if entry["source"] not in SOURCES:
-        found.append("unknown source")
     if entry["category"] not in TOPICS:
         found.append("unknown category")
     elif entry["subtopic"] not in TOPICS[entry["category"]]:
@@ -261,7 +269,7 @@ def load():
             continue
         try:
             entry = json.loads(line[2:], object_pairs_hook=unique_keys)
-        except ValueError as exc:
+        except (ValueError, RecursionError) as exc:
             errors.append(f"line {number}: invalid entry ({exc})")
             continue
         found = problems(entry)
@@ -309,8 +317,10 @@ def section(body, number, topic, subtopic=None):
     name = subtopic or topic
     heading = f"<h3>{number} {subtopic}</h3>" if subtopic else f"<h2>{number}. {topic}</h2>"
     title = f"{topic} › <b>{number} {subtopic}</b>" if subtopic else f"<b>{number}. {topic}</b>"
+    former = "".join(f'<a id="{plain_heading_id(old)}"></a><a id="{target(topic, old)}"></a>'
+                     for old in FORMER_TITLES.get(subtopic, []))
     return ["<details>", f'<summary><a id="{plain_heading_id(name)}"></a>{heading}</summary>',
-            f'<p id="{target(topic, subtopic)}"><sub>{title} · '
+            f'<p id="{target(topic, subtopic)}">{former}<sub>{title} · '
             '<a href="#contents">Back to contents</a></sub></p>',
             "", *body, "", "</details>", ""]
 
@@ -324,22 +334,35 @@ def sort_key(entry):
     return DISPLAY_NAMES.get(entry["url"], entry["name"]).lower()
 
 
+def wrap_name(text):
+    # GitHub removes <wbr> and does not break inside words, so one long name would widen the whole table.
+    lines, line = [], ""
+    for part in re.split(r"(?<=[-_.])|(?<=[a-z])(?=[A-Z])", text):
+        if line and len(line + part) > NAME_WIDTH:
+            lines.append(line)
+            line = ""
+        line += part
+    return "<br>".join([*lines, line])
+
+
 def row(entry):
     notes = []
-    if entry["source"] == "own":
+    if entry["maintainer"]:
         notes.append("**By the list maintainer.**")
     if entry["note"]:
         notes.append(f"{entry['note']}.")
-    # Break after the owner so long names do not push the Note column out of view.
-    name = DISPLAY_NAMES.get(entry["url"], entry["name"]).replace("/", "/<br>", 1)
-    values = [entry["description"], entry["language"], entry["license"], " ".join(notes)]
+    owner, slash, repo = DISPLAY_NAMES.get(entry["url"], entry["name"]).partition("/")
+    name = f"{wrap_name(owner + slash)}<br>{wrap_name(repo)}" if slash else wrap_name(owner)
+    # Language and license go under the name, as five columns do not fit on a narrow screen.
     # The link is not escaped: it holds the <br>, and names and URLs cannot contain "|" or "<".
-    return "| " + " | ".join([f"[{name}]({entry['url']})", *map(cell, values)]) + " |"
+    first = f"[{name}]({entry['url']})" + "".join(
+        f"<br><sub>{cell(value)}</sub>" for value in (entry["language"], entry["license"]) if value)
+    return "| " + " | ".join([first, cell(entry["description"]), cell(" ".join(notes))]) + " |"
 
 
 def table(entries):
-    return ["| Name | Descriptions | Languages | License | Note |",
-            "| --- | --- | --- | --- | --- |",
+    return ["| Name, language and license | Description | Note |",
+            "| --- | --- | --- |",
             *map(row, entries)]
 
 
@@ -357,7 +380,8 @@ def render(entries):
     out = [
         "# Awesome Computational Mechanics", "",
         "A collection of public repositories for computational mechanics: solid and structural mechanics, "
-        "soft bodies, biomechanics, particle methods, and machine learning applied to them.", "",
+        "soft bodies, biomechanics, particle methods and machine learning applied to them, "
+        "plus the solvers, validation and reference material they rely on.", "",
         "## Contents", "",
     ]
     for number, (topic, size, groups) in enumerate(topics, 1):
@@ -374,7 +398,9 @@ def render(entries):
         for minor, (sub, group) in enumerate(groups, 1):
             body += section(table(group), f"{number}.{minor}", topic, sub)
         out += section(body[:-1], number, topic)
-    out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md)."]
+    out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md).", "",
+            "Descriptions and guides were drafted with AI, the guides have no expert review and the listed code was "
+            "not run. \"None found\" means that no license was found, so do not assume you may reuse that code."]
     archive = [
         "# Archived and unmaintained", "",
         "These projects are archived on GitHub or described by their authors as unmaintained. "
@@ -386,7 +412,8 @@ def render(entries):
 def fetch(command):
     """Run a command that prints JSON. Return (data, error message)."""
     try:
-        result = subprocess.run(command, capture_output=True, text=True, timeout=90)
+        # Not the locale's encoding, which is not UTF-8 on Windows.
+        result = subprocess.run(command, capture_output=True, encoding="utf-8", errors="replace", timeout=90)
     except (OSError, subprocess.TimeoutExpired) as exc:
         return None, str(exc)
     try:
@@ -429,7 +456,7 @@ def probe_github(batch):
         owner, repo = map(json.dumps, entry["name"].split("/"))
         target = ""
         if entry["path"]:
-            expression = json.dumps(f"{entry['ref']}:{entry['path']}")
+            expression = json.dumps(f"{urllib.parse.unquote(entry['ref'])}:{entry['path']}")
             target = f" target: object(expression: {expression}) {{ __typename }}"
         queries.append(f"r{index}: repository(owner: {owner}, name: {repo}) "
                        f"{{ nameWithOwner isPrivate isArchived{target} }}")
@@ -459,16 +486,55 @@ def probe_github(batch):
     return errors
 
 
+def extra_links(entries):
+    """Return the links in notes and introductions, which are not entries themselves."""
+    texts = [*INTROS.values(), *(e["note"] for e in entries)]
+    return sorted({url for text in texts for url in MARKDOWN_LINK.findall(text)} - {e["url"] for e in entries})
+
+
+def probe_link(url):
+    """Return (errors, warnings). Only an answer that proves a link is dead is an error."""
+    doi = re.fullmatch(r"https?://(?:dx\.)?doi\.org/(.+)", url)
+    # Publishers often refuse scripts, so ask doi.org whether the DOI is registered.
+    address = f"https://doi.org/api/handles/{doi[1]}" if doi else url
+    try:
+        result = subprocess.run(["curl", "-sSL", "--max-time", "30", "-o", os.devnull, "-w", "%{http_code}", address],
+                                capture_output=True, encoding="utf-8", errors="replace", timeout=90)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        return [], [f"{url}: could not check ({exc})"]
+    status = result.stdout.strip()
+    if result.returncode == 6:  # curl could not resolve the host
+        return [f"{url}: host not found"], []
+    if status in ("404", "410"):
+        return [f"{url}: not found (HTTP {status})"], []
+    if result.returncode or not status.startswith("2"):
+        return [], [f"{url}: could not check ({result.stderr.strip() or 'HTTP ' + status}), open it in a browser"]
+    return [], []
+
+
 def probe_all(entries):
+    """Return (errors, warnings)."""
     github = [e for e in entries if e["host"] == "github.com"]
+    others = []
+    for url in extra_links(entries):
+        match = URL.fullmatch(url)
+        if match and match[1] == "github.com":
+            # Linked repositories get the same checks as entries, including for moves and archiving.
+            github.append(dict(zip(("host", "name", "ref", "path"), match.groups()), status="listed"))
+        else:
+            others.append(url)
     batches = [github[i:i + BATCH] for i in range(0, len(github), BATCH)]
     gitlab = [e for e in entries if e["host"] != "github.com"]
     with ThreadPoolExecutor(4) as pool:
         results = [*pool.map(probe_github, batches), *pool.map(probe_gitlab, gitlab)]
-    return [error for result in results for error in result]
+        links = list(pool.map(probe_link, others))
+    results += [found for found, _ in links]
+    return [error for result in results for error in result], [warning for _, found in links for warning in found]
 
 
 def main():
+    # A Windows console may lack characters that appear in messages.
+    sys.stdout.reconfigure(errors="backslashreplace")
     args = set(sys.argv[1:])
     if args & {"-h", "--help"}:
         print(__doc__)
@@ -476,15 +542,20 @@ def main():
     if args - {"--write", "--online"}:
         sys.exit(__doc__)
     entries, errors = load()
+    warnings = []
     if not errors:
         for filename, text in render(entries).items():
             path = ROOT / filename
             if "--write" in args:
-                path.write_text(text, encoding="utf-8")
+                # Bytes keep "\n" line endings on Windows, and are encoded before the file is emptied.
+                path.write_bytes(text.encode("utf-8"))
             elif not path.exists() or path.read_text(encoding="utf-8") != text:
                 errors.append(f"{filename}: out of date, run with --write")
         if "--online" in args:
-            errors += probe_all(entries)
+            found, warnings = probe_all(entries)
+            errors += found
+    for warning in warnings:
+        print("WARNING", warning)
     for error in errors:
         print("ERROR", error)
     print(f"{len(entries)} entries, {len(errors)} errors")
