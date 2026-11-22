@@ -3,20 +3,24 @@
 
   python3 scripts/check.py           check data and generated files
   python3 scripts/check.py --write   regenerate README.md and archive.md
-  python3 scripts/check.py --online  also check every repo (needs an authenticated gh)
+  python3 scripts/check.py --online  also check every repo (needs network and an authenticated gh)
 """
 import json
 import re
 import subprocess
 import sys
+import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CATEGORIES = [
     "Finite and boundary element methods",
+    "Virtual element method",
+    "Third medium contact",
     "Meshfree and particle methods",
     "Soft-body, real-time and differentiable simulation",
+    "Multibody dynamics and biomechanics",
     "Constitutive modeling and material identification",
     "Multiscale and homogenization",
     "Thermal, multiphysics and additive manufacturing",
@@ -26,8 +30,23 @@ CATEGORIES = [
     "Meshing, pre- and post-processing",
     "Courses, references and agents for mechanics",
 ]
-FIELDS = {"url", "category", "description", "language", "license", "note", "status"}
-URL = re.compile(r"https://github\.com/([\w.-]+/[\w.-]+)")
+FIELDS = {"url", "category", "description", "language", "license", "note", "status", "source"}
+SOURCES = ("stars", "own", "following", "collaborator", "topic", "major")
+MAJOR = "Major projects beyond the starred list"
+URL = re.compile(
+    r"https://(github\.com|gitlab\.com|gitlab\.onelab\.info|gitlab\.dune-project\.org)/([\w.-]+/[\w.-]+)"
+    # Optionally, a file or folder inside a GitHub repository.
+    r"(?:/(?:tree|blob)/([\w.-]+)/([\w./-]+))?"
+)
+INTROS = {
+    "Virtual element method":
+        "The virtual element method (VEM) generalizes finite elements to polygonal and polyhedral elements.",
+    "Third medium contact":
+        "Third medium contact (TMC) models contact by meshing the gap with a very compliant fictitious material. "
+        "Some links open the relevant file inside a larger project. DTU's MATLAB TopTMC code is not in a "
+        "repository and can be downloaded from the [TopOpt software page]"
+        "(https://www.topopt.mek.dtu.dk/apps-and-software).",
+}
 
 
 def load():
@@ -46,14 +65,18 @@ def load():
             continue
         match = URL.fullmatch(entry["url"])
         if not match:
-            errors.append(f"line {number}: invalid GitHub URL")
+            errors.append(f"line {number}: invalid or unsupported repository URL")
             continue
-        entry["name"] = match.group(1)
-        if entry["name"].lower() in seen:
+        entry["host"], entry["name"], entry["ref"], entry["path"] = match.groups()
+        if entry["url"].lower() in seen:
             errors.append(f"line {number}: duplicate {entry['name']}")
-        seen.add(entry["name"].lower())
+        seen.add(entry["url"].lower())
+        if entry["source"] not in SOURCES:
+            errors.append(f"line {number}: unknown source")
         if entry["category"] not in CATEGORIES:
             errors.append(f"line {number}: unknown category")
+        if entry["path"] and entry["host"] != "github.com":
+            errors.append(f"line {number}: links into a repository are supported for GitHub only")
         if entry["status"] not in ("listed", "inactive"):
             errors.append(f"line {number}: unknown status")
         if not entry["description"].endswith(".") or not entry["license"]:
@@ -66,47 +89,109 @@ def anchor(title):
     return re.sub(r"[^\w -]", "", title.lower()).replace(" ", "-")
 
 
-def item(entry):
-    facts = "; ".join(filter(None, [entry["language"], f"license: {entry['license']}"]))
-    note = f" **Note:** {entry['note']}." if entry["note"] else ""
-    return f"- [{entry['name']}]({entry['url']}) - {entry['description']} _({facts})_{note}"
+def section(title, body):
+    # GitHub opens a collapsed section only when a link uses the full "user-content-" ID
+    # and its target is inside <details> but outside <summary>.
+    # The target repeats the title because the heading scrolls under GitHub's sticky bar.
+    # The blank lines are required for GitHub to render the Markdown inside.
+    return ["<details>", f"<summary><h2>{title}</h2></summary>",
+            f'<p id="open-{anchor(title)}"><sub><b>{title}</b> · '
+            '<a href="#contents">Back to contents</a></sub></p>',
+            "", *body, "", "</details>", ""]
+
+
+def cell(text):
+    # An unescaped pipe would start a new column.
+    return text.replace("|", "\\|")
+
+
+def row(entry):
+    notes = []
+    if entry["source"] == "own":
+        notes.append("**By the list maintainer.**")
+    if entry["note"]:
+        notes.append(f"{entry['note']}.")
+    # Break after the owner so long names do not push the Note column out of view.
+    name = entry["name"].replace("/", "/<br>", 1)
+    cells = [f"[{name}]({entry['url']})", entry["description"],
+             entry["language"], entry["license"], " ".join(notes)]
+    return "| " + " | ".join(map(cell, cells)) + " |"
+
+
+def table(entries):
+    return ["| Name | Descriptions | Languages | License | Note |",
+            "| --- | --- | --- | --- | --- |",
+            *map(row, entries)]
 
 
 def render(entries):
     listed = [e for e in entries if e["status"] == "listed"]
     inactive = sorted((e for e in entries if e["status"] == "inactive"), key=lambda e: e["name"].lower())
-    groups = {c: sorted((e for e in listed if e["category"] == c), key=lambda e: e["name"].lower())
-              for c in CATEGORIES}
+    def grouped(sources):
+        groups = {c: sorted((e for e in listed if e["category"] == c and e["source"] in sources),
+                            key=lambda e: e["name"].lower())
+                  for c in CATEGORIES}
+        return {c: g for c, g in groups.items() if g}
+
+    count = {s: sum(e["source"] == s for e in listed) for s in SOURCES}
+    sections = [(c, len(g), ([INTROS[c], ""] if c in INTROS else []) + table(g))
+                for c, g in grouped(SOURCES[:-1]).items()]
+    if count["major"]:
+        body = ["Widely used or influential projects, plus successors to them, added to fill gaps in the "
+                "starred list. This is an editorial selection, not a ranking, and it is not exhaustive.", ""]
+        for category, group in grouped(("major",)).items():
+            # Bold labels, not headings, so the category anchors above stay unique.
+            body += [f"**{category}**", "", *table(group), ""]
+        sections.append((MAJOR, count["major"], body[:-1]))
+
     out = [
         "# Awesome Mechanical Simulation", "",
         "A collection of public repositories for mechanical simulation: solid and structural mechanics, "
         "soft bodies, biomechanics, particle methods, and machine learning applied to them.", "",
-        f"It lists {len(listed)} repositories, plus {len(inactive)} archived or unmaintained ones in "
-        "[archive.md](archive.md).", "",
-        "> **Before you rely on this list:** it started from one person's GitHub stars, so it is not complete. "
+        f"It has {len(listed)} entries covering {len({(e['host'], e['name']) for e in listed})} repositories: "
+        f"{count['stars']} from the maintainer's GitHub stars, {count['own']} by the maintainer, "
+        f"{count['following']} from accounts the maintainer follows, "
+        f"{count['collaborator']} where those accounts are collaborators, {count['topic']} found by topic search "
+        f"and {count['major']} major projects. "
+        f"Another {len(inactive)} archived or unmaintained ones are in [archive.md](archive.md).", "",
+        "> **Before you rely on this list:** it is not complete. "
         "Descriptions were drafted with AI from README excerpts, file listings and repository metadata. "
         "The code was not run or validated, and a listing is not an endorsement. "
         "License labels are a convenience, not legal advice. \"None found\" means no license was found "
         "in the places checked, so do not assume you may reuse that code. Public does not always mean open source.",
         "", "## Contents", "",
     ]
-    out += [f"- [{c}](#{anchor(c)}) ({len(g)})" for c, g in groups.items() if g]
+    out += [f"- [{title}](#user-content-open-{anchor(title)}) ({size})" for title, size, _ in sections]
     out += ["- [Contributing](#contributing)", ""]
-    for category, group in groups.items():
-        if group:
-            # The blank lines inside <details> are required for GitHub to render the Markdown list.
-            out += ["<details>", f"<summary><h2>{category}</h2></summary>", "",
-                    *map(item, group), "", "</details>", ""]
+    for title, _, body in sections:
+        out += section(title, body)
     out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md)."]
     archive = [
         "# Archived and unmaintained", "",
         "These projects are archived on GitHub or described by their authors as unmaintained. "
-        "The main list is in [README.md](README.md).", "", *map(item, inactive),
+        "The main list is in [README.md](README.md).", "", *table(inactive),
     ]
     return {"README.md": "\n".join(out) + "\n", "archive.md": "\n".join(archive) + "\n"}
 
 
+def probe_gitlab(entry):
+    name = entry["name"]
+    api = f"https://{entry['host']}/api/v4/projects/{urllib.parse.quote(name, safe='')}"
+    # curl uses the system's certificate store, which some Python installs cannot find.
+    result = subprocess.run(["curl", "-fsS", "--max-time", "30", api], capture_output=True, text=True)
+    if result.returncode:
+        return f"{name}: lookup failed ({result.stderr.strip()})"
+    project = json.loads(result.stdout)
+    if project["path_with_namespace"] != name:
+        return f"{name}: moved to {project['path_with_namespace']}"
+    if project.get("archived") and entry["status"] != "inactive":
+        return f"{name}: archived, set status to inactive"
+    return None
+
+
 def probe(entry):
+    if entry["host"] != "github.com":
+        return probe_gitlab(entry)
     name = entry["name"]
     result = subprocess.run(["gh", "api", f"repos/{name}"], capture_output=True, text=True)
     if result.returncode:
@@ -118,6 +203,11 @@ def probe(entry):
         return f"{name}: no longer public"
     if repo["archived"] and entry["status"] != "inactive":
         return f"{name}: archived, set status to inactive"
+    if entry["path"]:
+        target = f"repos/{name}/contents/{entry['path']}?ref={entry['ref']}"
+        result = subprocess.run(["gh", "api", target], capture_output=True, text=True)
+        if result.returncode:
+            return f"{name}: {entry['path']} not found ({result.stderr.strip()})"
     return None
 
 

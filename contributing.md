@@ -13,6 +13,8 @@
 3. Copy the license from the repository. Use `none found` if there is none, and never guess.
 4. Put required commercial software and usage restrictions in `note`.
 5. Use status `inactive` for archived projects or ones their authors call unmaintained.
-6. Run `python3 scripts/check.py --write` (Python 3.9 or later), then open a pull request.
+6. Set `source` to `major` for a widely used project, shown in its own section. Use `own` only for the maintainer's repositories, `stars` and `following` for what came from the maintainer's stars and followed accounts, `collaborator` for repositories those accounts collaborate on, and `topic` for everything else.
+7. GitHub, gitlab.com, gitlab.onelab.info and gitlab.dune-project.org URLs are supported. For an example inside a larger GitHub project, link to the file or folder.
+8. Run `python3 scripts/check.py --write` (Python 3.9 or later), then open a pull request.
 
 By contributing, you release your contribution under [CC0 1.0](LICENSE). Linked projects keep their own licenses.
