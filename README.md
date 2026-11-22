@@ -2,10 +2,6 @@
 
 A collection of public repositories for computational mechanics: solid and structural mechanics, soft bodies, biomechanics, particle methods, and machine learning applied to them.
 
-It has 360 entries covering 358 repositories. The list started from the maintainer's GitHub stars and grew through searches for related work and an editorial selection of major projects. Another 6 archived or unmaintained ones are in [archive.md](archive.md).
-
-> **Before you rely on this list:** it is not complete. Descriptions were drafted with AI from README excerpts, file listings and repository metadata. The code was not run or validated, and a listing is not an endorsement. License labels are a convenience, not legal advice. "None found" means no license was found in the places checked, so do not assume you may reuse that code. Public does not always mean open source.
-
 ## Contents
 
 1. [Finite and boundary element methods](#user-content-open-finite-and-boundary-element-methods) (77)<br>
@@ -91,6 +87,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
     16.1 [Courses and tutorials](#user-content-open-courses-references-and-agents-for-mechanics--courses-and-tutorials) (8)<br>
     16.2 [Curated lists](#user-content-open-courses-references-and-agents-for-mechanics--curated-lists) (5)<br>
     16.3 [Agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics--agents-for-mechanics) (3)
+
+[Archived and unmaintained projects](archive.md) (6)
 
 [Contributing](#contributing)
 

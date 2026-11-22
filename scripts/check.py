@@ -297,16 +297,7 @@ def render(entries):
         "# Awesome Computational Mechanics", "",
         "A collection of public repositories for computational mechanics: solid and structural mechanics, "
         "soft bodies, biomechanics, particle methods, and machine learning applied to them.", "",
-        f"It has {len(listed)} entries covering {len({(e['host'], e['name']) for e in listed})} repositories. "
-        "The list started from the maintainer's GitHub stars and grew through searches for related work "
-        "and an editorial selection of major projects. "
-        f"Another {len(inactive)} archived or unmaintained ones are in [archive.md](archive.md).", "",
-        "> **Before you rely on this list:** it is not complete. "
-        "Descriptions were drafted with AI from README excerpts, file listings and repository metadata. "
-        "The code was not run or validated, and a listing is not an endorsement. "
-        "License labels are a convenience, not legal advice. \"None found\" means no license was found "
-        "in the places checked, so do not assume you may reuse that code. Public does not always mean open source.",
-        "", "## Contents", "",
+        "## Contents", "",
     ]
     for number, (topic, size, groups) in enumerate(topics, 1):
         marker = f"{number}. "
@@ -315,7 +306,8 @@ def render(entries):
                   for minor, (sub, group) in enumerate(groups, 1)]
         # <br> keeps the sub-topics in their topic's list item: Markdown lists cannot number 1.1, 1.2.
         out.append(marker + ("<br>\n" + " " * len(marker)).join(lines))
-    out += ["", "[Contributing](#contributing)", ""]
+    out += ["", f"[Archived and unmaintained projects](archive.md) ({len(inactive)})", "",
+            "[Contributing](#contributing)", ""]
     for number, (topic, _, groups) in enumerate(topics, 1):
         body = [INTROS[topic], ""] if topic in INTROS else []
         for minor, (sub, group) in enumerate(groups, 1):
