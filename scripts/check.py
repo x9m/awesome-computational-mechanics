@@ -31,6 +31,7 @@ CATEGORIES = [
     "Courses, references and agents for mechanics",
 ]
 FIELDS = {"url", "category", "description", "language", "license", "note", "status", "source"}
+BATCH = 50  # repositories per GraphQL request
 SOURCES = ("stars", "own", "following", "collaborator", "topic", "major")
 URL = re.compile(
     r"https://(github\.com|gitlab\.com|gitlab\.onelab\.info|gitlab\.dune-project\.org)/([\w.-]+/[\w.-]+)"
@@ -48,39 +49,79 @@ INTROS = {
 }
 
 
+def unique_keys(pairs):
+    keys = [key for key, _ in pairs]
+    if len(keys) != len(set(keys)):
+        raise ValueError("repeated key")
+    return dict(pairs)
+
+
+def problems(entry):
+    """Return what is wrong with an entry's fields, before any of them are used."""
+    if not isinstance(entry, dict) or set(entry) != FIELDS:
+        return [f"fields must be {sorted(FIELDS)}"]
+    found = []
+    for key, value in sorted(entry.items()):
+        if not isinstance(value, str):
+            found.append(f"{key} must be a string")
+        elif value != value.strip() or len(value.splitlines()) > 1:
+            found.append(f"{key} must be one line without surrounding spaces")
+    if found:
+        return found
+
+    match = URL.fullmatch(entry["url"])
+    if not match:
+        found.append("invalid or unsupported repository URL")
+    else:
+        host, name, ref, path = match.groups()
+        parts = name.split("/") + (path.split("/") if path else [])
+        if name.endswith(".git") or ref in (".", "..") or {"", ".", ".."} & set(parts):
+            found.append("URL must not contain '.', '..', empty parts or a .git suffix")
+        if path and host != "github.com":
+            found.append("links into a repository are supported for GitHub only")
+    if entry["source"] not in SOURCES:
+        found.append("unknown source")
+    if entry["category"] not in CATEGORIES:
+        found.append("unknown category")
+    if entry["status"] not in ("listed", "inactive"):
+        found.append("unknown status")
+    if not entry["description"].endswith(".") or not entry["description"].strip(".") or not entry["license"]:
+        found.append("incomplete description or license")
+    if entry["note"].endswith("."):
+        found.append("note must not end with a period, one is added")
+    return found
+
+
 def load():
     entries, errors, seen = [], [], set()
-    lines = (ROOT / "data/repos.yml").read_text(encoding="utf-8").splitlines()
+    try:
+        lines = (ROOT / "data/repos.yml").read_text(encoding="utf-8").split("\n")
+    except (OSError, ValueError) as exc:
+        return [], [f"cannot read data/repos.yml ({exc})"]
     for number, line in enumerate(lines, 1):
         if not line.strip() or line.startswith("#"):
             continue
+        if not line.startswith("- "):
+            errors.append(f"line {number}: entries must start with '- '")
+            continue
         try:
-            entry = json.loads(line.removeprefix("- "))
+            entry = json.loads(line[2:], object_pairs_hook=unique_keys)
         except ValueError as exc:
             errors.append(f"line {number}: invalid entry ({exc})")
             continue
-        if not isinstance(entry, dict) or set(entry) != FIELDS:
-            errors.append(f"line {number}: fields must be {sorted(FIELDS)}")
+        found = problems(entry)
+        if found:
+            errors += [f"line {number}: {problem}" for problem in found]
             continue
-        match = URL.fullmatch(entry["url"])
-        if not match:
-            errors.append(f"line {number}: invalid or unsupported repository URL")
-            continue
-        entry["host"], entry["name"], entry["ref"], entry["path"] = match.groups()
-        if entry["url"].lower() in seen:
+        entry["host"], entry["name"], entry["ref"], entry["path"] = URL.fullmatch(entry["url"]).groups()
+        # Compare what is linked, so tree/ and blob/ links to the same path count as one.
+        key = (entry["host"], entry["name"].lower(), entry["path"])
+        if key in seen:
             errors.append(f"line {number}: duplicate {entry['name']}")
-        seen.add(entry["url"].lower())
-        if entry["source"] not in SOURCES:
-            errors.append(f"line {number}: unknown source")
-        if entry["category"] not in CATEGORIES:
-            errors.append(f"line {number}: unknown category")
-        if entry["path"] and entry["host"] != "github.com":
-            errors.append(f"line {number}: links into a repository are supported for GitHub only")
-        if entry["status"] not in ("listed", "inactive"):
-            errors.append(f"line {number}: unknown status")
-        if not entry["description"].endswith(".") or not entry["license"]:
-            errors.append(f"line {number}: incomplete description or license")
+        seen.add(key)
         entries.append(entry)
+    if not entries and not errors:
+        errors.append("data/repos.yml has no entries")
     return entries, errors
 
 
@@ -136,11 +177,12 @@ def render(entries):
         "# Awesome Computational Mechanics", "",
         "A collection of public repositories for computational mechanics: solid and structural mechanics, "
         "soft bodies, biomechanics, particle methods, and machine learning applied to them.", "",
-        f"It has {len(listed)} entries covering {len({(e['host'], e['name']) for e in listed})} repositories: "
+        f"It has {len(listed)} entries: "
         f"{count['stars']} from the maintainer's GitHub stars, {count['own']} by the maintainer, "
         f"{count['following']} from accounts the maintainer follows, "
         f"{count['collaborator']} where those accounts are collaborators, {count['topic']} found by topic search "
         f"and {count['major']} major projects chosen editorially. "
+        f"Together they cover {len({(e['host'], e['name']) for e in listed})} repositories. "
         f"Another {len(inactive)} archived or unmaintained ones are in [archive.md](archive.md).", "",
         "> **Before you rely on this list:** it is not complete. "
         "Descriptions were drafted with AI from README excerpts, file listings and repository metadata. "
@@ -162,45 +204,83 @@ def render(entries):
     return {"README.md": "\n".join(out) + "\n", "archive.md": "\n".join(archive) + "\n"}
 
 
+def fetch(command):
+    """Run a command that prints JSON. Return (data, error message)."""
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, timeout=90)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        return None, str(exc)
+    try:
+        data = json.loads(result.stdout)
+    except ValueError:
+        return None, result.stderr.strip() or "response was not JSON"
+    return data, result.stderr.strip()
+
+
 def probe_gitlab(entry):
     name = entry["name"]
     api = f"https://{entry['host']}/api/v4/projects/{urllib.parse.quote(name, safe='')}"
     # curl uses the system's certificate store, which some Python installs cannot find.
-    result = subprocess.run(["curl", "-fsS", "--max-time", "30", api], capture_output=True, text=True)
-    if result.returncode:
-        return f"{name}: lookup failed ({result.stderr.strip()})"
-    project = json.loads(result.stdout)
+    project, error = fetch(["curl", "-fsS", "--max-time", "30", api])
+    if not isinstance(project, dict) or "path_with_namespace" not in project:
+        return [f"{name}: lookup failed ({error or 'unexpected response'})"]
     if project["path_with_namespace"] != name:
-        return f"{name}: moved to {project['path_with_namespace']}"
+        return [f"{name}: moved to {project['path_with_namespace']}"]
     if project.get("archived") and entry["status"] != "inactive":
-        return f"{name}: archived, set status to inactive"
-    return None
+        return [f"{name}: archived, set status to inactive"]
+    return []
 
 
-def probe(entry):
-    if entry["host"] != "github.com":
-        return probe_gitlab(entry)
-    name = entry["name"]
-    result = subprocess.run(["gh", "api", f"repos/{name}"], capture_output=True, text=True)
-    if result.returncode:
-        return f"{name}: lookup failed ({result.stderr.strip()})"
-    repo = json.loads(result.stdout)
-    if repo["full_name"] != name:
-        return f"{name}: moved to {repo['full_name']}"
-    if repo["private"]:
-        return f"{name}: no longer public"
-    if repo["archived"] and entry["status"] != "inactive":
-        return f"{name}: archived, set status to inactive"
-    if entry["path"]:
-        target = f"repos/{name}/contents/{entry['path']}?ref={entry['ref']}"
-        result = subprocess.run(["gh", "api", target], capture_output=True, text=True)
-        if result.returncode:
-            return f"{name}: {entry['path']} not found ({result.stderr.strip()})"
-    return None
+def probe_github(batch):
+    """Check a batch of entries in one request.
+
+    One REST request per repository used up the workflow token's 1,000 requests an hour in four runs.
+    """
+    queries = []
+    for index, entry in enumerate(batch):
+        owner, repo = map(json.dumps, entry["name"].split("/"))
+        target = ""
+        if entry["path"]:
+            expression = json.dumps(f"{entry['ref']}:{entry['path']}")
+            target = f" target: object(expression: {expression}) {{ __typename }}"
+        queries.append(f"r{index}: repository(owner: {owner}, name: {repo}) "
+                       f"{{ nameWithOwner isPrivate isArchived{target} }}")
+    response, error = fetch(["gh", "api", "graphql", "-f", "query={" + " ".join(queries) + "}"])
+    # gh exits non-zero when any repository is missing, but still returns data for the others.
+    data = response.get("data") if isinstance(response, dict) else None
+    if not isinstance(data, dict):
+        return [f"GitHub lookup of {len(batch)} entries failed ({error or 'unexpected response'})"]
+
+    errors = []
+    for index, entry in enumerate(batch):
+        name, repo = entry["name"], data.get(f"r{index}")
+        if not repo:
+            errors.append(f"{name}: not found or not accessible")
+        elif repo["nameWithOwner"] != name:
+            errors.append(f"{name}: moved to {repo['nameWithOwner']}")
+        elif repo["isPrivate"]:
+            errors.append(f"{name}: no longer public")
+        elif repo["isArchived"] and entry["status"] != "inactive":
+            errors.append(f"{name}: archived, set status to inactive")
+        elif entry["path"] and not repo.get("target"):
+            errors.append(f"{name}: {entry['path']} not found")
+    return errors
+
+
+def probe_all(entries):
+    github = [e for e in entries if e["host"] == "github.com"]
+    batches = [github[i:i + BATCH] for i in range(0, len(github), BATCH)]
+    gitlab = [e for e in entries if e["host"] != "github.com"]
+    with ThreadPoolExecutor(4) as pool:
+        results = [*pool.map(probe_github, batches), *pool.map(probe_gitlab, gitlab)]
+    return [error for result in results for error in result]
 
 
 def main():
     args = set(sys.argv[1:])
+    if args & {"-h", "--help"}:
+        print(__doc__)
+        return 0
     if args - {"--write", "--online"}:
         sys.exit(__doc__)
     entries, errors = load()
@@ -212,8 +292,7 @@ def main():
             elif not path.exists() or path.read_text(encoding="utf-8") != text:
                 errors.append(f"{filename}: out of date, run with --write")
         if "--online" in args:
-            with ThreadPoolExecutor(8) as pool:
-                errors += filter(None, pool.map(probe, entries))
+            errors += probe_all(entries)
     for error in errors:
         print("ERROR", error)
     print(f"{len(entries)} entries, {len(errors)} errors")

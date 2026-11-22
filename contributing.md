@@ -8,9 +8,15 @@
 
 ## Adding or correcting an entry
 
-1. Edit `data/repos.yml`. Do not edit `README.md` or `archive.md`, which are generated.
+1. Edit `data/repos.yml`. Do not edit `README.md` or `archive.md`, which are generated. Each entry is one line with all eight fields:
+
+   ```yaml
+   - {"url": "https://github.com/owner/repo", "category": "Virtual element method", "description": "What it does.", "language": "Python", "license": "MIT", "note": "", "status": "listed", "source": "topic"}
+   ```
+
+   `category` must match a section title exactly and `status` is `listed` or `inactive`. End `description` with a period, but not `note`.
 2. Write one factual sentence in your own words. Avoid "best", "fastest" and similar claims.
-3. Copy the license from the repository. Use `none found` if there is none, and never guess.
+3. Copy the license from the repository, checking the license file, the README and source file headers. Use `none found` if there is none, and never guess.
 4. Put required commercial software and usage restrictions in `note`.
 5. Use status `inactive` for archived projects or ones their authors call unmaintained.
 6. Set `source` to `major` for a widely used project. Every entry appears in the section named by its `category`. Use `own` only for the maintainer's repositories, `stars` and `following` for what came from the maintainer's stars and followed accounts, `collaborator` for repositories those accounts collaborate on, and `topic` for everything else.
