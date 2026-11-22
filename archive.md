@@ -5,6 +5,7 @@ These projects are archived on GitHub or described by their authors as unmaintai
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
 | [ehsanhaghighat/<br>sciann](https://github.com/ehsanhaghighat/sciann) | Keras wrapper for physics-informed deep learning. | Python | MIT | Author says it is unmaintained. |
+| [kailaix/<br>NNFEM.jl](https://github.com/kailaix/NNFEM.jl) | Educational finite element library for learning neural constitutive relations. | Julia | MIT | Author says it is superseded by AdFem.jl. |
 | [Kitware/<br>iMSTK](https://github.com/Kitware/iMSTK) | Toolkit for interactive medical and surgical simulation. | C++ | Apache-2.0 | Discontinued in May 2025. |
 | [rcapillon/<br>3DFEM](https://github.com/rcapillon/3DFEM) | 3D structural dynamics finite element code with uncertainty modeling. | Python | GPL-3.0 | Author says it is unmaintained and not validated. |
 | [shayansss/<br>hml](https://github.com/shayansss/hml) | Multi-fidelity hybrid machine learning surrogates for soft tissue biomechanics. | Jupyter Notebook | MIT | Archived on GitHub; requires Abaqus. |

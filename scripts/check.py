@@ -9,6 +9,7 @@ import json
 import re
 import subprocess
 import sys
+import unicodedata
 import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -20,7 +21,11 @@ TOPICS = {
         "General-purpose frameworks",
         "Structural and solid mechanics solvers",
         "Differentiable and GPU finite elements",
+        "Phase-field fracture",
         "Fracture, boundary and scaled boundary methods",
+        "Unfitted and embedded methods",
+        "Smoothed finite elements",
+        "Beams, rods and shells",
         "Solver interfaces and utilities",
         "Teaching and compact codes",
     ],
@@ -31,6 +36,10 @@ TOPICS = {
         "Coupled fields and electronic packaging",
         "Topology optimization with VEM",
         "Introductory VEM codes",
+    ],
+    "Contact mechanics": [
+        "Contact formulations",
+        "Incremental potential contact",
     ],
     "Third medium contact": [
         "Modules and examples in FEM libraries",
@@ -63,10 +72,12 @@ TOPICS = {
     ],
     "Multiscale and homogenization": [
         "FFT-based homogenization",
+        "FE² and computational homogenization",
         "Crystal plasticity",
     ],
     "Thermal, multiphysics and additive manufacturing": [
         "Heat transfer and bio-heat",
+        "Thermoelasticity",
         "Additive manufacturing",
         "Multiphysics coupling",
     ],
@@ -83,6 +94,7 @@ TOPICS = {
     "Surrogates and reduced-order models": [
         "Stress-field prediction",
         "Deformation and reduced dynamics",
+        "Projection-based model reduction",
         "Graph neural networks",
         "Biomechanical surrogates",
         "Response histories and operator learning",
@@ -202,7 +214,9 @@ def load():
 
 
 def anchor(title):
-    return re.sub(r"[^\w -]", "", title.lower()).replace(" ", "-")
+    # ASCII only: GitHub percent-encodes other characters in links but not in IDs, so they would not match.
+    plain = unicodedata.normalize("NFKD", title).encode("ascii", "ignore").decode()
+    return re.sub(r"[^\w -]", "", plain.lower()).replace(" ", "-")
 
 
 def target(topic, subtopic=None):
