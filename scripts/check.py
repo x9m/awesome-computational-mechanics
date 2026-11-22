@@ -29,6 +29,9 @@ TOPICS = {
         "Solver interfaces and utilities",
         "Teaching and compact codes",
     ],
+    "Finite volume methods": [
+        "Solid mechanics and fluid-solid interaction",
+    ],
     "Virtual element method": [
         "VEM libraries",
         "Elasticity",
@@ -63,6 +66,7 @@ TOPICS = {
     "Multibody dynamics and biomechanics": [
         "Physics engines for multibody systems",
         "Musculoskeletal biomechanics",
+        "Cardiovascular mechanics",
     ],
     "Constitutive modeling and material identification": [
         "Neural network constitutive models",
@@ -73,6 +77,7 @@ TOPICS = {
     "Multiscale and homogenization": [
         "FFT-based homogenization",
         "FE² and computational homogenization",
+        "Inverse homogenization",
         "Crystal plasticity",
     ],
     "Thermal, multiphysics and additive manufacturing": [
@@ -99,6 +104,7 @@ TOPICS = {
         "Biomechanical surrogates",
         "Response histories and operator learning",
         "Frameworks and introductory studies",
+        "Benchmark datasets",
     ],
     "Meshing, pre- and post-processing": [
         "Mesh generation",
