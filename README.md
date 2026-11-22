@@ -155,4 +155,4 @@ Corrections and additions are welcome. See [contributing.md](contributing.md).
 
 ## Acknowledgements
 
-Thanks to the authors and maintainers of the listed projects, and to those of the [curated lists](topics/courses-references-and-agents-for-mechanics.md#curated-lists) that helped shape this collection. Descriptions and guides were drafted with the help of AI.
+Thanks to the authors and maintainers of the listed projects, and to those of the [curated lists](topics/courses-references-and-agents-for-mechanics.md#curated-lists) that helped shape this collection. Descriptions and guides were drafted with the help of Claude Opus 5.5, an AI model by Anthropic.

@@ -451,7 +451,8 @@ def render(entries):
     out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md).", "",
             "## Acknowledgements", "",
             "Thanks to the authors and maintainers of the listed projects, and to those of the "
-            f"{curated} that helped shape this collection. Descriptions and guides were drafted with the help of AI."]
+            f"{curated} that helped shape this collection. Descriptions and guides were drafted with the help of "
+            "Claude Opus 5.5, an AI model by Anthropic."]
     archive = [
         "# Archived and unmaintained", "",
         "These projects are archived on GitHub or described by their authors as unmaintained. "
