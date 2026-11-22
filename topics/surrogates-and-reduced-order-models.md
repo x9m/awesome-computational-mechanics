@@ -6,7 +6,7 @@
 - [14.2 Deformation and reduced dynamics](#deformation-and-reduced-dynamics) (8)
 - [14.3 Classical machine learning and equation discovery](#classical-machine-learning-and-equation-discovery) (8)
 - [14.4 Projection-based model reduction](#projection-based-model-reduction) (4)
-- [14.5 Graph neural networks](#graph-neural-networks) (4)
+- [14.5 Graph neural networks](#graph-neural-networks) (3)
 - [14.6 Biomechanical surrogates](#biomechanical-surrogates) (2)
 - [14.7 Response histories and operator learning](#response-histories-and-operator-learning) (7)
 - [14.8 Frameworks and introductory studies](#frameworks-and-introductory-studies) (4)
@@ -64,7 +64,6 @@
 | Name, language and license | Description | Note |
 | --- | --- | --- |
 | [Jianxun-Wang/<br>graphGalerkin](https://github.com/Jianxun-Wang/graphGalerkin)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Physics-informed graph neural Galerkin networks for forward and inverse PDE problems. | Requires pyCaMOtk. |
-| [m-ulmestrand/<br>gcn-collisions](https://github.com/m-ulmestrand/gcn-collisions)<br><sub>Python</sub><br><sub>Apache-2.0</sub> | Graph convolutional network that learns particle collision responses. |  |
 | [wwMark/<br>meshgraphnets](https://github.com/wwMark/meshgraphnets)<br><sub>Python</sub><br><sub>Apache-2.0 in some files</sub> | PyTorch port of MeshGraphNets with cloth simulation. | Author says results do not fully match the original; files without an Apache header state no license. |
 | [YasminSalehi/<br>PhysGNN](https://github.com/YasminSalehi/PhysGNN)<br><sub>Python</sub><br><sub>BSD-4-Clause</sub> | Graph neural network prediction of soft tissue deformation in neurosurgery. |  |
 
@@ -91,7 +90,7 @@
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
-| [hmjeon/<br>FEM-ML](https://github.com/hmjeon/FEM-ML)<br><sub>Jupyter Notebook</sub><br><sub>GPL-3.0</sub> | Experiments in finite element analysis with machine learning. | Sparse documentation. |
+| [hmjeon/<br>FEM-ML](https://github.com/hmjeon/FEM-ML)<br><sub>Python, Fortran and Jupyter Notebook</sub><br><sub>GPL-3.0</sub> | Experiments in finite element analysis with machine learning. | Sparse documentation. |
 | [mimesis-inria/<br>DeepPhysX](https://github.com/mimesis-inria/DeepPhysX)<br><sub>Python</sub><br><sub>AGPL-3.0</sub> | Interface between numerical simulations and learning algorithms for training and prediction. |  |
 | [NVIDIA/<br>physicsnemo](https://github.com/NVIDIA/physicsnemo)<br><sub>Python</sub><br><sub>Apache-2.0, with MIT files</sub> | Deep learning framework for physics, with CFD and other simulation examples. | Some example datasets restrict commercial use. |
 | [oleksiyskononenko/<br>mlfem](https://github.com/oleksiyskononenko/mlfem)<br><sub>Jupyter Notebook</sub><br><sub>none found</sub> | Notebook and report on deep learning with finite element models of physical systems. |  |

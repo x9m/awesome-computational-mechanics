@@ -4,10 +4,11 @@
 
 The right solver depends on the structure of the discrete problem.
 
-- **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, or conjugate gradients with a preconditioner. For smoothed-aggregation multigrid, supply the rigid body modes.
-- **Symmetric indefinite**, as in mixed formulations and frictionless Lagrange multiplier contact: use an LDLᵀ factorization, MINRES with a symmetric positive definite preconditioner, or GMRES with a block preconditioner.
-- **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB with a preconditioner.
-- **Snap-through and buckling**: the tangent becomes singular. Arc-length continuation can pass a limit point, where load-controlled Newton fails. Following a buckled branch from a bifurcation also needs an imperfection or branch switching.
+- **Symmetric positive definite**, as in compressible elasticity with enough supports and a stable tangent: use Cholesky, or conjugate gradients with a symmetric positive definite preconditioner. For smoothed-aggregation multigrid, supply the rigid body modes.
+- **Symmetric indefinite**, as in many mixed formulations and some frictionless Lagrange multiplier contact formulations: use an LDLᵀ factorization that pivots for indefinite matrices (not every LDLᵀ routine does), MINRES with a symmetric positive definite preconditioner, or GMRES with a block preconditioner. Check the symmetry: large-deformation contact can be nonsymmetric unless [formulated to be symmetric](https://doi.org/10.1016/j.cma.2018.07.020).
+- **Nonsymmetric**, as with frictional sliding, non-associated plasticity, many follower loads or convection: use LU, or GMRES or BiCGSTAB with a preconditioner.
+- **Linear buckling**: the eigenvalue can greatly overestimate the collapse load, because it ignores imperfections, plasticity and changes of shape before buckling. Some solvers, such as Abaqus, also [symmetrize follower load stiffness](https://ceae-server.colorado.edu/v2016/books/usb/pt03ch06s02at02.html). Confirm with a nonlinear analysis that includes imperfections.
+- **Snap-through and buckling**: at a limit or bifurcation point the tangent is singular. At a limit point load-controlled Newton can fail or jump, and arc-length continuation can pass it. Following a buckled branch from a bifurcation also needs an imperfection or branch switching.
 - **Any system**: a small residual does not guarantee a small error when the matrix is ill-conditioned.
 
 Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076) on direct methods, [Saad (2003)](https://doi.org/10.1137/1.9780898718003) on iterative methods, [Benzi et al. (2005)](https://doi.org/10.1017/S0962492904000212) on saddle point problems and [Higham (2002)](https://doi.org/10.1137/1.9780898718027) on accuracy and stability.

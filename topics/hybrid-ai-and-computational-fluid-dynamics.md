@@ -4,7 +4,9 @@
 
 Here machine learning works with flow solvers: it learns closures and corrections, speeds up solves or controls flows. Differentiable solvers and coupling tools built for this are included. General CFD codes are not. Models that mostly replace the solver, and datasets to train them, are under [surrogates](surrogates-and-reduced-order-models.md).
 
-Test learned closures inside the solver. A model can fit high-fidelity data well and still be inaccurate or unstable once coupled, and may not carry over to other geometries, Reynolds numbers or meshes.
+Test learned closures and corrections inside the solver, on the quantities you need, and for unsteady flows over long runs and on their statistics. A model can fit high-fidelity data well and still be inaccurate or unstable once coupled, and may not carry over to other geometries, Reynolds numbers or meshes. In RANS, even accurate Reynolds stresses inserted explicitly [can give poor velocities](https://doi.org/10.1017/jfm.2019.205).
+
+Judge speedups against an efficient classical solver at equal accuracy, and count the training cost. A review found weak baselines in [60 of the 76 machine learning papers](https://doi.org/10.1038/s42256-024-00897-5) it examined that claimed to beat a standard method on fluid-related PDEs.
 
 Further reading: [Duraisamy et al. (2019)](https://doi.org/10.1146/annurev-fluid-010518-040547) on turbulence modeling with data, and [Agdestein and Sanderse (2025)](https://doi.org/10.1016/j.jcp.2024.113577) on closures that match the discretization.
 

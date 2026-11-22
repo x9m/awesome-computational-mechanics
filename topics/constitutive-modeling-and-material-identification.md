@@ -17,7 +17,7 @@
 | [FuhgJan/<br>invariant_DD_CM](https://github.com/FuhgJan/invariant_DD_CM)<br><sub>MATLAB</sub><br><sub>conflicting statements</sub> | Space-filling sampling of invariant space for data-driven constitutive models. | Requires MATLAB R2017a or later; README states both GPL-3.0 and a non-commercial Creative Commons license. |
 | [FuhgJan/<br>modelDataDriven_<br>YieldFunction](https://github.com/FuhgJan/modelDataDriven_YieldFunction)<br><sub>Python</sub><br><sub>conflicting statements</sub> | Hybrid model-data-driven yield functions. | README states both GPL-3.0 and a non-commercial Creative Commons license. |
 | [hyoungsuksuh/<br>ABAQUS_NN](https://github.com/hyoungsuksuh/ABAQUS_NN)<br><sub>Python</sub><br><sub>none found</sub> | PyTorch-to-UMAT framework for deep-learning level-set plasticity. | Requires Abaqus. |
-| [LivingMatterLab/<br>CANN](https://github.com/LivingMatterLab/CANN)<br><sub>Jupyter Notebook</sub><br><sub>none found</sub> | Constitutive artificial neural networks for automated material model discovery. |  |
+| [LivingMatterLab/<br>CANN](https://github.com/LivingMatterLab/CANN)<br><sub>Python and Jupyter Notebook</sub><br><sub>none found</sub> | Constitutive artificial neural networks for automated material model discovery. |  |
 | [meghbali/<br>ANNElastoplasticity](https://github.com/meghbali/ANNElastoplasticity)<br><sub>Python</sub><br><sub>MIT</sub> | Neural network approach to elastoplastic constitutive modeling. |  |
 | [nanogchen/<br>rnn-<br>viscoelasticity](https://github.com/nanogchen/rnn-viscoelasticity)<br><sub>Python</sub><br><sub>MIT</sub> | Recurrent neural networks that learn viscoelastic constitutive laws. | Paper code. |
 | [pantale/<br>Algorithms-2023](https://github.com/pantale/Algorithms-2023)<br><sub>Fortran and Jupyter Notebook</sub><br><sub>GPL-3.0</sub> | Activation function comparison for neural flow laws in thermomechanical forming. | Requires Abaqus for the subroutines. |
@@ -26,7 +26,7 @@
 | [tajtac/<br>hypermodelcomp](https://github.com/tajtac/hypermodelcomp)<br><sub>Jupyter Notebook</sub><br><sub>none found</sub> | Comparison of CANN, input-convex network and neural ODE models of hyperelasticity. |  |
 | [tajtac/<br>node_diffusion](https://github.com/tajtac/node_diffusion)<br><sub>Jupyter Notebook</sub><br><sub>none found</sub> | Research notebooks combining neural ODE hyperelastic models with diffusion models. | No README. |
 | [tajtac/<br>NODE_v2](https://github.com/tajtac/NODE_v2)<br><sub>Jupyter Notebook and Fortran</sub><br><sub>none found</sub> | Polyconvex strain energy functions from neural ODEs, with finite element examples. | LICENSE file is empty; finite element examples use Abaqus. |
-| [tgulikers/<br>ABAQUS_ANN_<br>constitutive_model](https://github.com/tgulikers/ABAQUS_ANN_constitutive_model)<br><sub>Fortran</sub><br><sub>none found</sub> | Thesis code that trains neural network constitutive models and generates a UMAT. | Requires Abaqus for the UMAT. |
+| [tgulikers/<br>ABAQUS_ANN_<br>constitutive_model](https://github.com/tgulikers/ABAQUS_ANN_constitutive_model)<br><sub>Fortran and Python</sub><br><sub>none found</sub> | Thesis code that trains neural network constitutive models and generates a UMAT. | Requires Abaqus for the UMAT. |
 
 ## <a id="unsupervised-model-discovery"></a>9.2 Unsupervised model discovery
 

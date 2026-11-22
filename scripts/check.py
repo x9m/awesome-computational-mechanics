@@ -17,6 +17,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+OLD_SECTIONS = ROOT / "data/old-readme-sections.txt"
 # Topics and their sub-topics, in the order the README shows them.
 TOPICS = {
     "Finite and boundary element methods": [
@@ -33,6 +34,7 @@ TOPICS = {
     ],
     "Finite volume methods": [
         "Solid mechanics and fluid-solid interaction",
+        "Porous media and geomechanics",
     ],
     "Virtual element method": [
         "VEM libraries",
@@ -234,78 +236,114 @@ INTROS = {
     "Virtual element method":
         "The virtual element method (VEM) generalizes finite elements to polygonal and polyhedral elements.",
     "Third medium contact":
-        "Third medium contact (TMC) models contact by meshing the gap with a very compliant fictitious material. "
-        "Some links open the relevant file inside a larger project. DTU's MATLAB TopTMC code is not in a "
-        "repository and can be downloaded from the [TopOpt software page]"
-        "(https://www.topopt.mek.dtu.dk/apps-and-software).",
+        "Third medium contact (TMC) models contact by meshing the gap with a very compliant fictitious "
+        "material. Some links open the relevant file inside a larger project. DTU's MATLAB TopTMC code is not"
+        " in a repository and can be downloaded from the [TopOpt software "
+        "page](https://www.topopt.mek.dtu.dk/apps-and-software).",
     "Hybrid AI and numerical solvers":
-        "Here machine learning works with a classical solver: it speeds up a solve, supplies part of the model, "
-        "shares the domain or shapes the discretization. This topic also has the tools that connect the two.\n\n"
+        "Here machine learning works with a classical solver: it speeds up a solve, supplies part of the "
+        "model, shares the domain or shapes the discretization. This topic also has the tools that connect "
+        "the two.\n\n"
         "Models that mostly replace the solver are under "
         "[surrogates](surrogates-and-reduced-order-models.md), networks trained on governing equations under "
-        "[physics-informed learning](physics-informed-learning-and-energy-methods.md) and standalone material models "
-        "under [constitutive modeling](constitutive-modeling-and-material-identification.md).\n\n"
-        "Check where the network acts. If it only preconditions or provides an initial guess, the solver's residual "
-        "can still be checked, though a small residual does not guarantee a small error and a nonlinear solve "
-        "may converge to a different solution. If it changes the equations, the material law or the solution space, "
-        "it changes the answer, so validate it outside the training data.\n\n"
+        "[physics-informed learning](physics-informed-learning-and-energy-methods.md) and standalone material"
+        " models under [constitutive modeling](constitutive-modeling-and-material-identification.md).\n\n"
+        "Check where the network acts:\n\n"
+        "- **Preconditioner**: check the true residual b − Ax, as [some solvers test only the preconditioned "
+        "one](https://petsc.org/release/manual/ksp/) by default. A nonlinear or varying preconditioner needs "
+        "a flexible Krylov method ([Saad, 1993](https://doi.org/10.1137/0914028)), and standard conjugate "
+        "gradients need a fixed symmetric positive definite one.\n"
+        "- **Initial guess**: the solver can still correct it, but a nonlinear solve may converge to a "
+        "different solution.\n"
+        "- **Part of the domain, the mesh or the solution space**: compare with a converged classical "
+        "solution, including outside the training data.\n"
+        "- **Equations or material law**: compare with a trusted model where one exists and validate against "
+        "independent measurements, outside the training data.\n\n"
+        "A small residual does not guarantee a small error, and the residual of a modified problem cannot "
+        "show the error of the modification.\n\n"
         "For fluids, see [hybrid AI and CFD](hybrid-ai-and-computational-fluid-dynamics.md).",
     "Hybrid AI and computational fluid dynamics":
-        "Here machine learning works with flow solvers: it learns closures and corrections, speeds up solves or "
-        "controls flows. Differentiable solvers and coupling tools built for this are included. General CFD codes "
-        "are not. Models that mostly replace the solver, and datasets to train them, are under "
+        "Here machine learning works with flow solvers: it learns closures and corrections, speeds up solves "
+        "or controls flows. Differentiable solvers and coupling tools built for this are included. General "
+        "CFD codes are not. Models that mostly replace the solver, and datasets to train them, are under "
         "[surrogates](surrogates-and-reduced-order-models.md).\n\n"
-        "Test learned closures inside the solver. A model can fit high-fidelity data well and still be inaccurate or "
-        "unstable once coupled, and may not carry over to other geometries, Reynolds numbers or meshes.\n\n"
+        "Test learned closures and corrections inside the solver, on the quantities you need, and for "
+        "unsteady flows over long runs and on their statistics. A model can fit high-fidelity data well and "
+        "still be inaccurate or unstable once coupled, and may not carry over to other geometries, Reynolds "
+        "numbers or meshes. In RANS, even accurate Reynolds stresses inserted explicitly [can give poor "
+        "velocities](https://doi.org/10.1017/jfm.2019.205).\n\n"
+        "Judge speedups against an efficient classical solver at equal accuracy, and count the training cost."
+        " A review found weak baselines in [60 of the 76 machine learning "
+        "papers](https://doi.org/10.1038/s42256-024-00897-5) it examined that claimed to beat a standard "
+        "method on fluid-related PDEs.\n\n"
         "Further reading: [Duraisamy et al. (2019)](https://doi.org/10.1146/annurev-fluid-010518-040547) on "
-        "turbulence modeling with data, and "
-        "[Agdestein and Sanderse (2025)](https://doi.org/10.1016/j.jcp.2024.113577) on closures that match the "
-        "discretization.",
+        "turbulence modeling with data, and [Agdestein and Sanderse "
+        "(2025)](https://doi.org/10.1016/j.jcp.2024.113577) on closures that match the discretization.",
     "LLMs and simulation agents":
-        "This topic covers large language models (LLMs) that set up, run or write simulations, the tool servers "
-        "that connect them to simulation software, and benchmarks that test them.\n\n"
-        "A simulation that runs can still solve the wrong physics "
-        "([Song et al., 2026](https://arxiv.org/abs/2605.09360), preprint), so check equations, units, boundary "
-        "conditions and convergence yourself. Agents and tool servers can also execute arbitrary code "
-        "([MCP specification](https://modelcontextprotocol.io/specification/2026-07-28)), so isolate them from files, "
-        "credentials and license servers they don't need, and don't send confidential models to a hosted LLM without "
-        "permission.",
+        "This topic covers large language models (LLMs) that set up, run or write simulations, the tool "
+        "servers that connect them to simulation software, and benchmarks that test them.\n\n"
+        "A simulation that runs can still solve the wrong physics ([Song et al., "
+        "2026](https://arxiv.org/abs/2605.09360), preprint), so check equations, units, boundary conditions "
+        "and convergence yourself.\n\n"
+        "Agents and tool servers can also execute arbitrary code ([MCP "
+        "specification](https://modelcontextprotocol.io/specification/2026-07-28)), and papers, input files, "
+        "logs and web pages they read can contain [hidden "
+        "instructions](https://genai.owasp.org/llmrisk/llm01-prompt-injection/). Run them in a sandbox, "
+        "restrict network access, keep them away from files, credentials and license servers they don't need,"
+        " and approve consequential actions yourself. Don't send confidential geometry, input files, material"
+        " data or results to a hosted LLM without permission.",
     "Linear, eigenvalue and nonlinear solvers":
         "The right solver depends on the structure of the discrete problem.\n\n"
-        "- **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, "
-        "or conjugate gradients with a preconditioner. For smoothed-aggregation multigrid, supply the rigid body modes.\n"
-        "- **Symmetric indefinite**, as in mixed formulations and frictionless Lagrange multiplier contact: use an LDLᵀ "
-        "factorization, MINRES with a symmetric positive definite preconditioner, or GMRES with a block preconditioner.\n"
-        "- **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB "
-        "with a preconditioner.\n"
-        "- **Snap-through and buckling**: the tangent becomes singular. Arc-length continuation can pass a "
-        "limit point, where load-controlled Newton fails. Following a buckled branch from a bifurcation also "
-        "needs an imperfection or branch switching.\n"
-        "- **Any system**: a small residual does not guarantee a small error when the matrix is ill-conditioned.\n\n"
-        "Further reading: "
-        "[Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076) on direct methods, "
-        "[Saad (2003)](https://doi.org/10.1137/1.9780898718003) on iterative methods, "
-        "[Benzi et al. (2005)](https://doi.org/10.1017/S0962492904000212) on saddle point problems and "
-        "[Higham (2002)](https://doi.org/10.1137/1.9780898718027) on accuracy and stability.",
+        "- **Symmetric positive definite**, as in compressible elasticity with enough supports and a stable "
+        "tangent: use Cholesky, or conjugate gradients with a symmetric positive definite preconditioner. For"
+        " smoothed-aggregation multigrid, supply the rigid body modes.\n"
+        "- **Symmetric indefinite**, as in many mixed formulations and some frictionless Lagrange multiplier "
+        "contact formulations: use an LDLᵀ factorization that pivots for indefinite matrices (not every LDLᵀ "
+        "routine does), MINRES with a symmetric positive definite preconditioner, or GMRES with a block "
+        "preconditioner. Check the symmetry: large-deformation contact can be nonsymmetric unless [formulated"
+        " to be symmetric](https://doi.org/10.1016/j.cma.2018.07.020).\n"
+        "- **Nonsymmetric**, as with frictional sliding, non-associated plasticity, many follower loads or "
+        "convection: use LU, or GMRES or BiCGSTAB with a preconditioner.\n"
+        "- **Linear buckling**: the eigenvalue can greatly overestimate the collapse load, because it ignores"
+        " imperfections, plasticity and changes of shape before buckling. Some solvers, such as Abaqus, also "
+        "[symmetrize follower load "
+        "stiffness](https://ceae-server.colorado.edu/v2016/books/usb/pt03ch06s02at02.html). Confirm with a "
+        "nonlinear analysis that includes imperfections.\n"
+        "- **Snap-through and buckling**: at a limit or bifurcation point the tangent is singular. At a limit"
+        " point load-controlled Newton can fail or jump, and arc-length continuation can pass it. Following a"
+        " buckled branch from a bifurcation also needs an imperfection or branch switching.\n"
+        "- **Any system**: a small residual does not guarantee a small error when the matrix is "
+        "ill-conditioned.\n\n"
+        "Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076) on direct methods,"
+        " [Saad (2003)](https://doi.org/10.1137/1.9780898718003) on iterative methods, [Benzi et al. "
+        "(2005)](https://doi.org/10.1017/S0962492904000212) on saddle point problems and [Higham "
+        "(2002)](https://doi.org/10.1137/1.9780898718027) on accuracy and stability.",
     "Verification, validation and uncertainty":
         "These answer different questions, and passing one does not imply passing the others.\n\n"
         "- **Code verification**: are the equations implemented correctly? Compare observed and expected "
-        "convergence rates on exact or manufactured solutions "
-        "([Roache, 2002](https://doi.org/10.1115/1.1436090)).\n"
+        "convergence rates on exact or manufactured solutions ([Roache, "
+        "2002](https://doi.org/10.1115/1.1436090)).\n"
         "- **Solution verification**: how large is the numerical error in this result? Study mesh, time step "
-        "and solver tolerances ([Roy, 2005](https://doi.org/10.1016/j.jcp.2004.10.036)).\n"
+        "and solver tolerances ([Roy, 2005](https://doi.org/10.1016/j.jcp.2004.10.036)). Make sure the "
+        "quantity can converge: stresses at singular points do not, and nor do results that depend on "
+        "localized softening without regularization.\n"
         "- **Validation**: does the model represent reality for its intended use? Compare with experiments "
-        "that were not used for calibration. Agreement with another simulation is not validation.\n"
-        "- **Uncertainty quantification**: how much do uncertain inputs, model form and numerical error affect "
-        "the prediction ([Roy and Oberkampf, 2011](https://doi.org/10.1016/j.cma.2011.03.016))?\n\n"
-        "Guidance: "
-        "[ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025) for solid mechanics (paid), "
-        "[NASA-STD-7009B](https://standards.nasa.gov/sites/default/files/standards/NASA/B/1/NASA-STD-7009B-Final-3-5-2024.pdf) "
-        "for models and simulations, "
-        "[ten rules for credible simulation in healthcare](https://doi.org/10.1186/s12967-020-02540-4) and "
-        "the book by [Oberkampf and Roy (2010)](https://doi.org/10.1017/CBO9780511760396). "
-        "Published cardiac benchmarks: [Land et al. (2015)](https://doi.org/10.1098/rspa.2015.0641) and "
-        "[Aróstica et al. (2025)](https://doi.org/10.1016/j.cma.2024.117485).",
+        "relevant to that use that were not used for calibration, allow for their measurement uncertainty and"
+        " state the range they cover. Agreement with another simulation does not by itself show agreement "
+        "with reality. If a higher-fidelity model is the reference, as NASA-STD-7009B allows for surrogates, "
+        "say so.\n"
+        "- **Uncertainty quantification**: how much do uncertain inputs, model form and numerical error "
+        "affect the prediction ([Roy and Oberkampf, 2011](https://doi.org/10.1016/j.cma.2011.03.016))?\n\n"
+        "Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025) for solid "
+        "mechanics (paid), [ASME V&V 20 and V&V "
+        "40](https://www.asme.org/codes-standards/publications-information/verification-validation-uncertainty)"
+        " for fluids and heat transfer and for medical devices (paid), "
+        "[NASA-STD-7009B](https://standards.nasa.gov/sites/default/files/standards/NASA/B/1/NASA-STD-7009B-Final-3-5-2024.pdf)"
+        " for models and simulations, [ten rules for credible simulation in "
+        "healthcare](https://doi.org/10.1186/s12967-020-02540-4) and the book by [Oberkampf and Roy "
+        "(2010)](https://doi.org/10.1017/CBO9780511760396). Cardiac benchmarks that compare codes, which is "
+        "not validation against experiments: [Land et al. (2015)](https://doi.org/10.1098/rspa.2015.0641) and"
+        " [Aróstica et al. (2025)](https://doi.org/10.1016/j.cma.2024.117485).",
 }
 
 
@@ -441,16 +479,20 @@ def plain_heading_id(title):
     return re.sub(r"[^a-z0-9_ -]", "", title.lower()).replace(" ", "-")
 
 
-def readme_anchors(topic, subtopic=None):
+def old_sections():
+    return {line for line in OLD_SECTIONS.read_text(encoding="utf-8").split("\n") if line.startswith("open-")}
+
+
+def readme_anchors(old, topic, subtopic=None):
     # The README used to hold every section. These IDs land old links on the index line that leads to the new page.
-    ids, original = [], anchor(first_title(topic))
+    # Sections added after the split never had such links, so they get none.
     if subtopic:
-        for name in [subtopic, *FORMER_TITLES.get(subtopic, [])]:
-            ids += [plain_heading_id(name), f"open-{original}--{anchor(name)}"]
-            if subtopic in MOVED:
-                ids.append(f"open-{anchor(first_title(MOVED[subtopic]))}--{anchor(name)}")
+        names = [subtopic, *FORMER_TITLES.get(subtopic, [])]
+        parents = [topic, *([MOVED[subtopic]] if subtopic in MOVED else [])]
+        sections = [(name, f"open-{anchor(first_title(parent))}--{anchor(name)}") for name in names for parent in parents]
     else:
-        ids = [plain_heading_id(first_title(topic)), f"open-{original}"]
+        sections = [(first_title(topic), f"open-{anchor(first_title(topic))}")]
+    ids = [i for name, section in sections if section in old for i in (plain_heading_id(name), section)]
     return "".join(f'<a id="{i}"></a>' for i in ids)
 
 
@@ -517,7 +559,7 @@ def table(entries):
             *map(row, entries)]
 
 
-def render(entries):
+def render(entries, old):
     listed = [e for e in entries if e["status"] == "listed"]
     inactive = sorted((e for e in entries if e["status"] == "inactive"), key=sort_key)
     topics = []  # (topic, number of entries, [(sub-topic, its entries)])
@@ -545,8 +587,8 @@ def render(entries):
     ]
     for number, (topic, size, groups) in enumerate(topics, 1):
         marker = f"{number}. "
-        lines = [f"{readme_anchors(topic)}{link(topic, topic)} ({size})"]
-        lines += [f"{number}.{minor} {readme_anchors(topic, sub)}{link(sub, topic, sub)} ({len(group)})"
+        lines = [f"{readme_anchors(old, topic)}{link(topic, topic)} ({size})"]
+        lines += [f"{number}.{minor} {readme_anchors(old, topic, sub)}{link(sub, topic, sub)} ({len(group)})"
                   for minor, (sub, group) in enumerate(groups, 1)]
         # <br> keeps the sub-topics in their topic's list item: Markdown lists cannot number 1.1, 1.2.
         out.append(marker + ("<br>\n" + " " * len(marker)).join(lines))
@@ -733,9 +775,15 @@ def main():
     entries, errors = load()
     errors = errors or settings_problems(entries)
     warnings = []
+    try:
+        old = old_sections()
+    except (OSError, ValueError) as exc:
+        errors.append(f"cannot read {OLD_SECTIONS.name} ({exc})")
     if not errors:
-        files = render(entries)
+        files = render(entries, old)
         errors += link_problems(files)
+        errors += [f"README.md: the old link #{i} would stop working"
+                   for i in sorted(old) if f'id="{i}"' not in files["README.md"]]
         for path in sorted((ROOT / "topics").glob("*.md")):
             if f"topics/{path.name}" not in files:
                 errors.append(f"topics/{path.name}: not a current topic, delete it")

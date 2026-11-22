@@ -4,7 +4,7 @@
 
 - [1.1 General-purpose frameworks](#general-purpose-frameworks) (20)
 - [1.2 Structural and solid mechanics solvers](#structural-and-solid-mechanics-solvers) (16)
-- [1.3 Differentiable and GPU finite elements](#differentiable-and-gpu-finite-elements) (7)
+- [1.3 Differentiable and GPU finite elements](#differentiable-and-gpu-finite-elements) (6)
 - [1.4 Phase-field fracture](#phase-field-fracture) (6)
 - [1.5 Fracture, boundary and scaled boundary methods](#fracture-boundary-and-scaled-boundary-methods) (5)
 - [1.6 Unfitted and embedded methods](#unfitted-and-embedded-methods) (1)
@@ -69,7 +69,6 @@
 | [liangbright/<br>pytorch_fea_paper](https://github.com/liangbright/pytorch_fea_paper)<br><sub>Python</sub><br><sub>none found</sub> | Differentiable finite element analysis applied to human aorta biomechanics. | Paper code; the author's refactored successor is [pytorch_fea](https://github.com/liangbright/pytorch_fea). |
 | [mo-hanxuan/<br>FEMcy](https://github.com/mo-hanxuan/FEMcy)<br><sub>Python</sub><br><sub>MIT</sub> | Taichi-based parallel structural finite element solver with small and large deformation. |  |
 | [sandialabs/<br>optimism](https://github.com/sandialabs/optimism)<br><sub>Python</sub><br><sub>MIT</sub> | JAX finite element library that poses nonlinear solid mechanics as optimization. |  |
-| [zclsjtu/<br>DiffSolid](https://github.com/zclsjtu/DiffSolid)<br><sub>Python</sub><br><sub>proprietary</sub> | Differentiable JAX finite element framework for solid mechanics and phase-field fracture. | The implementation is not open source; the repository has examples and documentation, and wheels are provided on request. |
 
 ## <a id="phase-field-fracture"></a>1.4 Phase-field fracture
 
@@ -131,7 +130,7 @@
 | [AppliedMechanics-<br>EAFIT/<br>SolidsPy](https://github.com/AppliedMechanics-EAFIT/SolidsPy)<br><sub>Python</sub><br><sub>MIT</sub> | Simple finite element code for 2D elasticity. |  |
 | [dilevin/<br>CSC417-a3-finite-<br>elements-3d](https://github.com/dilevin/CSC417-a3-finite-elements-3d)<br><sub>C++</sub><br><sub>none found</sub> | Course assignment on 3D finite element simulation of elastic objects. | Starter code for an assignment. |
 | [hplgit/<br>fem-book](https://github.com/hplgit/fem-book)<br><sub>Python</sub><br><sub>MIT</sub> | Sources and examples for a book on numerical methods for variational problems. |  |
-| [hplgit/<br>fenics-tutorial](https://github.com/hplgit/fenics-tutorial)<br><sub>TeX</sub><br><sub>none found</sub> | Sources and example programs for the FEniCS Tutorial book. | Bundled Triangle restricts commercial distribution. |
+| [hplgit/<br>fenics-tutorial](https://github.com/hplgit/fenics-tutorial)<br><sub>TeX and Python</sub><br><sub>none found</sub> | Sources and example programs for the FEniCS Tutorial book. | Bundled Triangle restricts commercial distribution. |
 | [jjcremmers/<br>PyFEM](https://github.com/jjcremmers/PyFEM)<br><sub>Python</sub><br><sub>MIT</sub> | Educational and research finite element code for nonlinear solid mechanics. |  |
 | [largurajr/<br>FEA-Protus](https://github.com/largurajr/FEA-Protus)<br><sub>Python</sub><br><sub>none found</sub> | Teaching code for 2D plane stress and plane strain finite element analysis. | Python 2.7. |
 | [Qinxiaoye/<br>FEM2D](https://github.com/Qinxiaoye/FEM2D)<br><sub>MATLAB</sub><br><sub>none found</sub> | MATLAB code for 2D finite element analysis. | Written for MATLAB, Octave support not documented; input scripts use Ansys or Abaqus. |

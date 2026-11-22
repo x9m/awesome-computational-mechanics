@@ -4,7 +4,9 @@
 
 This topic covers large language models (LLMs) that set up, run or write simulations, the tool servers that connect them to simulation software, and benchmarks that test them.
 
-A simulation that runs can still solve the wrong physics ([Song et al., 2026](https://arxiv.org/abs/2605.09360), preprint), so check equations, units, boundary conditions and convergence yourself. Agents and tool servers can also execute arbitrary code ([MCP specification](https://modelcontextprotocol.io/specification/2026-07-28)), so isolate them from files, credentials and license servers they don't need, and don't send confidential models to a hosted LLM without permission.
+A simulation that runs can still solve the wrong physics ([Song et al., 2026](https://arxiv.org/abs/2605.09360), preprint), so check equations, units, boundary conditions and convergence yourself.
+
+Agents and tool servers can also execute arbitrary code ([MCP specification](https://modelcontextprotocol.io/specification/2026-07-28)), and papers, input files, logs and web pages they read can contain [hidden instructions](https://genai.owasp.org/llmrisk/llm01-prompt-injection/). Run them in a sandbox, restrict network access, keep them away from files, credentials and license servers they don't need, and approve consequential actions yourself. Don't send confidential geometry, input files, material data or results to a hosted LLM without permission.
 
 - [17.1 Agents for mechanics](#agents-for-mechanics) (8)
 - [17.2 Agents for fluid dynamics](#agents-for-fluid-dynamics) (3)

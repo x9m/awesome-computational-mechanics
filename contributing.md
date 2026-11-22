@@ -6,6 +6,7 @@
 - General-purpose tools that computational mechanics work builds on, such as solvers, meshing, visualization, simulation languages and physics-informed learning libraries.
 - Material that helps make or judge a simulation: reference texts, verification cases, benchmarks, measured data, and calibration or uncertainty tools. Say in `note` when results could be mistaken for measured data or independent reference solutions.
 - A README or code that shows what it does.
+- Software needs readable source code in the repository: documentation, examples of calling it or binaries alone are not enough.
 - Not other general machine learning, trading, or programming resources.
 
 ## Adding or correcting an entry

@@ -6,7 +6,14 @@ Here machine learning works with a classical solver: it speeds up a solve, suppl
 
 Models that mostly replace the solver are under [surrogates](surrogates-and-reduced-order-models.md), networks trained on governing equations under [physics-informed learning](physics-informed-learning-and-energy-methods.md) and standalone material models under [constitutive modeling](constitutive-modeling-and-material-identification.md).
 
-Check where the network acts. If it only preconditions or provides an initial guess, the solver's residual can still be checked, though a small residual does not guarantee a small error and a nonlinear solve may converge to a different solution. If it changes the equations, the material law or the solution space, it changes the answer, so validate it outside the training data.
+Check where the network acts:
+
+- **Preconditioner**: check the true residual b − Ax, as [some solvers test only the preconditioned one](https://petsc.org/release/manual/ksp/) by default. A nonlinear or varying preconditioner needs a flexible Krylov method ([Saad, 1993](https://doi.org/10.1137/0914028)), and standard conjugate gradients need a fixed symmetric positive definite one.
+- **Initial guess**: the solver can still correct it, but a nonlinear solve may converge to a different solution.
+- **Part of the domain, the mesh or the solution space**: compare with a converged classical solution, including outside the training data.
+- **Equations or material law**: compare with a trusted model where one exists and validate against independent measurements, outside the training data.
+
+A small residual does not guarantee a small error, and the residual of a modified problem cannot show the error of the modification.
 
 For fluids, see [hybrid AI and CFD](hybrid-ai-and-computational-fluid-dynamics.md).
 
