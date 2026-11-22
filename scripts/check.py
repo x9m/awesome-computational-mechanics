@@ -14,23 +14,93 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CATEGORIES = [
-    "Finite and boundary element methods",
-    "Virtual element method",
-    "Third medium contact",
-    "Meshfree and particle methods",
-    "Soft-body, real-time and differentiable simulation",
-    "Multibody dynamics and biomechanics",
-    "Constitutive modeling and material identification",
-    "Multiscale and homogenization",
-    "Thermal, multiphysics and additive manufacturing",
-    "Optimization and inverse problems",
-    "Physics-informed learning and energy methods",
-    "Surrogates and reduced-order models",
-    "Meshing, pre- and post-processing",
-    "Courses, references and agents for mechanics",
-]
-FIELDS = {"url", "category", "description", "language", "license", "note", "status", "source"}
+# Topics and their sub-topics, in the order the README shows them.
+TOPICS = {
+    "Finite and boundary element methods": [
+        "General-purpose frameworks",
+        "Structural and solid mechanics solvers",
+        "Differentiable and GPU finite elements",
+        "Fracture, boundary and scaled boundary methods",
+        "Solver interfaces and utilities",
+        "Teaching and compact codes",
+    ],
+    "Virtual element method": [
+        "VEM libraries",
+        "Elasticity",
+        "Dynamics and fracture",
+        "Coupled fields and electronic packaging",
+        "Topology optimization with VEM",
+        "Introductory VEM codes",
+    ],
+    "Third medium contact": [
+        "Modules and examples in FEM libraries",
+        "Optimization and metamaterials",
+        "Standalone study codes",
+    ],
+    "Meshfree and particle methods": [
+        "Material point method",
+        "Smoothed particle hydrodynamics",
+        "Meshless methods",
+        "Peridynamics",
+        "Discrete and coarse-grained particle models",
+    ],
+    "Soft-body, real-time and differentiable simulation": [
+        "Real-time finite elements",
+        "Soft robotics",
+        "Position-based and implicit dynamics",
+        "Differentiable simulation",
+        "Manipulation benchmarks",
+    ],
+    "Multibody dynamics and biomechanics": [
+        "Physics engines for multibody systems",
+        "Musculoskeletal biomechanics",
+    ],
+    "Constitutive modeling and material identification": [
+        "Neural network constitutive models",
+        "Unsupervised model discovery",
+        "Material subroutines and libraries",
+        "Experimental parameter identification",
+    ],
+    "Multiscale and homogenization": [
+        "FFT-based homogenization",
+        "Crystal plasticity",
+    ],
+    "Thermal, multiphysics and additive manufacturing": [
+        "Heat transfer and bio-heat",
+        "Additive manufacturing",
+        "Multiphysics coupling",
+    ],
+    "Optimization and inverse problems": [
+        "Topology optimization solvers",
+        "Learning-based topology optimization",
+        "Inverse problems",
+    ],
+    "Physics-informed learning and energy methods": [
+        "Deep energy methods",
+        "Residual-based networks",
+        "PINN libraries and examples",
+    ],
+    "Surrogates and reduced-order models": [
+        "Stress-field prediction",
+        "Deformation and reduced dynamics",
+        "Graph neural networks",
+        "Biomechanical surrogates",
+        "Response histories and operator learning",
+        "Frameworks and introductory studies",
+    ],
+    "Meshing, pre- and post-processing": [
+        "Mesh generation",
+        "Mesh processing and formats",
+        "Visualization and export",
+        "Sample geometry",
+    ],
+    "Courses, references and agents for mechanics": [
+        "Courses and tutorials",
+        "Curated lists",
+        "Agents for mechanics",
+    ],
+}
+FIELDS = {"url", "category", "subtopic", "description", "language", "license", "note", "status", "source"}
 BATCH = 50  # repositories per GraphQL request
 SOURCES = ("stars", "own", "following", "collaborator", "topic", "major")
 URL = re.compile(
@@ -81,8 +151,10 @@ def problems(entry):
             found.append("links into a repository are supported for GitHub only")
     if entry["source"] not in SOURCES:
         found.append("unknown source")
-    if entry["category"] not in CATEGORIES:
+    if entry["category"] not in TOPICS:
         found.append("unknown category")
+    elif entry["subtopic"] not in TOPICS[entry["category"]]:
+        found.append(f"subtopic must be one of {TOPICS[entry['category']]}")
     if entry["status"] not in ("listed", "inactive"):
         found.append("unknown status")
     if not entry["description"].endswith(".") or not entry["description"].strip(".") or not entry["license"]:
@@ -129,13 +201,23 @@ def anchor(title):
     return re.sub(r"[^\w -]", "", title.lower()).replace(" ", "-")
 
 
-def section(title, body):
-    # GitHub opens a collapsed section only when a link uses the full "user-content-" ID
-    # and its target is inside <details> but outside <summary>.
+def target(topic, subtopic=None):
+    return f"open-{anchor(topic)}" + (f"--{anchor(subtopic)}" if subtopic else "")
+
+
+def link(text, topic, subtopic=None):
+    return f"[{text}](#user-content-{target(topic, subtopic)})"
+
+
+def section(body, topic, subtopic=None):
+    # GitHub opens collapsed sections, and all their parents, only when a link uses the full
+    # "user-content-" ID and its target is inside <details> but outside <summary>.
     # The target repeats the title because the heading scrolls under GitHub's sticky bar.
     # The blank lines are required for GitHub to render the Markdown inside.
-    return ["<details>", f"<summary><h2>{title}</h2></summary>",
-            f'<p id="open-{anchor(title)}"><sub><b>{title}</b> · '
+    heading = f"<h3>{subtopic}</h3>" if subtopic else f"<h2>{topic}</h2>"
+    title = f"{topic} › <b>{subtopic}</b>" if subtopic else f"<b>{topic}</b>"
+    return ["<details>", f"<summary>{heading}</summary>",
+            f'<p id="{target(topic, subtopic)}"><sub>{title} · '
             '<a href="#contents">Back to contents</a></sub></p>',
             "", *body, "", "</details>", ""]
 
@@ -167,10 +249,14 @@ def table(entries):
 def render(entries):
     listed = [e for e in entries if e["status"] == "listed"]
     inactive = sorted((e for e in entries if e["status"] == "inactive"), key=lambda e: e["name"].lower())
-    groups = {c: sorted((e for e in listed if e["category"] == c), key=lambda e: e["name"].lower())
-              for c in CATEGORIES}
-    sections = [(c, len(g), ([INTROS[c], ""] if c in INTROS else []) + table(g))
-                for c, g in groups.items() if g]
+    topics = []  # (topic, number of entries, [(sub-topic, its entries)])
+    for topic, subtopics in TOPICS.items():
+        groups = [(sub, sorted((e for e in listed if e["category"] == topic and e["subtopic"] == sub),
+                               key=lambda e: e["name"].lower()))
+                  for sub in subtopics]
+        groups = [(sub, group) for sub, group in groups if group]
+        if groups:
+            topics.append((topic, sum(len(group) for _, group in groups), groups))
     count = {s: sum(e["source"] == s for e in listed) for s in SOURCES}
 
     out = [
@@ -191,10 +277,15 @@ def render(entries):
         "in the places checked, so do not assume you may reuse that code. Public does not always mean open source.",
         "", "## Contents", "",
     ]
-    out += [f"- [{title}](#user-content-open-{anchor(title)}) ({size})" for title, size, _ in sections]
+    for topic, size, groups in topics:
+        out += [f"- {link(topic, topic)} ({size})",
+                "  - " + " · ".join(f"{link(sub, topic, sub)} ({len(group)})" for sub, group in groups)]
     out += ["- [Contributing](#contributing)", ""]
-    for title, _, body in sections:
-        out += section(title, body)
+    for topic, _, groups in topics:
+        body = [INTROS[topic], ""] if topic in INTROS else []
+        for sub, group in groups:
+            body += section(table(group), topic, sub)
+        out += section(body[:-1], topic)
     out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md)."]
     archive = [
         "# Archived and unmaintained", "",
