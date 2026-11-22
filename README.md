@@ -21,7 +21,8 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [Courses, references and agents for mechanics](#courses-references-and-agents-for-mechanics) (5)
 - [Contributing](#contributing)
 
-## Finite and boundary element methods
+<details>
+<summary><h2>Finite and boundary element methods</h2></summary>
 
 - [ansys/pymapdl](https://github.com/ansys/pymapdl) - Python interface to the Ansys MAPDL solver. _(Python; license: MIT)_ **Note:** Requires a licensed copy of Ansys.
 - [AppliedMechanics-EAFIT/SolidsPy](https://github.com/AppliedMechanics-EAFIT/SolidsPy) - Simple finite element code for 2D elasticity. _(Python; license: MIT)_
@@ -47,7 +48,10 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [tjfulle/fem-with-python](https://github.com/tjfulle/fem-with-python) - Course notes, assignments and code for an introductory finite element course. _(Python; license: MIT (stated in README))_
 - [weihuayi/fealpy](https://github.com/weihuayi/fealpy) - Python finite element library for algorithm research and computer-aided engineering. _(Python; license: GPL-3.0-or-later with added notice)_ **Note:** License notice also restricts commercial use.
 
-## Meshfree and particle methods
+</details>
+
+<details>
+<summary><h2>Meshfree and particle methods</h2></summary>
 
 - [adevaucorbeil/karamelo](https://github.com/adevaucorbeil/karamelo) - Parallel material point method simulator with CPU and GPU support. _(C++; license: GPL-2.0)_ **Note:** GPU support is on a separate branch.
 - [bcolloran/tlmpm](https://github.com/bcolloran/tlmpm) - Teaching implementation of the total Lagrangian material point method in Taichi. _(Python; license: none found)_
@@ -59,7 +63,10 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [yuanming-hu/GPUMPM](https://github.com/yuanming-hu/GPUMPM) - GPU-optimized material point method from a SIGGRAPH Asia 2018 paper. _(license: GPL-3.0)_ **Note:** README asks commercial users to contact the authors.
 - [yuanming-hu/taichi_mpm](https://github.com/yuanming-hu/taichi_mpm) - MLS-MPM solver with cutting and two-way rigid body coupling. _(C++; license: MIT)_
 
-## Soft-body, real-time and differentiable simulation
+</details>
+
+<details>
+<summary><h2>Soft-body, real-time and differentiable simulation</h2></summary>
 
 - [hzaskywalker/PlasticineLab](https://github.com/hzaskywalker/PlasticineLab) - Differentiable physics benchmark for soft-body manipulation. _(Python; license: none found)_ **Note:** Only some bundled algorithm folders have license files.
 - [jinaojakezhang/DJTLED](https://github.com/jinaojakezhang/DJTLED) - Direct-Jacobian explicit dynamics finite elements for real-time hyperelastic simulation. _(C++; license: MIT)_
@@ -71,7 +78,10 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [taichi-dev/taichi](https://github.com/taichi-dev/taichi) - Parallel programming language in Python for simulation on CPUs and GPUs. _(C++; license: Apache-2.0)_
 - [Xingyu-Lin/softgym](https://github.com/Xingyu-Lin/softgym) - Deformable object manipulation benchmarks for cloth, rope and fluid. _(C++; license: BSD-3-Clause)_ **Note:** Depends on NVIDIA FleX.
 
-## Constitutive modeling and material identification
+</details>
+
+<details>
+<summary><h2>Constitutive modeling and material identification</h2></summary>
 
 - [abuganza/NN_aniso_UMAT](https://github.com/abuganza/NN_aniso_UMAT) - Neural network models of anisotropic hyperelastic materials, with a UMAT. _(Jupyter Notebook; license: GPL-3.0)_ **Note:** Abaqus for the UMAT.
 - [BinChenOPEN/FEMU-DIC](https://github.com/BinChenOPEN/FEMU-DIC) - Digital image correlation and finite element model updating for strain measurement and parameter identification. _(MATLAB; license: GPL-3.0)_ **Note:** Requires MATLAB and COMSOL.
@@ -88,12 +98,18 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [tajtac/node_diffusion](https://github.com/tajtac/node_diffusion) - Research notebooks combining neural ODE hyperelastic models with diffusion models. _(Jupyter Notebook; license: none found)_ **Note:** No README.
 - [tgulikers/ABAQUS_ANN_constitutive_model](https://github.com/tgulikers/ABAQUS_ANN_constitutive_model) - Thesis code that trains neural network constitutive models and generates a UMAT. _(Fortran; license: none found)_ **Note:** Abaqus for the UMAT.
 
-## Multiscale and homogenization
+</details>
+
+<details>
+<summary><h2>Multiscale and homogenization</h2></summary>
 
 - [tdegeus/GooseFFT](https://github.com/tdegeus/GooseFFT) - Small teaching scripts for FFT-based micromechanical solvers. _(Python; license: MIT)_
 - [vondrejc/FFTHomPy](https://github.com/vondrejc/FFTHomPy) - FFT-based homogenization with guaranteed bounds on effective properties. _(Python; license: MIT)_
 
-## Thermal, multiphysics and additive manufacturing
+</details>
+
+<details>
+<summary><h2>Thermal, multiphysics and additive manufacturing</h2></summary>
 
 - [CMSL-HKUST/jax-am](https://github.com/CMSL-HKUST/jax-am) - Differentiable GPU toolbox for additive manufacturing process, structure and property simulation. _(Jupyter Notebook; license: GPL-3.0)_
 - [jinaojakezhang/FEDFEM](https://github.com/jinaojakezhang/FEDFEM) - Fast explicit dynamics finite elements for transient heat transfer. _(C++; license: MIT)_
@@ -102,14 +118,20 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [jinaojakezhang/FEDFEMBioheatDeform](https://github.com/jinaojakezhang/FEDFEMBioheatDeform) - Soft tissue thermal response under deformation for surgical simulation. _(C++; license: MIT)_
 - [jinaojakezhang/FEDFEMBioheatExpan](https://github.com/jinaojakezhang/FEDFEMBioheatExpan) - Anisotropic thermo-visco-elastodynamics of soft tissue for ablation therapy. _(C++; license: MIT)_
 
-## Optimization and inverse problems
+</details>
+
+<details>
+<summary><h2>Optimization and inverse problems</h2></summary>
 
 - [deng-cy/deep_learning_topology_opt](https://github.com/deng-cy/deep_learning_topology_opt) - Self-directed online learning for topology optimization. _(MATLAB; license: MIT)_ **Note:** Most examples need MATLAB and COMSOL.
 - [gigatskhondia/gigala](https://github.com/gigatskhondia/gigala) - Structural topology optimization with reinforcement learning, genetic algorithms and finite elements. _(Jupyter Notebook; license: MIT)_
 - [kailaix/PhysGNN](https://github.com/kailaix/PhysGNN) - Physics-constrained generative networks, including a stochastic elasticity example. _(Julia; license: none found)_
 - [nandakishorebm1995/FOR3022_Code](https://github.com/nandakishorebm1995/FOR3022_Code) - Bayesian damage identification in fiber metal laminates with model order reduction. _(MATLAB; license: none found)_ **Note:** Requires MATLAB and COMSOL.
 
-## Physics-informed learning and energy methods
+</details>
+
+<details>
+<summary><h2>Physics-informed learning and energy methods</h2></summary>
 
 - [ehsanhaghighat/sciann-applications](https://github.com/ehsanhaghighat/sciann-applications) - SciANN examples, including elasticity, elastoplasticity, vibration and poroelasticity. _(Jupyter Notebook; license: MIT)_ **Note:** SciANN itself is unmaintained.
 - [FuhgJan/mixedDEM](https://github.com/FuhgJan/mixedDEM) - Mixed deep energy method for stress concentrations in finite-strain hyperelasticity. _(Python; license: conflicting statements)_ **Note:** README states both GPL-3.0 and a non-commercial Creative Commons license.
@@ -124,7 +146,10 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [Raocp/PINN-elastodynamics](https://github.com/Raocp/PINN-elastodynamics) - Physics-informed networks for elastodynamics without labeled data. _(Python; license: none found)_
 - [yizheng-wang/Research-on-Solving-Partial-Differential-Equations-of-Solid-Mechanics-Based-on-PINN](https://github.com/yizheng-wang/Research-on-Solving-Partial-Differential-Equations-of-Solid-Mechanics-Based-on-PINN) - Thesis code for solid mechanics with deep energy, CENN, DCEM and KINN methods. _(Python; license: none found)_
 
-## Surrogates and reduced-order models
+</details>
+
+<details>
+<summary><h2>Surrogates and reduced-order models</h2></summary>
 
 - [AlbanOdot/DeepPhysics-article](https://github.com/AlbanOdot/DeepPhysics-article) - Paper code for physics-aware deep learning in real-time simulation. _(Python; license: CC0-1.0)_
 - [dabiriyaghoub/Ventricular_ML_DecisionTrees](https://github.com/dabiriyaghoub/Ventricular_ML_DecisionTrees) - Machine learning prediction of left ventricular mechanics. _(Python; license: all rights reserved)_
@@ -145,7 +170,10 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [YasminSalehi/PhysGNN](https://github.com/YasminSalehi/PhysGNN) - Graph neural network prediction of soft tissue deformation in neurosurgery. _(Python; license: BSD-4-Clause)_
 - [zhenguonie/stress_net](https://github.com/zhenguonie/stress_net) - Convolutional prediction of stress fields in cantilevered structures. _(Python; license: none found)_
 
-## Meshing, pre- and post-processing
+</details>
+
+<details>
+<summary><h2>Meshing, pre- and post-processing</h2></summary>
 
 - [inducer/meshpy](https://github.com/inducer/meshpy) - Python interfaces to the Triangle and TetGen mesh generators. _(C++; license: mixed, including Triangle and AGPL-3.0)_ **Note:** Triangle restricts commercial distribution.
 - [Liujie-SYSU/odb2vtk](https://github.com/Liujie-SYSU/odb2vtk) - Converter from Abaqus ODB results to VTK for ParaView. _(Python; license: none found)_ **Note:** Input is Abaqus output.
@@ -158,13 +186,18 @@ It lists 112 repositories, plus 4 archived or unmaintained ones in [archive.md](
 - [paulo-herrera/PyEVTK](https://github.com/paulo-herrera/PyEVTK) - Pure-Python export of data to binary VTK files. _(Python; license: MIT (stated in source))_
 - [pyvista/pyvista](https://github.com/pyvista/pyvista) - 3D visualization and mesh analysis with a NumPy-based interface. _(Python; license: MIT)_
 
-## Courses, references and agents for mechanics
+</details>
+
+<details>
+<summary><h2>Courses, references and agents for mechanics</h2></summary>
 
 - [Ceyron/machine-learning-and-simulation](https://github.com/Ceyron/machine-learning-and-simulation) - Notes and code for a video course on simulation and machine learning, including continuum mechanics and FEniCS. _(Jupyter Notebook; license: MIT)_
 - [lamm-mit/MechAgents](https://github.com/lamm-mit/MechAgents) - Multi-agent language model workflows for solving mechanics problems numerically. _(Jupyter Notebook; license: Apache-2.0)_
 - [ltt1598/GAMES_Xi-an_forward_physics](https://github.com/ltt1598/GAMES_Xi-an_forward_physics) - Notes and Taichi sample code from a physically based simulation course. _(license: none found)_
 - [nschloe/awesome-scientific-computing](https://github.com/nschloe/awesome-scientific-computing) - Curated list of scientific computing tools, including finite element and meshing software. _(Python; license: CC0-1.0)_
 - [thunil/Physics-Based-Deep-Learning](https://github.com/thunil/Physics-Based-Deep-Learning) - Curated list of research on physics-based deep learning. _(license: none found)_
+
+</details>
 
 ## Contributing
 

@@ -94,7 +94,9 @@ def render(entries):
     out += ["- [Contributing](#contributing)", ""]
     for category, group in groups.items():
         if group:
-            out += [f"## {category}", "", *map(item, group), ""]
+            # The blank lines inside <details> are required for GitHub to render the Markdown list.
+            out += ["<details>", f"<summary><h2>{category}</h2></summary>", "",
+                    *map(item, group), "", "</details>", ""]
     out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md)."]
     archive = [
         "# Archived and unmaintained", "",
