@@ -10,7 +10,6 @@ import re
 import subprocess
 import sys
 import unicodedata
-import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -148,6 +147,10 @@ URL = re.compile(
 DISPLAY_NAMES = {
     "https://gitlab.com/codeaster/src": "code_aster",
     "https://gitlab.com/yade-dev/trunk": "YADE",
+    "https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation":
+        "KratosMultiphysics/Examples (structural)",
+    "https://github.com/KratosMultiphysics/Examples/tree/master/contact_structural_mechanics/validation":
+        "KratosMultiphysics/Examples (contact)",
 }
 INTROS = {
     "Virtual element method":
@@ -161,12 +164,13 @@ INTROS = {
         "The right solver depends on the structure of the discrete problem.\n\n"
         "- **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, "
         "or conjugate gradients with a preconditioner. For algebraic multigrid, supply the rigid body modes.\n"
-        "- **Symmetric indefinite**, as in mixed formulations and Lagrange multiplier contact: use an LDLᵀ "
+        "- **Symmetric indefinite**, as in mixed formulations and frictionless Lagrange multiplier contact: use an LDLᵀ "
         "factorization, or MINRES or GMRES with a suitable block preconditioner.\n"
         "- **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB "
         "with a preconditioner.\n"
-        "- **Buckling and snap-through**: the tangent becomes singular at limit points, so load-controlled "
-        "Newton fails there. Use continuation, such as an arc-length method.\n"
+        "- **Snap-through and buckling**: the tangent becomes singular. Arc-length continuation can pass a "
+        "limit point, where load-controlled Newton fails. Following a buckled branch from a bifurcation also "
+        "needs an imperfection or branch switching.\n"
         "- **Any system**: a small residual does not guarantee a small error when the matrix is ill-conditioned.\n\n"
         "Further reading: "
         "[Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076) on direct methods, "
@@ -210,6 +214,9 @@ def problems(entry):
     for key, value in sorted(entry.items()):
         if not isinstance(value, str):
             found.append(f"{key} must be a string")
+        elif re.search("[\ud800-\udfff]", value):
+            # Writing one would fail after README.md had already been emptied.
+            found.append(f"{key} must be valid Unicode")
         elif value != value.strip() or len(value.splitlines()) > 1:
             found.append(f"{key} must be one line without surrounding spaces")
     if found:
@@ -309,8 +316,8 @@ def section(body, number, topic, subtopic=None):
 
 
 def cell(text):
-    # An unescaped pipe would start a new column.
-    return text.replace("|", "\\|")
+    # An unescaped pipe would start a new column, and "<" would start HTML that can close a section.
+    return text.replace("|", "\\|").replace("<", "&lt;")
 
 
 def sort_key(entry):
@@ -325,9 +332,9 @@ def row(entry):
         notes.append(f"{entry['note']}.")
     # Break after the owner so long names do not push the Note column out of view.
     name = DISPLAY_NAMES.get(entry["url"], entry["name"]).replace("/", "/<br>", 1)
-    cells = [f"[{name}]({entry['url']})", entry["description"],
-             entry["language"], entry["license"], " ".join(notes)]
-    return "| " + " | ".join(map(cell, cells)) + " |"
+    values = [entry["description"], entry["language"], entry["license"], " ".join(notes)]
+    # The link is not escaped: it holds the <br>, and names and URLs cannot contain "|" or "<".
+    return "| " + " | ".join([f"[{name}]({entry['url']})", *map(cell, values)]) + " |"
 
 
 def table(entries):
@@ -391,14 +398,23 @@ def fetch(command):
 
 def probe_gitlab(entry):
     name = entry["name"]
-    api = f"https://{entry['host']}/api/v4/projects/{urllib.parse.quote(name, safe='')}"
+    # GitLab's REST API omits "archived" for requests without a login. GraphQL includes it.
+    query = json.dumps({"query": f"{{ project(fullPath: {json.dumps(name)}) {{ fullPath archived }} }}"})
+    api = f"https://{entry['host']}/api/graphql"
     # curl uses the system's certificate store, which some Python installs cannot find.
-    project, error = fetch(["curl", "-fsS", "--max-time", "30", api])
-    if not isinstance(project, dict) or "path_with_namespace" not in project:
+    response, error = fetch(["curl", "-fsS", "--max-time", "30",
+                             "-H", "Content-Type: application/json", "-d", query, api])
+    data = response.get("data") if isinstance(response, dict) else None
+    if not isinstance(data, dict):
         return [f"{name}: lookup failed ({error or 'unexpected response'})"]
-    if project["path_with_namespace"] != name:
-        return [f"{name}: moved to {project['path_with_namespace']}"]
-    if project.get("archived") and entry["status"] != "inactive":
+    project = data.get("project")
+    if not project:
+        return [f"{name}: not found, moved or not public"]
+    if project["fullPath"] != name:
+        return [f"{name}: moved to {project['fullPath']}"]
+    if project.get("archived") is None:
+        return [f"{name}: lookup failed (archived status missing)"]
+    if project["archived"] and entry["status"] != "inactive":
         return [f"{name}: archived, set status to inactive"]
     return []
 
@@ -423,11 +439,15 @@ def probe_github(batch):
     if not isinstance(data, dict):
         return [f"GitHub lookup of {len(batch)} entries failed ({error or 'unexpected response'})"]
 
+    # A null repository can also mean an outage or a rate limit, which is not a dead link.
+    reasons = {e["path"][0]: e.get("type", "unknown error") for e in response.get("errors") or [] if e.get("path")}
     errors = []
     for index, entry in enumerate(batch):
         name, repo = entry["name"], data.get(f"r{index}")
         if not repo:
-            errors.append(f"{name}: not found or not accessible")
+            reason = reasons.get(f"r{index}", "no reason given")
+            problem = "not found or not accessible" if reason == "NOT_FOUND" else f"lookup failed ({reason})"
+            errors.append(f"{name}: {problem}")
         elif repo["nameWithOwner"] != name:
             errors.append(f"{name}: moved to {repo['nameWithOwner']}")
         elif repo["isPrivate"]:

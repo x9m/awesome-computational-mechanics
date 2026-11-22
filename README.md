@@ -120,7 +120,7 @@ A collection of public repositories for computational mechanics: solid and struc
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
 | [dealii/<br>dealii](https://github.com/dealii/dealii) | Library for solving PDEs with adaptive finite elements. | C++ | Apache-2.0 with LLVM exception, or LGPL-2.1-or-later |  |
-| [ElmerCSC/<br>elmerfem](https://github.com/ElmerCSC/elmerfem) | Multiphysics finite element suite that includes structural mechanics. | Fortran | GPL-2.0 and LGPL-2.1, by component |  |
+| [ElmerCSC/<br>elmerfem](https://github.com/ElmerCSC/elmerfem) | Multiphysics finite element suite that includes structural mechanics. | Fortran | GPL-2.0 and LGPL-2.1, by component | The bundled TetGen plugin is AGPL-3.0. |
 | [FEniCS/<br>dolfinx](https://github.com/FEniCS/dolfinx) | Computational environment of FEniCSx for solving PDEs with finite elements in C++ and Python. | C++ | LGPL-3.0 |  |
 | [Ferrite-FEM/<br>Ferrite.jl](https://github.com/Ferrite-FEM/Ferrite.jl) | Finite element toolbox for Julia. | Julia | MIT |  |
 | [firedrakeproject/<br>firedrake](https://github.com/firedrakeproject/firedrake) | Automated system for solving PDEs with the finite element method. | Python | LGPL-3.0-or-later |  |
@@ -128,8 +128,8 @@ A collection of public repositories for computational mechanics: solid and struc
 | [gridap/<br>Gridap.jl](https://github.com/gridap/Gridap.jl) | Tools for grid-based approximation of linear and nonlinear PDEs. | Julia | MIT |  |
 | [idaholab/<br>moose](https://github.com/idaholab/moose) | Finite element and finite volume framework for multiphysics simulation. | C++ | LGPL-2.1 |  |
 | [kinnala/<br>scikit-fem](https://github.com/kinnala/scikit-fem) | Lightweight library for finite element assembly. | Python | BSD-3-Clause |  |
-| [KratosMultiphysics/<br>Kratos](https://github.com/KratosMultiphysics/Kratos) | Framework for parallel multidisciplinary simulation software. | C++ | BSD-4-Clause (core) | Each application has its own license. |
-| [libMesh/<br>libmesh](https://github.com/libMesh/libmesh) | Library for parallel adaptive finite element simulations. | C++ | LGPL-2.1 |  |
+| [KratosMultiphysics/<br>Kratos](https://github.com/KratosMultiphysics/Kratos) | Framework for parallel multidisciplinary simulation software. | C++ | BSD-4-Clause (core), with restricted Triangle code | Each application has its own license; bundled Triangle restricts commercial distribution. |
+| [libMesh/<br>libmesh](https://github.com/libMesh/libmesh) | Library for parallel adaptive finite element simulations. | C++ | LGPL-2.1, with restricted bundled components | Bundled Triangle restricts commercial distribution; bundled TetGen is AGPL-3.0. |
 | [lyc102/<br>ifem](https://github.com/lyc102/ifem) | Adaptive finite element package for 2D and 3D simplicial grids. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
 | [mfem/<br>mfem](https://github.com/mfem/mfem) | Modular parallel library for scalable finite element methods. | C++ | BSD-3-Clause |  |
 | [NGSolve/<br>ngsolve](https://github.com/NGSolve/ngsolve) | Multiphysics finite element software with a Python interface. | C++ | LGPL-2.1 |  |
@@ -137,8 +137,8 @@ A collection of public repositories for computational mechanics: solid and struc
 | [sandialabs/<br>Albany](https://github.com/sandialabs/Albany) | Implicit unstructured-grid finite element code for multiphysics problems. | C++ | BSD-3-Clause | Solid mechanics capabilities have moved to [Albany-LCM](https://github.com/sandialabs/LCM). |
 | [sfepy/<br>sfepy](https://github.com/sfepy/sfepy) | Finite element solver and library for coupled PDEs in 1D, 2D and 3D. | Python | BSD-3-Clause |  |
 | [Terenceyuyue/<br>varFEM](https://github.com/Terenceyuyue/varFEM) | Finite element programming in a variational-form style. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
-| [TLCFEM/<br>suanPan](https://github.com/TLCFEM/suanPan) | Parallel and heterogeneous finite element analysis framework. | C++ | GPL-3.0-or-later |  |
-| [weihuayi/<br>fealpy](https://github.com/weihuayi/fealpy) | Python finite element library for algorithm research and computer-aided engineering. | Python | GPL-3.0-or-later with added notice | License notice also restricts commercial use. |
+| [TLCFEM/<br>suanPan](https://github.com/TLCFEM/suanPan) | Parallel and heterogeneous finite element analysis framework. | C++ | GPL-3.0-or-later, with restricted MC64 code | Bundled MC64 may not be passed to third parties without its authors' consent. |
+| [weihuayi/<br>fealpy](https://github.com/weihuayi/fealpy) | Python finite element library for algorithm research and computer-aided engineering. | Python | GPL-3.0-or-later with added notice | License notice also restricts commercial use; bundled TetGen is AGPL-3.0. |
 
 </details>
 
@@ -160,8 +160,8 @@ A collection of public repositories for computational mechanics: solid and struc
 | [nasa/<br>NASTRAN-95](https://github.com/nasa/NASTRAN-95) | NASA's historical structural analysis system for static, dynamic and stability problems. | Fortran | NASA Open Source Agreement 1.3 | No technical support. |
 | [oofem/<br>oofem](https://github.com/oofem/oofem) | Object-oriented finite element code for mechanical, transport and fluid problems. | C++ | LGPL-2.1 |  |
 | [OpenCourant/<br>OpenCourant](https://github.com/OpenCourant/OpenCourant) | Explicit finite element solver for crash, impact and other dynamic events. | Fortran | AGPL-3.0 | Community fork created after OpenRadioss was withdrawn in October 2026; not affiliated with Siemens or Altair. |
-| [OpenSees/<br>OpenSees](https://github.com/OpenSees/OpenSees) | Framework for structural and geotechnical earthquake engineering simulation. | C++ | custom, with commercial restrictions | Commercial distribution requires permission from the University of California. |
-| [peer-open-source/<br>xara](https://github.com/peer-open-source/xara) | Python package for nonlinear finite element analysis built on OpenSees. | C++ | BSD-2-Clause, with restricted OpenSees code | Bundled OpenSees files prohibit commercial use without permission from the University of California. |
+| [OpenSees/<br>OpenSees](https://github.com/OpenSees/OpenSees) | Framework for structural and geotechnical earthquake engineering simulation. | C++ | custom, with commercial restrictions | Commercial distribution requires permission from the University of California; bundled MC64, Triangle and TetGen have their own restrictions. |
+| [peer-open-source/<br>xara](https://github.com/peer-open-source/xara) | Python package for nonlinear finite element analysis built on OpenSees. | C++ | BSD-2-Clause, with restricted OpenSees code | Bundled OpenSees files prohibit commercial use without permission from the University of California; bundled MC64, Triangle and TetGen have their own restrictions. |
 | [sandialabs/<br>Norma.jl](https://github.com/sandialabs/Norma.jl) | Julia prototype for coupling and multiphysics algorithms in solid mechanics. | Julia | BSD-3-Clause | Research prototype. |
 | [sanjayg0/<br>feappv](https://github.com/sanjayg0/feappv) | Free personal version of the FEAP finite element program. | Fortran | BSD-3-Clause | Lacks some FEAP features, including contact and parallel solving. |
 
@@ -269,7 +269,7 @@ A collection of public repositories for computational mechanics: solid and struc
 | [AppliedMechanics-EAFIT/<br>SolidsPy](https://github.com/AppliedMechanics-EAFIT/SolidsPy) | Simple finite element code for 2D elasticity. | Python | MIT |  |
 | [dilevin/<br>CSC417-a3-finite-elements-3d](https://github.com/dilevin/CSC417-a3-finite-elements-3d) | Course assignment on 3D finite element simulation of elastic objects. | C++ | none found | Starter code for an assignment. |
 | [hplgit/<br>fem-book](https://github.com/hplgit/fem-book) | Sources and examples for a book on numerical methods for variational problems. | Python | MIT |  |
-| [hplgit/<br>fenics-tutorial](https://github.com/hplgit/fenics-tutorial) | Sources and example programs for the FEniCS Tutorial book. | TeX | none found |  |
+| [hplgit/<br>fenics-tutorial](https://github.com/hplgit/fenics-tutorial) | Sources and example programs for the FEniCS Tutorial book. | TeX | none found | Bundled Triangle restricts commercial distribution. |
 | [jjcremmers/<br>PyFEM](https://github.com/jjcremmers/PyFEM) | Educational and research finite element code for nonlinear solid mechanics. | Python | MIT |  |
 | [largurajr/<br>FEA-Protus](https://github.com/largurajr/FEA-Protus) | Teaching code for 2D plane stress and plane strain finite element analysis. | Python | none found | Python 2.7. |
 | [Qinxiaoye/<br>FEM2D](https://github.com/Qinxiaoye/FEM2D) | MATLAB code for 2D finite element analysis. | MATLAB | none found | Written for MATLAB, Octave support not documented; input scripts use Ansys or Abaqus. |
@@ -311,9 +311,9 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
 | [CAMLAB-UChile/<br>vemlab](https://github.com/CAMLAB-UChile/vemlab) | MATLAB library for linear VEM in 2D elastostatics and Poisson problems. | MATLAB | GPL-3.0 | Runs in MATLAB, or in Octave with small changes described in its README. |
-| [cemcen/<br>Veamy](https://github.com/cemcen/Veamy) | Object-oriented C++ library for VEM in 2D elastostatics and Poisson problems. | C++ | GPL (stated in README) |  |
+| [cemcen/<br>Veamy](https://github.com/cemcen/Veamy) | Object-oriented C++ library for VEM in 2D elastostatics and Poisson problems. | C++ | GPL (stated in README), with restricted Triangle code | Bundled Triangle restricts commercial distribution. |
 | [dune-fem/<br>dune-vem](https://gitlab.dune-project.org/dune-fem/dune-vem) | DUNE module with a range of virtual element spaces and a Python interface. | C++ and Python | GPL-2.0-or-later |  |
-| [SINTEF-AppliedCompSci/<br>MRST](https://github.com/SINTEF-AppliedCompSci/MRST/tree/main/solvers/vemmech) | VEM mechanics module of the MATLAB Reservoir Simulation Toolbox. | MATLAB | GPL-3.0 | Part of a larger toolbox that runs in MATLAB or Octave. |
+| [SINTEF-AppliedCompSci/<br>MRST](https://github.com/SINTEF-AppliedCompSci/MRST/tree/main/solvers/vemmech) | VEM mechanics module of the MATLAB Reservoir Simulation Toolbox. | MATLAB | GPL-3.0 | Part of a larger toolbox that runs in MATLAB or Octave; the toolbox bundles Triangle, which restricts commercial distribution. |
 | [Terenceyuyue/<br>mVEM](https://github.com/Terenceyuyue/mVEM) | MATLAB package of virtual element methods published in the literature. | MATLAB | GPL-3.0 | Written for MATLAB, Octave support not documented. |
 | [tiagomhrd/<br>ves](https://github.com/tiagomhrd/ves) | Helper library of projectors for several virtual element formulations. | C++ | MIT |  |
 
@@ -720,7 +720,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [abuganza/<br>UMAT_anisotropic_damage](https://github.com/abuganza/UMAT_anisotropic_damage) | Anisotropic damage subroutines for collagenous tissue fracture and needle insertion. | Fortran | GPL-3.0, with BSD-style file headers | Requires Abaqus. |
+| [abuganza/<br>UMAT_anisotropic_damage](https://github.com/abuganza/UMAT_anisotropic_damage) | Anisotropic damage subroutines for collagenous tissue fracture and needle insertion. | Fortran | GPL-3.0, with BSD-style file headers | Requires Abaqus; no README. |
 | [adtzlr/<br>hyperelastic](https://github.com/adtzlr/hyperelastic) | Building blocks for hyperelastic material formulations in FElupe. | Python | GPL-3.0 |  |
 | [adtzlr/<br>matadi](https://github.com/adtzlr/matadi) | Hyperelastic material definitions with automatic differentiation. | Python | GPL-3.0 |  |
 | [bleyerj/<br>dolfinx_materials](https://github.com/bleyerj/dolfinx_materials) | Complex constitutive behaviors for FEniCSx. | Python | CC-BY-SA-4.0 | MFront behaviors require TFEL. |
@@ -740,7 +740,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
 | [BinChenOPEN/<br>FEMU-DIC](https://github.com/BinChenOPEN/FEMU-DIC) | Digital image correlation and finite element model updating for strain measurement and parameter identification. | MATLAB | GPL-3.0 | Requires MATLAB and COMSOL. |
-| [dicengine/<br>dice](https://github.com/dicengine/dice) | Stereo digital image correlation engine for full-field displacements and strains. | C++ | BSD-3-Clause |  |
+| [dicengine/<br>dice](https://github.com/dicengine/dice) | Stereo digital image correlation engine for full-field displacements and strains. | C++ | BSD-3-Clause, with restricted Triangle code | Bundled Triangle restricts commercial distribution. |
 | [lululxvi/<br>deep-learning-for-indentation](https://github.com/lululxvi/deep-learning-for-indentation) | Extraction of material properties from instrumented indentation with deep learning. | Python | Apache-2.0 | Depends on DeepXDE. |
 | [MultiDIC/<br>MultiDIC](https://github.com/MultiDIC/MultiDIC) | Multi-view 3D digital image correlation toolbox. | MATLAB | Apache-2.0 | Requires MATLAB with the Image Processing, Computer Vision and Statistics toolboxes. |
 | [PolymerGuy/<br>muDIC](https://github.com/PolymerGuy/muDIC) | Python toolkit for digital image correlation and virtual experiments. | Python | MIT |  |
@@ -997,7 +997,7 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [llnl/<br>libROM](https://github.com/llnl/libROM) | Parallel library for intrusive and non-intrusive reduced-order models. | C++ | MIT or Apache-2.0 |  |
+| [llnl/<br>libROM](https://github.com/llnl/libROM) | Parallel library for intrusive and non-intrusive reduced-order models. | C++ | MIT or Apache-2.0, with restricted ParMETIS archive | Bundled ParMETIS archive may not be redistributed without approval. |
 | [pymor/<br>pymor](https://github.com/pymor/pymor) | Model order reduction library that works with external PDE solvers. | Python | BSD-2-Clause |  |
 | [RBniCS/<br>RBniCS](https://github.com/RBniCS/RBniCS) | Reduced-order modeling techniques implemented in FEniCS. | Python | LGPL-3.0-or-later | Built on legacy FEniCS. |
 | [SofaDefrost/<br>ModelOrderReduction](https://github.com/SofaDefrost/ModelOrderReduction) | Model reduction plugin for faster SOFA scenes. | C++ and Python | GPL-2.0 | Requires SOFA. |
@@ -1130,9 +1130,9 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 The right solver depends on the structure of the discrete problem.
 
 - **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, or conjugate gradients with a preconditioner. For algebraic multigrid, supply the rigid body modes.
-- **Symmetric indefinite**, as in mixed formulations and Lagrange multiplier contact: use an LDLᵀ factorization, or MINRES or GMRES with a suitable block preconditioner.
+- **Symmetric indefinite**, as in mixed formulations and frictionless Lagrange multiplier contact: use an LDLᵀ factorization, or MINRES or GMRES with a suitable block preconditioner.
 - **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB with a preconditioner.
-- **Buckling and snap-through**: the tangent becomes singular at limit points, so load-controlled Newton fails there. Use continuation, such as an arc-length method.
+- **Snap-through and buckling**: the tangent becomes singular. Arc-length continuation can pass a limit point, where load-controlled Newton fails. Following a buckled branch from a bifurcation also needs an imperfection or branch switching.
 - **Any system**: a small residual does not guarantee a small error when the matrix is ill-conditioned.
 
 Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076) on direct methods, [Saad (2003)](https://doi.org/10.1137/1.9780898718003) on iterative methods, [Benzi et al. (2005)](https://doi.org/10.1017/S0962492904000212) on saddle point problems and [Higham (2002)](https://doi.org/10.1137/1.9780898718027) on accuracy and stability.
@@ -1190,7 +1190,7 @@ Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076
 | [hpddm/<br>hpddm](https://github.com/hpddm/hpddm) | Domain decomposition methods, including overlapping Schwarz, FETI and BDD. | C++ | LGPL-3.0 |  |
 | [hypre-space/<br>hypre](https://github.com/hypre-space/hypre) | Parallel preconditioners and solvers with algebraic and structured multigrid. | C | MIT or Apache-2.0 |  |
 | [JuliaSmoothOptimizers/<br>Krylov.jl](https://github.com/JuliaSmoothOptimizers/Krylov.jl) | Collection of Krylov methods for linear and least-squares problems. | Julia | MPL-2.0 |  |
-| [NVIDIA/<br>AMGX](https://github.com/NVIDIA/AMGX) | Distributed algebraic multigrid and Krylov solvers for GPUs. | Cuda | BSD-3-Clause, with Apache-2.0 CUSP | Requires CUDA. |
+| [NVIDIA/<br>AMGX](https://github.com/NVIDIA/AMGX) | Distributed algebraic multigrid and Krylov solvers for GPUs. | C++ and CUDA | BSD-3-Clause, with Apache-2.0 CUSP | Requires CUDA. |
 | [pyamg/<br>pyamg](https://github.com/pyamg/pyamg) | Algebraic multigrid solvers in Python. | Python | MIT |  |
 
 </details>
@@ -1231,7 +1231,7 @@ Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076
 | [CEED/<br>libCEED](https://github.com/CEED/libCEED) | Matrix-free evaluation of finite element operators on CPUs and GPUs. | C | BSD-2-Clause, with LGPL deal.II examples |  |
 | [KaHIP/<br>KaHIP](https://github.com/KaHIP/KaHIP) | Multilevel graph partitioning and node ordering. | C++ | MIT |  |
 | [KarypisLab/<br>METIS](https://github.com/KarypisLab/METIS) | Graph and mesh partitioning, and fill-reducing orderings for sparse matrices. | C | Apache-2.0 |  |
-| [KarypisLab/<br>ParMETIS](https://github.com/KarypisLab/ParMETIS) | MPI library for parallel partitioning and fill-reducing ordering. | C | custom, with non-commercial restrictions | Free only for non-profit and US government education and research, other users may only evaluate it. |
+| [KarypisLab/<br>ParMETIS](https://github.com/KarypisLab/ParMETIS) | MPI library for parallel partitioning and fill-reducing ordering. | C | custom, with non-commercial restrictions | Free only for non-profit and US government education and research; others need approval for anything beyond evaluation; redistribution also needs approval. |
 
 </details>
 
@@ -1258,7 +1258,7 @@ Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025
 | --- | --- | --- | --- | --- |
 | [lanl/<br>ExactPack](https://github.com/lanl/ExactPack) | Exact solutions of verification problems in solids, heat conduction and hydrodynamics. | Python | BSD-3-Clause | Solid mechanics covers the Blake and elastic-plastic piston problems. |
 | [manufactured-solutions/<br>MASA](https://github.com/manufactured-solutions/MASA) | Library of manufactured solutions for verifying PDE solvers. | C++ | LGPL-2.1 | Examples are mainly heat transfer and fluid flow. |
-| [OSEL-DAM/<br>SimEval](https://github.com/OSEL-DAM/SimEval) | Notebooks on code and calculation verification, including for physics-informed networks. | HTML | CC0-1.0 |  |
+| [OSEL-DAM/<br>SimEval](https://github.com/OSEL-DAM/SimEval) | Notebooks on code and calculation verification, including for physics-informed networks. | Python and Jupyter Notebook | CC0-1.0 |  |
 | [tomrobin-teschner/<br>pyGCS](https://github.com/tomrobin-teschner/pyGCS) | Grid convergence index calculations for estimating discretization error. | Python | MIT |  |
 
 </details>
@@ -1269,11 +1269,11 @@ Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [febiosoftware/<br>TestSuite](https://github.com/febiosoftware/TestSuite) | FEBio test problems with stored results for regression testing. | Python | none found | Regression results are not independent reference solutions. |
+| [febiosoftware/<br>TestSuite](https://github.com/febiosoftware/TestSuite) | FEBio test problems with stored results for regression testing. | Python | none found | Regression results are not independent reference solutions; no README. |
 | [finsberg/<br>cardiac_benchmark](https://github.com/finsberg/cardiac_benchmark) | Simula's implementation of a published cardiac elastodynamics benchmark. | Python | MIT (stated in README) |  |
-| [javijv4/<br>arostica-benchmark](https://github.com/javijv4/arostica-benchmark) | Cardiac elastodynamics test against the envelope of published results from ten groups. | Python | none found | Requires svMultiPhysics. |
-| [KratosMultiphysics/<br>Examples](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation) | Kratos benchmarks for beams, trusses and membranes, including large deflection and snap-through. | Python | none found |  |
-| [KratosMultiphysics/<br>Examples](https://github.com/KratosMultiphysics/Examples/tree/master/contact_structural_mechanics/validation) | Kratos contact benchmarks, including Hertz, press-fit and ironing cases. | Python | none found |  |
+| [javijv4/<br>arostica-benchmark](https://github.com/javijv4/arostica-benchmark) | Cardiac elastodynamics test against the envelope of ten published solutions. | Python | none found | Requires svMultiPhysics. |
+| [KratosMultiphysics/<br>Examples (contact)](https://github.com/KratosMultiphysics/Examples/tree/master/contact_structural_mechanics/validation) | Kratos contact benchmarks, including Hertz, press-fit and ironing cases. | Python | none found |  |
+| [KratosMultiphysics/<br>Examples (structural)](https://github.com/KratosMultiphysics/Examples/tree/master/structural_mechanics/validation) | Kratos benchmarks for beams, trusses and membranes, including large deflection and snap-through. | Python | none found |  |
 | [Simulation-Benchmarks/<br>linear-elastic-plate-with-hole](https://github.com/Simulation-Benchmarks/linear-elastic-plate-with-hole) | Plate-with-hole benchmark comparing finite element codes with the Kirsch solution. | Python | MIT code, CC-BY-4.0 docs, CC0-1.0 data |  |
 | [Simulation-Benchmarks/<br>NFDI4IngModelValidationPlatform](https://github.com/Simulation-Benchmarks/NFDI4IngModelValidationPlatform) | Registry and shared workflows for reproducible simulation benchmarks. | Jupyter Notebook | MIT |  |
 | [TadeasSvetlik/<br>Elastoplastic-contact-2D-benchmarks](https://github.com/TadeasSvetlik/Elastoplastic-contact-2D-benchmarks) | Inputs and reference results for 2D elastic and elastoplastic contact benchmarks. | MATLAB | none found | No README. |
@@ -1301,7 +1301,7 @@ Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025
 | --- | --- | --- | --- | --- |
 | [BAMresearch/<br>probeye](https://github.com/BAMresearch/probeye) | Solver-independent definition of parameter estimation problems, mainly solved by sampling. | Python | MIT |  |
 | [CUQI-DTU/<br>CUQIpy](https://github.com/CUQI-DTU/CUQIpy) | Bayesian modeling and uncertainty quantification for inverse problems. | Python | Apache-2.0 |  |
-| [hippylib/<br>hippylib](https://github.com/hippylib/hippylib) | Deterministic and Bayesian inversion for models governed by PDEs. | Jupyter Notebook | GPL-2.0 |  |
+| [hippylib/<br>hippylib](https://github.com/hippylib/hippylib) | Deterministic and Bayesian inversion for models governed by PDEs. | Python | GPL-2.0 |  |
 | [sandialabs/<br>matcal](https://github.com/sandialabs/matcal) | Calibration of material models to experimental data. | Python | BSD-3-Clause | Built-in characterization test models are for SierraSM. |
 
 </details>
@@ -1322,7 +1322,7 @@ Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025
 | [SCIInstitute/<br>UncertainSCI](https://github.com/SCIInstitute/UncertainSCI) | Non-intrusive parametric uncertainty analysis for biomedical simulations. | Python | MIT |  |
 | [snl-dakota/<br>dakota](https://github.com/snl-dakota/dakota) | Toolkit for uncertainty, sensitivity, calibration and design studies around existing solvers. | C++ | LGPL-2.1-or-later |  |
 | [SURGroup/<br>UQpy](https://github.com/SURGroup/UQpy) | Toolbox for modeling uncertainty in physical and mathematical systems. | Python | MIT |  |
-| [UCL-CCS/<br>EasyVVUQ](https://github.com/UCL-CCS/EasyVVUQ) | Workflow manager for verification, validation and uncertainty studies of costly simulations. | Jupyter Notebook | LGPL-3.0-or-later or GPL-3.0-or-later |  |
+| [UCL-CCS/<br>EasyVVUQ](https://github.com/UCL-CCS/EasyVVUQ) | Workflow manager for verification, validation and uncertainty studies of costly simulations. | Python | LGPL-3.0-or-later or GPL-3.0-or-later |  |
 | [UM-Bridge/<br>benchmarks](https://github.com/UM-Bridge/benchmarks) | Containerized models and reference problems for testing uncertainty algorithms. | Python | GPL-3.0-or-later in some files |  |
 | [UM-Bridge/<br>umbridge](https://github.com/UM-Bridge/umbridge) | Language-independent interface between simulation models and uncertainty software. | C++ | MIT |  |
 
@@ -1360,7 +1360,7 @@ Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025
 | [albower/<br>Applied_Mechanics_of_Solids](https://github.com/albower/Applied_Mechanics_of_Solids) | Problem sets and finite element codes for Bower's Applied Mechanics of Solids. | MATLAB | none found | Requires MATLAB. |
 | [bleyerj/<br>comet-fenicsx](https://github.com/bleyerj/comet-fenicsx) | Numerical tours of computational mechanics with FEniCSx. | Python | CC-BY-SA-4.0 |  |
 | [bueler/<br>p4pdes](https://github.com/bueler/p4pdes) | Example programs from a book on solving PDEs with PETSc and Firedrake. | C | MIT |  |
-| [finite-element/<br>finite-element-course](https://github.com/finite-element/finite-element-course) | Imperial College course on finite element analysis and implementation. | Python | MIT (stated in pyproject.toml) |  |
+| [finite-element/<br>finite-element-course](https://github.com/finite-element/finite-element-course) | Imperial College course on finite element analysis and implementation. | Python | MIT (stated in pyproject.toml) | No README. |
 | [gridap/<br>Tutorials](https://github.com/gridap/Tutorials) | Worked tutorials on solving PDEs with Gridap. | Julia | MIT |  |
 | [jorgensd/<br>dolfinx-tutorial](https://github.com/jorgensd/dolfinx-tutorial) | Tutorial book on solving PDEs with FEniCSx, including elasticity and hyperelasticity. | Jupyter Notebook | CC-BY-4.0 content, MIT in some files |  |
 | [Kevin-Mattheus-Moerman/<br>NonlinearContinuumMechanics](https://github.com/Kevin-Mattheus-Moerman/NonlinearContinuumMechanics) | Notebooks deriving stresses in Ogden hyperelasticity. | Jupyter Notebook | MIT |  |
@@ -1388,8 +1388,8 @@ Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
-| [betterscientificsoftware/<br>bssw.io](https://github.com/betterscientificsoftware/bssw.io) | Articles on testing, sustaining and improving scientific software. | Python | MIT |  |
-| [the-turing-way/<br>the-turing-way](https://github.com/the-turing-way/the-turing-way) | Handbook on reproducible, ethical and collaborative research. | TeX | MIT code, CC-BY-4.0 content |  |
+| [betterscientificsoftware/<br>bssw.io](https://github.com/betterscientificsoftware/bssw.io) | Articles on testing, sustaining and improving scientific software. |  | MIT |  |
+| [the-turing-way/<br>the-turing-way](https://github.com/the-turing-way/the-turing-way) | Handbook on reproducible, ethical and collaborative research. |  | MIT code, CC-BY-4.0 content |  |
 
 </details>
 
@@ -1401,7 +1401,7 @@ Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025
 | --- | --- | --- | --- | --- |
 | [kimimgo/<br>awesome-ai-cae](https://github.com/kimimgo/awesome-ai-cae) | Curated list of engineering simulation tools that software agents can drive. |  | CC0-1.0 |  |
 | [modenaxe/<br>awesome-biomechanics](https://github.com/modenaxe/awesome-biomechanics) | Curated resources for biomechanics and human motion analysis. |  | CC0-1.0 (stated in README) |  |
-| [nschloe/<br>awesome-scientific-computing](https://github.com/nschloe/awesome-scientific-computing) | Curated list of scientific computing tools, including finite element and meshing software. | Python | CC0-1.0 |  |
+| [nschloe/<br>awesome-scientific-computing](https://github.com/nschloe/awesome-scientific-computing) | Curated list of scientific computing tools, including finite element and meshing software. |  | CC0-1.0 |  |
 | [thunil/<br>Physics-Based-Deep-Learning](https://github.com/thunil/Physics-Based-Deep-Learning) | Curated list of research on physics-based deep learning. |  | none found |  |
 | [tkoyama010/<br>awesome-finite-elements](https://github.com/tkoyama010/awesome-finite-elements) | Curated list of finite element software. |  | CC0-1.0 |  |
 
