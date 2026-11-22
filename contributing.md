@@ -10,7 +10,7 @@
 
 ## Adding or correcting an entry
 
-1. Edit `data/repos.yml`. Do not edit `README.md` or `archive.md`, which are generated. Each entry is one line with all nine fields:
+1. Edit `data/repos.yml`. Do not edit `README.md`, `archive.md` or the pages in `topics/`, which are generated. Each entry is one line with all nine fields:
 
    ```yaml
    - {"url": "https://github.com/owner/repo", "category": "Virtual element method", "subtopic": "VEM libraries", "description": "What it does.", "language": "Python", "license": "MIT", "note": "", "status": "listed", "maintainer": false}

@@ -2,7 +2,7 @@
 """Validate data/repos.yml and the files generated from it.
 
   python3 scripts/check.py           check data and generated files
-  python3 scripts/check.py --write   regenerate README.md and archive.md
+  python3 scripts/check.py --write   regenerate README.md, archive.md and topics/
   python3 scripts/check.py --online  also check every repo and link (needs network and an authenticated gh)
 """
 import json
@@ -335,12 +335,13 @@ def anchor(title):
     return re.sub(r"[^\w -]", "", plain.lower()).replace(" ", "-")
 
 
-def target(topic, subtopic=None):
-    return f"open-{anchor(topic)}" + (f"--{anchor(subtopic)}" if subtopic else "")
+def page(topic):
+    return f"topics/{anchor(topic)}.md"
 
 
 def link(text, topic, subtopic=None):
-    return f"[{text}](#user-content-{target(topic, subtopic)})"
+    """Link from the README to a topic's page, or to a sub-topic on it."""
+    return f"[{text}]({page(topic)}" + (f"#{anchor(subtopic)}" if subtopic else "") + ")"
 
 
 def plain_heading_id(title):
@@ -348,22 +349,27 @@ def plain_heading_id(title):
     return re.sub(r"[^a-z0-9_ -]", "", title.lower()).replace(" ", "-")
 
 
-def section(body, number, topic, subtopic=None):
-    # GitHub opens collapsed sections, and all their parents, only when a link uses the full
-    # "user-content-" ID and its target is inside <details> but outside <summary>.
-    # The target repeats the title because the heading scrolls under GitHub's sticky bar.
-    # The blank lines are required for GitHub to render the Markdown inside.
-    # Numbers follow the order of TOPICS and are left out of IDs, so renumbering does not break links.
-    # The empty anchor gives each heading an ID without its number.
-    name = subtopic or topic
-    heading = f"<h3>{number} {subtopic}</h3>" if subtopic else f"<h2>{number}. {topic}</h2>"
-    title = f"{topic} › <b>{number} {subtopic}</b>" if subtopic else f"<b>{number}. {topic}</b>"
-    former = "".join(f'<a id="{plain_heading_id(old)}"></a><a id="{target(topic, old)}"></a>'
-                     for old in FORMER_TITLES.get(subtopic, []))
-    return ["<details>", f'<summary><a id="{plain_heading_id(name)}"></a>{heading}</summary>',
-            f'<p id="{target(topic, subtopic)}">{former}<sub>{title} · '
-            '<a href="#contents">Back to contents</a></sub></p>',
-            "", *body, "", "</details>", ""]
+def readme_anchors(topic, subtopic=None):
+    # The README used to hold every section. These IDs land old links on the index line that leads to the new page.
+    ids = []
+    for name in [subtopic, *FORMER_TITLES.get(subtopic, [])] if subtopic else [None]:
+        ids += [plain_heading_id(name or topic), f"open-{anchor(topic)}" + (f"--{anchor(name)}" if name else "")]
+    return "".join(f'<a id="{i}"></a>' for i in ids)
+
+
+def topic_page(number, topic, groups):
+    back = "[← Back to the main list](../README.md#contents)"
+    out = [f"# {number}. {topic}", "", back, ""]
+    if topic in INTROS:
+        out += [INTROS[topic], ""]
+    if len(groups) > 1:
+        out += [f"- [{number}.{minor} {sub}](#{anchor(sub)}) ({len(group)})"
+                for minor, (sub, group) in enumerate(groups, 1)] + [""]
+    for minor, (sub, group) in enumerate(groups, 1):
+        # Numbers follow the order of TOPICS and are left out of IDs, so renumbering does not break links.
+        ids = "".join(f'<a id="{anchor(name)}"></a>' for name in [sub, *FORMER_TITLES.get(sub, [])])
+        out += [f"## {ids}{number}.{minor} {sub}", "", *table(group), ""]
+    return "\n".join([*out, back]) + "\n"
 
 
 def cell(text):
@@ -435,18 +441,12 @@ def render(entries):
     ]
     for number, (topic, size, groups) in enumerate(topics, 1):
         marker = f"{number}. "
-        lines = [f"{link(topic, topic)} ({size})"]
-        lines += [f"{number}.{minor} {link(sub, topic, sub)} ({len(group)})"
+        lines = [f"{readme_anchors(topic)}{link(topic, topic)} ({size})"]
+        lines += [f"{number}.{minor} {readme_anchors(topic, sub)}{link(sub, topic, sub)} ({len(group)})"
                   for minor, (sub, group) in enumerate(groups, 1)]
         # <br> keeps the sub-topics in their topic's list item: Markdown lists cannot number 1.1, 1.2.
         out.append(marker + ("<br>\n" + " " * len(marker)).join(lines))
-    out += ["", "</details>", "", f"[Archived and unmaintained projects](archive.md) ({len(inactive)})", "",
-            "[Contributing](#contributing)", ""]
-    for number, (topic, _, groups) in enumerate(topics, 1):
-        body = [INTROS[topic], ""] if topic in INTROS else []
-        for minor, (sub, group) in enumerate(groups, 1):
-            body += section(table(group), f"{number}.{minor}", topic, sub)
-        out += section(body[:-1], number, topic)
+    out += ["", "</details>", "", f"[Archived and unmaintained projects](archive.md) ({len(inactive)})", ""]
     curated = link("curated lists", "Courses, references and agents for mechanics", "Curated lists")
     out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md).", "",
             "## Acknowledgements", "",
@@ -457,7 +457,8 @@ def render(entries):
         "These projects are archived on GitHub or described by their authors as unmaintained. "
         "The main list is in [README.md](README.md).", "", *table(inactive),
     ]
-    return {"README.md": "\n".join(out) + "\n", "archive.md": "\n".join(archive) + "\n"}
+    files = {page(topic): topic_page(number, topic, groups) for number, (topic, _, groups) in enumerate(topics, 1)}
+    return {"README.md": "\n".join(out) + "\n", "archive.md": "\n".join(archive) + "\n", **files}
 
 
 def fetch(command):
@@ -596,9 +597,14 @@ def main():
     errors = errors or start_problems(entries)
     warnings = []
     if not errors:
-        for filename, text in render(entries).items():
+        files = render(entries)
+        for path in sorted((ROOT / "topics").glob("*.md")):
+            if f"topics/{path.name}" not in files:
+                errors.append(f"topics/{path.name}: not a current topic, delete it")
+        for filename, text in files.items():
             path = ROOT / filename
             if "--write" in args:
+                path.parent.mkdir(exist_ok=True)
                 # Bytes keep "\n" line endings on Windows, and are encoded before the file is emptied.
                 path.write_bytes(text.encode("utf-8"))
             elif not path.exists() or path.read_text(encoding="utf-8") != text:
