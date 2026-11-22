@@ -1,6 +1,6 @@
-# Awesome Mechanical Simulation
+# Awesome Computational Mechanics
 
-A collection of public repositories for mechanical simulation: solid and structural mechanics, soft bodies, biomechanics, particle methods, and machine learning applied to them.
+A collection of public repositories for computational mechanics: solid and structural mechanics, soft bodies, biomechanics, particle methods, and machine learning applied to them.
 
 It has 220 entries covering 218 repositories: 112 from the maintainer's GitHub stars, 2 by the maintainer, 33 from accounts the maintainer follows, 4 where those accounts are collaborators, 31 found by topic search and 38 major projects chosen editorially. Another 5 archived or unmaintained ones are in [archive.md](archive.md).
 

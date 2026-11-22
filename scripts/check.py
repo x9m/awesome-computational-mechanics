@@ -133,8 +133,8 @@ def render(entries):
     count = {s: sum(e["source"] == s for e in listed) for s in SOURCES}
 
     out = [
-        "# Awesome Mechanical Simulation", "",
-        "A collection of public repositories for mechanical simulation: solid and structural mechanics, "
+        "# Awesome Computational Mechanics", "",
+        "A collection of public repositories for computational mechanics: solid and structural mechanics, "
         "soft bodies, biomechanics, particle methods, and machine learning applied to them.", "",
         f"It has {len(listed)} entries covering {len({(e['host'], e['name']) for e in listed})} repositories: "
         f"{count['stars']} from the maintainer's GitHub stars, {count['own']} by the maintainer, "

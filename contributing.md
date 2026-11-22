@@ -2,7 +2,7 @@
 
 ## What belongs here
 
-- A public repository that is directly useful for mechanical simulation: solid or structural mechanics, soft bodies, biomechanics, particle methods, or machine learning applied to them.
+- A public repository that is directly useful for computational mechanics: solid or structural mechanics, soft bodies, biomechanics, particle methods, or machine learning applied to them.
 - A README or code that shows what it does.
 - Not general machine learning, trading, or programming resources.
 
