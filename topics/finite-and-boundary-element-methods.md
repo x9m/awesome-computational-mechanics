@@ -19,7 +19,7 @@
 | --- | --- | --- |
 | [dealii/<br>dealii](https://github.com/dealii/dealii)<br><sub>C++</sub><br><sub>Apache-2.0 with LLVM exception, or LGPL-2.1-or-later</sub> | Library for solving PDEs with adaptive finite elements. |  |
 | [ElmerCSC/<br>elmerfem](https://github.com/ElmerCSC/elmerfem)<br><sub>Fortran</sub><br><sub>GPL-2.0 and LGPL-2.1, by component</sub> | Multiphysics finite element suite that includes structural mechanics. | The bundled TetGen plugin is AGPL-3.0. |
-| [FEniCS/<br>dolfinx](https://github.com/FEniCS/dolfinx)<br><sub>C++</sub><br><sub>LGPL-3.0</sub> | Computational environment of FEniCSx for solving PDEs with finite elements in C++ and Python. |  |
+| [FEniCS/<br>dolfinx](https://github.com/FEniCS/dolfinx)<br><sub>C++</sub><br><sub>LGPL-3.0-or-later</sub> | Computational environment of FEniCSx for solving PDEs with finite elements in C++ and Python. |  |
 | [Ferrite-FEM/<br>Ferrite.jl](https://github.com/Ferrite-FEM/Ferrite.jl)<br><sub>Julia</sub><br><sub>MIT</sub> | Finite element toolbox for Julia. |  |
 | [firedrakeproject/<br>firedrake](https://github.com/firedrakeproject/firedrake)<br><sub>Python</sub><br><sub>LGPL-3.0-or-later</sub> | Automated system for solving PDEs with the finite element method. |  |
 | [FreeFem/<br>FreeFem-sources](https://github.com/FreeFem/FreeFem-sources)<br><sub>C++</sub><br><sub>LGPL-3.0</sub> | Finite element solver for nonlinear multiphysics PDEs in 2D and 3D. |  |

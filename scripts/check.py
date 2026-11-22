@@ -17,7 +17,6 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OLD_SECTIONS = ROOT / "data/old-readme-sections.txt"
 # Topics and their sub-topics, in the order the README shows them.
 TOPICS = {
     "Finite and boundary element methods": [
@@ -186,22 +185,12 @@ DISPLAY_NAMES = {
     "https://github.com/NVIDIAGameWorks/kaolin/tree/master/kaolin/physics/simplicits":
         "NVIDIAGameWorks/kaolin (Simplicits)",
 }
-# Former titles of sub-topics, whose links must keep working.
-FORMER_TITLES = {
-    "Courses and tutorials": ["Textbooks and numerical tutorials"],
-}
-# A renamed topic keeps the page and IDs of its first title.
-FIRST_TITLES = {
-    "Courses and references": "Courses, references and agents for mechanics",
-}
-# Sub-topics moved between topics: their old topic links to where they are now.
-MOVED = {
-    "Agents for mechanics": "Courses and references",
-    "Agents for fluid dynamics": "Courses and references",
-    "Tool servers for simulation software": "Courses and references",
-    "Language models for material and solver code": "Courses and references",
-    "Language model benchmarks and datasets": "Courses and references",
-}
+# Former titles of sub-topics, as {current title: [former titles]}, whose links on the topic page must keep working.
+FORMER_TITLES = {}
+# A renamed topic keeps the page of its first title, as {current title: first title}.
+FIRST_TITLES = {}
+# Sub-topics moved between topics, as {sub-topic: old topic}: the old topic's page links to where they are now.
+MOVED = {}
 # The "Start here" table: (goal, link text, URL of an entry, topic to browse next, sub-topic or None).
 START = [
     ("Learn finite elements", "Imperial College course", "https://github.com/finite-element/finite-element-course",
@@ -474,28 +463,6 @@ def link(text, topic, subtopic=None):
     return f"[{text}]({page(topic)}" + (f"#{anchor(subtopic)}" if subtopic else "") + ")"
 
 
-def plain_heading_id(title):
-    # GitHub's ID for a heading without its number. Unlike anchor(), it drops characters such as "²".
-    return re.sub(r"[^a-z0-9_ -]", "", title.lower()).replace(" ", "-")
-
-
-def old_sections():
-    return {line for line in OLD_SECTIONS.read_text(encoding="utf-8").split("\n") if line.startswith("open-")}
-
-
-def readme_anchors(old, topic, subtopic=None):
-    # The README used to hold every section. These IDs land old links on the index line that leads to the new page.
-    # Sections added after the split never had such links, so they get none.
-    if subtopic:
-        names = [subtopic, *FORMER_TITLES.get(subtopic, [])]
-        parents = [topic, *([MOVED[subtopic]] if subtopic in MOVED else [])]
-        sections = [(name, f"open-{anchor(first_title(parent))}--{anchor(name)}") for name in names for parent in parents]
-    else:
-        sections = [(first_title(topic), f"open-{anchor(first_title(topic))}")]
-    ids = [i for name, section in sections if section in old for i in (plain_heading_id(name), section)]
-    return "".join(f'<a id="{i}"></a>' for i in ids)
-
-
 def topic_page(number, topic, groups):
     back = "[← Back to the main list](../README.md#contents)"
     out = [f"# {number}. {topic}", "", back, ""]
@@ -559,7 +526,7 @@ def table(entries):
             *map(row, entries)]
 
 
-def render(entries, old):
+def render(entries):
     listed = [e for e in entries if e["status"] == "listed"]
     inactive = sorted((e for e in entries if e["status"] == "inactive"), key=sort_key)
     topics = []  # (topic, number of entries, [(sub-topic, its entries)])
@@ -587,8 +554,8 @@ def render(entries, old):
     ]
     for number, (topic, size, groups) in enumerate(topics, 1):
         marker = f"{number}. "
-        lines = [f"{readme_anchors(old, topic)}{link(topic, topic)} ({size})"]
-        lines += [f"{number}.{minor} {readme_anchors(old, topic, sub)}{link(sub, topic, sub)} ({len(group)})"
+        lines = [f"{link(topic, topic)} ({size})"]
+        lines += [f"{number}.{minor} {link(sub, topic, sub)} ({len(group)})"
                   for minor, (sub, group) in enumerate(groups, 1)]
         # <br> keeps the sub-topics in their topic's list item: Markdown lists cannot number 1.1, 1.2.
         out.append(marker + ("<br>\n" + " " * len(marker)).join(lines))
@@ -775,15 +742,9 @@ def main():
     entries, errors = load()
     errors = errors or settings_problems(entries)
     warnings = []
-    try:
-        old = old_sections()
-    except (OSError, ValueError) as exc:
-        errors.append(f"cannot read {OLD_SECTIONS.name} ({exc})")
     if not errors:
-        files = render(entries, old)
+        files = render(entries)
         errors += link_problems(files)
-        errors += [f"README.md: the old link #{i} would stop working"
-                   for i in sorted(old) if f'id="{i}"' not in files["README.md"]]
         for path in sorted((ROOT / "topics").glob("*.md")):
             if f"topics/{path.name}" not in files:
                 errors.append(f"topics/{path.name}: not a current topic, delete it")

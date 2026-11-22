@@ -7,15 +7,7 @@
 - [21.3 Reproducible research software](#reproducible-research-software) (2)
 - [21.4 Curated lists](#curated-lists) (5)
 
-Moved to another topic:
-
-- <a id="agents-for-mechanics"></a>[Agents for mechanics](llms-and-simulation-agents.md#agents-for-mechanics)
-- <a id="agents-for-fluid-dynamics"></a>[Agents for fluid dynamics](llms-and-simulation-agents.md#agents-for-fluid-dynamics)
-- <a id="tool-servers-for-simulation-software"></a>[Tool servers for simulation software](llms-and-simulation-agents.md#tool-servers-for-simulation-software)
-- <a id="language-models-for-material-and-solver-code"></a>[Language models for material and solver code](llms-and-simulation-agents.md#language-models-for-material-and-solver-code)
-- <a id="language-model-benchmarks-and-datasets"></a>[Language model benchmarks and datasets](llms-and-simulation-agents.md#language-model-benchmarks-and-datasets)
-
-## <a id="courses-and-tutorials"></a><a id="textbooks-and-numerical-tutorials"></a>21.1 Courses and tutorials
+## <a id="courses-and-tutorials"></a>21.1 Courses and tutorials
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
