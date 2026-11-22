@@ -398,9 +398,11 @@ def render(entries):
         for minor, (sub, group) in enumerate(groups, 1):
             body += section(table(group), f"{number}.{minor}", topic, sub)
         out += section(body[:-1], number, topic)
+    curated = link("curated lists", "Courses, references and agents for mechanics", "Curated lists")
     out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md).", "",
-            "Descriptions and guides were drafted with AI, the guides have no expert review and the listed code was "
-            "not run. \"None found\" means that no license was found, so do not assume you may reuse that code."]
+            "## Acknowledgements", "",
+            "Thanks to the authors and maintainers of the listed projects, and to those of the "
+            f"{curated} that helped shape this collection. Descriptions and guides were drafted with the help of AI."]
     archive = [
         "# Archived and unmaintained", "",
         "These projects are archived on GitHub or described by their authors as unmaintained. "

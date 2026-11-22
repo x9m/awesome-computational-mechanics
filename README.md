@@ -1415,4 +1415,6 @@ Guidance: [ASME V&V 10](https://webstore.ansi.org/standards/asme/asme102019r2025
 
 Corrections and additions are welcome. See [contributing.md](contributing.md).
 
-Descriptions and guides were drafted with AI, the guides have no expert review and the listed code was not run. "None found" means that no license was found, so do not assume you may reuse that code.
+## Acknowledgements
+
+Thanks to the authors and maintainers of the listed projects, and to those of the [curated lists](#user-content-open-courses-references-and-agents-for-mechanics--curated-lists) that helped shape this collection. Descriptions and guides were drafted with the help of AI.
