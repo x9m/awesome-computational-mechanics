@@ -8,47 +8,99 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 
 ## Contents
 
-- [Finite and boundary element methods](#user-content-open-finite-and-boundary-element-methods) (77)
-  - [General-purpose frameworks](#user-content-open-finite-and-boundary-element-methods--general-purpose-frameworks) (20) · [Structural and solid mechanics solvers](#user-content-open-finite-and-boundary-element-methods--structural-and-solid-mechanics-solvers) (16) · [Differentiable and GPU finite elements](#user-content-open-finite-and-boundary-element-methods--differentiable-and-gpu-finite-elements) (7) · [Phase-field fracture](#user-content-open-finite-and-boundary-element-methods--phase-field-fracture) (6) · [Fracture, boundary and scaled boundary methods](#user-content-open-finite-and-boundary-element-methods--fracture-boundary-and-scaled-boundary-methods) (5) · [Unfitted and embedded methods](#user-content-open-finite-and-boundary-element-methods--unfitted-and-embedded-methods) (1) · [Smoothed finite elements](#user-content-open-finite-and-boundary-element-methods--smoothed-finite-elements) (1) · [Beams, rods and shells](#user-content-open-finite-and-boundary-element-methods--beams-rods-and-shells) (3) · [Solver interfaces and utilities](#user-content-open-finite-and-boundary-element-methods--solver-interfaces-and-utilities) (5) · [Teaching and compact codes](#user-content-open-finite-and-boundary-element-methods--teaching-and-compact-codes) (13)
-- [Finite volume methods](#user-content-open-finite-volume-methods) (1)
-  - [Solid mechanics and fluid-solid interaction](#user-content-open-finite-volume-methods--solid-mechanics-and-fluid-solid-interaction) (1)
-- [Virtual element method](#user-content-open-virtual-element-method) (30)
-  - [VEM libraries](#user-content-open-virtual-element-method--vem-libraries) (6) · [Elasticity](#user-content-open-virtual-element-method--elasticity) (9) · [Dynamics and fracture](#user-content-open-virtual-element-method--dynamics-and-fracture) (3) · [Coupled fields and electronic packaging](#user-content-open-virtual-element-method--coupled-fields-and-electronic-packaging) (4) · [Topology optimization with VEM](#user-content-open-virtual-element-method--topology-optimization-with-vem) (2) · [Introductory VEM codes](#user-content-open-virtual-element-method--introductory-vem-codes) (6)
-- [Contact mechanics](#user-content-open-contact-mechanics) (9)
-  - [Contact formulations](#user-content-open-contact-mechanics--contact-formulations) (4) · [Incremental potential contact](#user-content-open-contact-mechanics--incremental-potential-contact) (5)
-- [Third medium contact](#user-content-open-third-medium-contact) (13)
-  - [Modules and examples in FEM libraries](#user-content-open-third-medium-contact--modules-and-examples-in-fem-libraries) (7) · [Optimization and metamaterials](#user-content-open-third-medium-contact--optimization-and-metamaterials) (4) · [Standalone study codes](#user-content-open-third-medium-contact--standalone-study-codes) (2)
-- [Meshfree and particle methods](#user-content-open-meshfree-and-particle-methods) (28)
-  - [Material point method](#user-content-open-meshfree-and-particle-methods--material-point-method) (11) · [Smoothed particle hydrodynamics](#user-content-open-meshfree-and-particle-methods--smoothed-particle-hydrodynamics) (4) · [Meshless methods](#user-content-open-meshfree-and-particle-methods--meshless-methods) (5) · [Peridynamics](#user-content-open-meshfree-and-particle-methods--peridynamics) (3) · [Discrete and coarse-grained particle models](#user-content-open-meshfree-and-particle-methods--discrete-and-coarse-grained-particle-models) (5)
-- [Soft-body, real-time and differentiable simulation](#user-content-open-soft-body-real-time-and-differentiable-simulation) (26)
-  - [Real-time finite elements](#user-content-open-soft-body-real-time-and-differentiable-simulation--real-time-finite-elements) (7) · [Soft robotics](#user-content-open-soft-body-real-time-and-differentiable-simulation--soft-robotics) (6) · [Position-based and implicit dynamics](#user-content-open-soft-body-real-time-and-differentiable-simulation--position-based-and-implicit-dynamics) (4) · [Differentiable simulation](#user-content-open-soft-body-real-time-and-differentiable-simulation--differentiable-simulation) (6) · [Manipulation benchmarks](#user-content-open-soft-body-real-time-and-differentiable-simulation--manipulation-benchmarks) (3)
-- [Multibody dynamics and biomechanics](#user-content-open-multibody-dynamics-and-biomechanics) (10)
-  - [Physics engines for multibody systems](#user-content-open-multibody-dynamics-and-biomechanics--physics-engines-for-multibody-systems) (6) · [Musculoskeletal biomechanics](#user-content-open-multibody-dynamics-and-biomechanics--musculoskeletal-biomechanics) (2) · [Cardiovascular mechanics](#user-content-open-multibody-dynamics-and-biomechanics--cardiovascular-mechanics) (2)
-- [Constitutive modeling and material identification](#user-content-open-constitutive-modeling-and-material-identification) (38)
-  - [Neural network constitutive models](#user-content-open-constitutive-modeling-and-material-identification--neural-network-constitutive-models) (15) · [Unsupervised model discovery](#user-content-open-constitutive-modeling-and-material-identification--unsupervised-model-discovery) (7) · [Material subroutines and libraries](#user-content-open-constitutive-modeling-and-material-identification--material-subroutines-and-libraries) (10) · [Experimental parameter identification](#user-content-open-constitutive-modeling-and-material-identification--experimental-parameter-identification) (6)
-- [Multiscale and homogenization](#user-content-open-multiscale-and-homogenization) (12)
-  - [FFT-based homogenization](#user-content-open-multiscale-and-homogenization--fft-based-homogenization) (3) · [FE² and computational homogenization](#user-content-open-multiscale-and-homogenization--fe2-and-computational-homogenization) (3) · [Inverse homogenization](#user-content-open-multiscale-and-homogenization--inverse-homogenization) (1) · [Crystal plasticity](#user-content-open-multiscale-and-homogenization--crystal-plasticity) (5)
-- [Thermal, multiphysics and additive manufacturing](#user-content-open-thermal-multiphysics-and-additive-manufacturing) (11)
-  - [Heat transfer and bio-heat](#user-content-open-thermal-multiphysics-and-additive-manufacturing--heat-transfer-and-bio-heat) (5) · [Thermoelasticity](#user-content-open-thermal-multiphysics-and-additive-manufacturing--thermoelasticity) (1) · [Additive manufacturing](#user-content-open-thermal-multiphysics-and-additive-manufacturing--additive-manufacturing) (3) · [Multiphysics coupling](#user-content-open-thermal-multiphysics-and-additive-manufacturing--multiphysics-coupling) (2)
-- [Optimization and inverse problems](#user-content-open-optimization-and-inverse-problems) (18)
-  - [Topology optimization solvers](#user-content-open-optimization-and-inverse-problems--topology-optimization-solvers) (9) · [Learning-based topology optimization](#user-content-open-optimization-and-inverse-problems--learning-based-topology-optimization) (5) · [Inverse problems](#user-content-open-optimization-and-inverse-problems--inverse-problems) (4)
-- [Physics-informed learning and energy methods](#user-content-open-physics-informed-learning-and-energy-methods) (14)
-  - [Deep energy methods](#user-content-open-physics-informed-learning-and-energy-methods--deep-energy-methods) (8) · [Residual-based networks](#user-content-open-physics-informed-learning-and-energy-methods--residual-based-networks) (4) · [PINN libraries and examples](#user-content-open-physics-informed-learning-and-energy-methods--pinn-libraries-and-examples) (2)
-- [Surrogates and reduced-order models](#user-content-open-surrogates-and-reduced-order-models) (34)
-  - [Stress-field prediction](#user-content-open-surrogates-and-reduced-order-models--stress-field-prediction) (7) · [Deformation and reduced dynamics](#user-content-open-surrogates-and-reduced-order-models--deformation-and-reduced-dynamics) (7) · [Projection-based model reduction](#user-content-open-surrogates-and-reduced-order-models--projection-based-model-reduction) (4) · [Graph neural networks](#user-content-open-surrogates-and-reduced-order-models--graph-neural-networks) (4) · [Biomechanical surrogates](#user-content-open-surrogates-and-reduced-order-models--biomechanical-surrogates) (2) · [Response histories and operator learning](#user-content-open-surrogates-and-reduced-order-models--response-histories-and-operator-learning) (6) · [Frameworks and introductory studies](#user-content-open-surrogates-and-reduced-order-models--frameworks-and-introductory-studies) (3) · [Benchmark datasets](#user-content-open-surrogates-and-reduced-order-models--benchmark-datasets) (1)
-- [Meshing, pre- and post-processing](#user-content-open-meshing-pre--and-post-processing) (23)
-  - [Mesh generation](#user-content-open-meshing-pre--and-post-processing--mesh-generation) (13) · [Mesh processing and formats](#user-content-open-meshing-pre--and-post-processing--mesh-processing-and-formats) (5) · [Visualization and export](#user-content-open-meshing-pre--and-post-processing--visualization-and-export) (5)
-- [Courses, references and agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics) (16)
-  - [Courses and tutorials](#user-content-open-courses-references-and-agents-for-mechanics--courses-and-tutorials) (8) · [Curated lists](#user-content-open-courses-references-and-agents-for-mechanics--curated-lists) (5) · [Agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics--agents-for-mechanics) (3)
-- [Contributing](#contributing)
+1. [Finite and boundary element methods](#user-content-open-finite-and-boundary-element-methods) (77)<br>
+   1.1 [General-purpose frameworks](#user-content-open-finite-and-boundary-element-methods--general-purpose-frameworks) (20)<br>
+   1.2 [Structural and solid mechanics solvers](#user-content-open-finite-and-boundary-element-methods--structural-and-solid-mechanics-solvers) (16)<br>
+   1.3 [Differentiable and GPU finite elements](#user-content-open-finite-and-boundary-element-methods--differentiable-and-gpu-finite-elements) (7)<br>
+   1.4 [Phase-field fracture](#user-content-open-finite-and-boundary-element-methods--phase-field-fracture) (6)<br>
+   1.5 [Fracture, boundary and scaled boundary methods](#user-content-open-finite-and-boundary-element-methods--fracture-boundary-and-scaled-boundary-methods) (5)<br>
+   1.6 [Unfitted and embedded methods](#user-content-open-finite-and-boundary-element-methods--unfitted-and-embedded-methods) (1)<br>
+   1.7 [Smoothed finite elements](#user-content-open-finite-and-boundary-element-methods--smoothed-finite-elements) (1)<br>
+   1.8 [Beams, rods and shells](#user-content-open-finite-and-boundary-element-methods--beams-rods-and-shells) (3)<br>
+   1.9 [Solver interfaces and utilities](#user-content-open-finite-and-boundary-element-methods--solver-interfaces-and-utilities) (5)<br>
+   1.10 [Teaching and compact codes](#user-content-open-finite-and-boundary-element-methods--teaching-and-compact-codes) (13)
+2. [Finite volume methods](#user-content-open-finite-volume-methods) (1)<br>
+   2.1 [Solid mechanics and fluid-solid interaction](#user-content-open-finite-volume-methods--solid-mechanics-and-fluid-solid-interaction) (1)
+3. [Virtual element method](#user-content-open-virtual-element-method) (30)<br>
+   3.1 [VEM libraries](#user-content-open-virtual-element-method--vem-libraries) (6)<br>
+   3.2 [Elasticity](#user-content-open-virtual-element-method--elasticity) (9)<br>
+   3.3 [Dynamics and fracture](#user-content-open-virtual-element-method--dynamics-and-fracture) (3)<br>
+   3.4 [Coupled fields and electronic packaging](#user-content-open-virtual-element-method--coupled-fields-and-electronic-packaging) (4)<br>
+   3.5 [Topology optimization with VEM](#user-content-open-virtual-element-method--topology-optimization-with-vem) (2)<br>
+   3.6 [Introductory VEM codes](#user-content-open-virtual-element-method--introductory-vem-codes) (6)
+4. [Contact mechanics](#user-content-open-contact-mechanics) (9)<br>
+   4.1 [Contact formulations](#user-content-open-contact-mechanics--contact-formulations) (4)<br>
+   4.2 [Incremental potential contact](#user-content-open-contact-mechanics--incremental-potential-contact) (5)
+5. [Third medium contact](#user-content-open-third-medium-contact) (13)<br>
+   5.1 [Modules and examples in FEM libraries](#user-content-open-third-medium-contact--modules-and-examples-in-fem-libraries) (7)<br>
+   5.2 [Optimization and metamaterials](#user-content-open-third-medium-contact--optimization-and-metamaterials) (4)<br>
+   5.3 [Standalone study codes](#user-content-open-third-medium-contact--standalone-study-codes) (2)
+6. [Meshfree and particle methods](#user-content-open-meshfree-and-particle-methods) (28)<br>
+   6.1 [Material point method](#user-content-open-meshfree-and-particle-methods--material-point-method) (11)<br>
+   6.2 [Smoothed particle hydrodynamics](#user-content-open-meshfree-and-particle-methods--smoothed-particle-hydrodynamics) (4)<br>
+   6.3 [Meshless methods](#user-content-open-meshfree-and-particle-methods--meshless-methods) (5)<br>
+   6.4 [Peridynamics](#user-content-open-meshfree-and-particle-methods--peridynamics) (3)<br>
+   6.5 [Discrete and coarse-grained particle models](#user-content-open-meshfree-and-particle-methods--discrete-and-coarse-grained-particle-models) (5)
+7. [Soft-body, real-time and differentiable simulation](#user-content-open-soft-body-real-time-and-differentiable-simulation) (26)<br>
+   7.1 [Real-time finite elements](#user-content-open-soft-body-real-time-and-differentiable-simulation--real-time-finite-elements) (7)<br>
+   7.2 [Soft robotics](#user-content-open-soft-body-real-time-and-differentiable-simulation--soft-robotics) (6)<br>
+   7.3 [Position-based and implicit dynamics](#user-content-open-soft-body-real-time-and-differentiable-simulation--position-based-and-implicit-dynamics) (4)<br>
+   7.4 [Differentiable simulation](#user-content-open-soft-body-real-time-and-differentiable-simulation--differentiable-simulation) (6)<br>
+   7.5 [Manipulation benchmarks](#user-content-open-soft-body-real-time-and-differentiable-simulation--manipulation-benchmarks) (3)
+8. [Multibody dynamics and biomechanics](#user-content-open-multibody-dynamics-and-biomechanics) (10)<br>
+   8.1 [Physics engines for multibody systems](#user-content-open-multibody-dynamics-and-biomechanics--physics-engines-for-multibody-systems) (6)<br>
+   8.2 [Musculoskeletal biomechanics](#user-content-open-multibody-dynamics-and-biomechanics--musculoskeletal-biomechanics) (2)<br>
+   8.3 [Cardiovascular mechanics](#user-content-open-multibody-dynamics-and-biomechanics--cardiovascular-mechanics) (2)
+9. [Constitutive modeling and material identification](#user-content-open-constitutive-modeling-and-material-identification) (38)<br>
+   9.1 [Neural network constitutive models](#user-content-open-constitutive-modeling-and-material-identification--neural-network-constitutive-models) (15)<br>
+   9.2 [Unsupervised model discovery](#user-content-open-constitutive-modeling-and-material-identification--unsupervised-model-discovery) (7)<br>
+   9.3 [Material subroutines and libraries](#user-content-open-constitutive-modeling-and-material-identification--material-subroutines-and-libraries) (10)<br>
+   9.4 [Experimental parameter identification](#user-content-open-constitutive-modeling-and-material-identification--experimental-parameter-identification) (6)
+10. [Multiscale and homogenization](#user-content-open-multiscale-and-homogenization) (12)<br>
+    10.1 [FFT-based homogenization](#user-content-open-multiscale-and-homogenization--fft-based-homogenization) (3)<br>
+    10.2 [FE² and computational homogenization](#user-content-open-multiscale-and-homogenization--fe2-and-computational-homogenization) (3)<br>
+    10.3 [Inverse homogenization](#user-content-open-multiscale-and-homogenization--inverse-homogenization) (1)<br>
+    10.4 [Crystal plasticity](#user-content-open-multiscale-and-homogenization--crystal-plasticity) (5)
+11. [Thermal, multiphysics and additive manufacturing](#user-content-open-thermal-multiphysics-and-additive-manufacturing) (11)<br>
+    11.1 [Heat transfer and bio-heat](#user-content-open-thermal-multiphysics-and-additive-manufacturing--heat-transfer-and-bio-heat) (5)<br>
+    11.2 [Thermoelasticity](#user-content-open-thermal-multiphysics-and-additive-manufacturing--thermoelasticity) (1)<br>
+    11.3 [Additive manufacturing](#user-content-open-thermal-multiphysics-and-additive-manufacturing--additive-manufacturing) (3)<br>
+    11.4 [Multiphysics coupling](#user-content-open-thermal-multiphysics-and-additive-manufacturing--multiphysics-coupling) (2)
+12. [Optimization and inverse problems](#user-content-open-optimization-and-inverse-problems) (18)<br>
+    12.1 [Topology optimization solvers](#user-content-open-optimization-and-inverse-problems--topology-optimization-solvers) (9)<br>
+    12.2 [Learning-based topology optimization](#user-content-open-optimization-and-inverse-problems--learning-based-topology-optimization) (5)<br>
+    12.3 [Inverse problems](#user-content-open-optimization-and-inverse-problems--inverse-problems) (4)
+13. [Physics-informed learning and energy methods](#user-content-open-physics-informed-learning-and-energy-methods) (14)<br>
+    13.1 [Deep energy methods](#user-content-open-physics-informed-learning-and-energy-methods--deep-energy-methods) (8)<br>
+    13.2 [Residual-based networks](#user-content-open-physics-informed-learning-and-energy-methods--residual-based-networks) (4)<br>
+    13.3 [PINN libraries and examples](#user-content-open-physics-informed-learning-and-energy-methods--pinn-libraries-and-examples) (2)
+14. [Surrogates and reduced-order models](#user-content-open-surrogates-and-reduced-order-models) (34)<br>
+    14.1 [Stress-field prediction](#user-content-open-surrogates-and-reduced-order-models--stress-field-prediction) (7)<br>
+    14.2 [Deformation and reduced dynamics](#user-content-open-surrogates-and-reduced-order-models--deformation-and-reduced-dynamics) (7)<br>
+    14.3 [Projection-based model reduction](#user-content-open-surrogates-and-reduced-order-models--projection-based-model-reduction) (4)<br>
+    14.4 [Graph neural networks](#user-content-open-surrogates-and-reduced-order-models--graph-neural-networks) (4)<br>
+    14.5 [Biomechanical surrogates](#user-content-open-surrogates-and-reduced-order-models--biomechanical-surrogates) (2)<br>
+    14.6 [Response histories and operator learning](#user-content-open-surrogates-and-reduced-order-models--response-histories-and-operator-learning) (6)<br>
+    14.7 [Frameworks and introductory studies](#user-content-open-surrogates-and-reduced-order-models--frameworks-and-introductory-studies) (3)<br>
+    14.8 [Benchmark datasets](#user-content-open-surrogates-and-reduced-order-models--benchmark-datasets) (1)
+15. [Meshing, pre- and post-processing](#user-content-open-meshing-pre--and-post-processing) (23)<br>
+    15.1 [Mesh generation](#user-content-open-meshing-pre--and-post-processing--mesh-generation) (13)<br>
+    15.2 [Mesh processing and formats](#user-content-open-meshing-pre--and-post-processing--mesh-processing-and-formats) (5)<br>
+    15.3 [Visualization and export](#user-content-open-meshing-pre--and-post-processing--visualization-and-export) (5)
+16. [Courses, references and agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics) (16)<br>
+    16.1 [Courses and tutorials](#user-content-open-courses-references-and-agents-for-mechanics--courses-and-tutorials) (8)<br>
+    16.2 [Curated lists](#user-content-open-courses-references-and-agents-for-mechanics--curated-lists) (5)<br>
+    16.3 [Agents for mechanics](#user-content-open-courses-references-and-agents-for-mechanics--agents-for-mechanics) (3)
+
+[Contributing](#contributing)
 
 <details>
-<summary><h2>Finite and boundary element methods</h2></summary>
-<p id="open-finite-and-boundary-element-methods"><sub><b>Finite and boundary element methods</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="finite-and-boundary-element-methods"></a><h2>1. Finite and boundary element methods</h2></summary>
+<p id="open-finite-and-boundary-element-methods"><sub><b>1. Finite and boundary element methods</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>General-purpose frameworks</h3></summary>
-<p id="open-finite-and-boundary-element-methods--general-purpose-frameworks"><sub>Finite and boundary element methods › <b>General-purpose frameworks</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="general-purpose-frameworks"></a><h3>1.1 General-purpose frameworks</h3></summary>
+<p id="open-finite-and-boundary-element-methods--general-purpose-frameworks"><sub>Finite and boundary element methods › <b>1.1 General-purpose frameworks</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -76,8 +128,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Structural and solid mechanics solvers</h3></summary>
-<p id="open-finite-and-boundary-element-methods--structural-and-solid-mechanics-solvers"><sub>Finite and boundary element methods › <b>Structural and solid mechanics solvers</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="structural-and-solid-mechanics-solvers"></a><h3>1.2 Structural and solid mechanics solvers</h3></summary>
+<p id="open-finite-and-boundary-element-methods--structural-and-solid-mechanics-solvers"><sub>Finite and boundary element methods › <b>1.2 Structural and solid mechanics solvers</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -101,8 +153,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Differentiable and GPU finite elements</h3></summary>
-<p id="open-finite-and-boundary-element-methods--differentiable-and-gpu-finite-elements"><sub>Finite and boundary element methods › <b>Differentiable and GPU finite elements</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="differentiable-and-gpu-finite-elements"></a><h3>1.3 Differentiable and GPU finite elements</h3></summary>
+<p id="open-finite-and-boundary-element-methods--differentiable-and-gpu-finite-elements"><sub>Finite and boundary element methods › <b>1.3 Differentiable and GPU finite elements</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -117,8 +169,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Phase-field fracture</h3></summary>
-<p id="open-finite-and-boundary-element-methods--phase-field-fracture"><sub>Finite and boundary element methods › <b>Phase-field fracture</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="phase-field-fracture"></a><h3>1.4 Phase-field fracture</h3></summary>
+<p id="open-finite-and-boundary-element-methods--phase-field-fracture"><sub>Finite and boundary element methods › <b>1.4 Phase-field fracture</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -132,8 +184,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Fracture, boundary and scaled boundary methods</h3></summary>
-<p id="open-finite-and-boundary-element-methods--fracture-boundary-and-scaled-boundary-methods"><sub>Finite and boundary element methods › <b>Fracture, boundary and scaled boundary methods</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="fracture-boundary-and-scaled-boundary-methods"></a><h3>1.5 Fracture, boundary and scaled boundary methods</h3></summary>
+<p id="open-finite-and-boundary-element-methods--fracture-boundary-and-scaled-boundary-methods"><sub>Finite and boundary element methods › <b>1.5 Fracture, boundary and scaled boundary methods</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -146,8 +198,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Unfitted and embedded methods</h3></summary>
-<p id="open-finite-and-boundary-element-methods--unfitted-and-embedded-methods"><sub>Finite and boundary element methods › <b>Unfitted and embedded methods</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="unfitted-and-embedded-methods"></a><h3>1.6 Unfitted and embedded methods</h3></summary>
+<p id="open-finite-and-boundary-element-methods--unfitted-and-embedded-methods"><sub>Finite and boundary element methods › <b>1.6 Unfitted and embedded methods</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -156,8 +208,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Smoothed finite elements</h3></summary>
-<p id="open-finite-and-boundary-element-methods--smoothed-finite-elements"><sub>Finite and boundary element methods › <b>Smoothed finite elements</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="smoothed-finite-elements"></a><h3>1.7 Smoothed finite elements</h3></summary>
+<p id="open-finite-and-boundary-element-methods--smoothed-finite-elements"><sub>Finite and boundary element methods › <b>1.7 Smoothed finite elements</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -166,8 +218,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Beams, rods and shells</h3></summary>
-<p id="open-finite-and-boundary-element-methods--beams-rods-and-shells"><sub>Finite and boundary element methods › <b>Beams, rods and shells</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="beams-rods-and-shells"></a><h3>1.8 Beams, rods and shells</h3></summary>
+<p id="open-finite-and-boundary-element-methods--beams-rods-and-shells"><sub>Finite and boundary element methods › <b>1.8 Beams, rods and shells</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -178,8 +230,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Solver interfaces and utilities</h3></summary>
-<p id="open-finite-and-boundary-element-methods--solver-interfaces-and-utilities"><sub>Finite and boundary element methods › <b>Solver interfaces and utilities</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="solver-interfaces-and-utilities"></a><h3>1.9 Solver interfaces and utilities</h3></summary>
+<p id="open-finite-and-boundary-element-methods--solver-interfaces-and-utilities"><sub>Finite and boundary element methods › <b>1.9 Solver interfaces and utilities</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -192,8 +244,8 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h3>Teaching and compact codes</h3></summary>
-<p id="open-finite-and-boundary-element-methods--teaching-and-compact-codes"><sub>Finite and boundary element methods › <b>Teaching and compact codes</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="teaching-and-compact-codes"></a><h3>1.10 Teaching and compact codes</h3></summary>
+<p id="open-finite-and-boundary-element-methods--teaching-and-compact-codes"><sub>Finite and boundary element methods › <b>1.10 Teaching and compact codes</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -216,12 +268,12 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h2>Finite volume methods</h2></summary>
-<p id="open-finite-volume-methods"><sub><b>Finite volume methods</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="finite-volume-methods"></a><h2>2. Finite volume methods</h2></summary>
+<p id="open-finite-volume-methods"><sub><b>2. Finite volume methods</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Solid mechanics and fluid-solid interaction</h3></summary>
-<p id="open-finite-volume-methods--solid-mechanics-and-fluid-solid-interaction"><sub>Finite volume methods › <b>Solid mechanics and fluid-solid interaction</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="solid-mechanics-and-fluid-solid-interaction"></a><h3>2.1 Solid mechanics and fluid-solid interaction</h3></summary>
+<p id="open-finite-volume-methods--solid-mechanics-and-fluid-solid-interaction"><sub>Finite volume methods › <b>2.1 Solid mechanics and fluid-solid interaction</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -232,14 +284,14 @@ It has 360 entries covering 358 repositories. The list started from the maintain
 </details>
 
 <details>
-<summary><h2>Virtual element method</h2></summary>
-<p id="open-virtual-element-method"><sub><b>Virtual element method</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="virtual-element-method"></a><h2>3. Virtual element method</h2></summary>
+<p id="open-virtual-element-method"><sub><b>3. Virtual element method</b> · <a href="#contents">Back to contents</a></sub></p>
 
 The virtual element method (VEM) generalizes finite elements to polygonal and polyhedral elements.
 
 <details>
-<summary><h3>VEM libraries</h3></summary>
-<p id="open-virtual-element-method--vem-libraries"><sub>Virtual element method › <b>VEM libraries</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="vem-libraries"></a><h3>3.1 VEM libraries</h3></summary>
+<p id="open-virtual-element-method--vem-libraries"><sub>Virtual element method › <b>3.1 VEM libraries</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -253,8 +305,8 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 </details>
 
 <details>
-<summary><h3>Elasticity</h3></summary>
-<p id="open-virtual-element-method--elasticity"><sub>Virtual element method › <b>Elasticity</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="elasticity"></a><h3>3.2 Elasticity</h3></summary>
+<p id="open-virtual-element-method--elasticity"><sub>Virtual element method › <b>3.2 Elasticity</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -271,8 +323,8 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 </details>
 
 <details>
-<summary><h3>Dynamics and fracture</h3></summary>
-<p id="open-virtual-element-method--dynamics-and-fracture"><sub>Virtual element method › <b>Dynamics and fracture</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="dynamics-and-fracture"></a><h3>3.3 Dynamics and fracture</h3></summary>
+<p id="open-virtual-element-method--dynamics-and-fracture"><sub>Virtual element method › <b>3.3 Dynamics and fracture</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -283,8 +335,8 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 </details>
 
 <details>
-<summary><h3>Coupled fields and electronic packaging</h3></summary>
-<p id="open-virtual-element-method--coupled-fields-and-electronic-packaging"><sub>Virtual element method › <b>Coupled fields and electronic packaging</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="coupled-fields-and-electronic-packaging"></a><h3>3.4 Coupled fields and electronic packaging</h3></summary>
+<p id="open-virtual-element-method--coupled-fields-and-electronic-packaging"><sub>Virtual element method › <b>3.4 Coupled fields and electronic packaging</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -296,8 +348,8 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 </details>
 
 <details>
-<summary><h3>Topology optimization with VEM</h3></summary>
-<p id="open-virtual-element-method--topology-optimization-with-vem"><sub>Virtual element method › <b>Topology optimization with VEM</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="topology-optimization-with-vem"></a><h3>3.5 Topology optimization with VEM</h3></summary>
+<p id="open-virtual-element-method--topology-optimization-with-vem"><sub>Virtual element method › <b>3.5 Topology optimization with VEM</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -307,8 +359,8 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 </details>
 
 <details>
-<summary><h3>Introductory VEM codes</h3></summary>
-<p id="open-virtual-element-method--introductory-vem-codes"><sub>Virtual element method › <b>Introductory VEM codes</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="introductory-vem-codes"></a><h3>3.6 Introductory VEM codes</h3></summary>
+<p id="open-virtual-element-method--introductory-vem-codes"><sub>Virtual element method › <b>3.6 Introductory VEM codes</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -324,12 +376,12 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 </details>
 
 <details>
-<summary><h2>Contact mechanics</h2></summary>
-<p id="open-contact-mechanics"><sub><b>Contact mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="contact-mechanics"></a><h2>4. Contact mechanics</h2></summary>
+<p id="open-contact-mechanics"><sub><b>4. Contact mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Contact formulations</h3></summary>
-<p id="open-contact-mechanics--contact-formulations"><sub>Contact mechanics › <b>Contact formulations</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="contact-formulations"></a><h3>4.1 Contact formulations</h3></summary>
+<p id="open-contact-mechanics--contact-formulations"><sub>Contact mechanics › <b>4.1 Contact formulations</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -341,8 +393,8 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 </details>
 
 <details>
-<summary><h3>Incremental potential contact</h3></summary>
-<p id="open-contact-mechanics--incremental-potential-contact"><sub>Contact mechanics › <b>Incremental potential contact</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="incremental-potential-contact"></a><h3>4.2 Incremental potential contact</h3></summary>
+<p id="open-contact-mechanics--incremental-potential-contact"><sub>Contact mechanics › <b>4.2 Incremental potential contact</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -357,14 +409,14 @@ The virtual element method (VEM) generalizes finite elements to polygonal and po
 </details>
 
 <details>
-<summary><h2>Third medium contact</h2></summary>
-<p id="open-third-medium-contact"><sub><b>Third medium contact</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="third-medium-contact"></a><h2>5. Third medium contact</h2></summary>
+<p id="open-third-medium-contact"><sub><b>5. Third medium contact</b> · <a href="#contents">Back to contents</a></sub></p>
 
 Third medium contact (TMC) models contact by meshing the gap with a very compliant fictitious material. Some links open the relevant file inside a larger project. DTU's MATLAB TopTMC code is not in a repository and can be downloaded from the [TopOpt software page](https://www.topopt.mek.dtu.dk/apps-and-software).
 
 <details>
-<summary><h3>Modules and examples in FEM libraries</h3></summary>
-<p id="open-third-medium-contact--modules-and-examples-in-fem-libraries"><sub>Third medium contact › <b>Modules and examples in FEM libraries</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="modules-and-examples-in-fem-libraries"></a><h3>5.1 Modules and examples in FEM libraries</h3></summary>
+<p id="open-third-medium-contact--modules-and-examples-in-fem-libraries"><sub>Third medium contact › <b>5.1 Modules and examples in FEM libraries</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -379,8 +431,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Optimization and metamaterials</h3></summary>
-<p id="open-third-medium-contact--optimization-and-metamaterials"><sub>Third medium contact › <b>Optimization and metamaterials</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="optimization-and-metamaterials"></a><h3>5.2 Optimization and metamaterials</h3></summary>
+<p id="open-third-medium-contact--optimization-and-metamaterials"><sub>Third medium contact › <b>5.2 Optimization and metamaterials</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -392,8 +444,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Standalone study codes</h3></summary>
-<p id="open-third-medium-contact--standalone-study-codes"><sub>Third medium contact › <b>Standalone study codes</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="standalone-study-codes"></a><h3>5.3 Standalone study codes</h3></summary>
+<p id="open-third-medium-contact--standalone-study-codes"><sub>Third medium contact › <b>5.3 Standalone study codes</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -405,12 +457,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Meshfree and particle methods</h2></summary>
-<p id="open-meshfree-and-particle-methods"><sub><b>Meshfree and particle methods</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="meshfree-and-particle-methods"></a><h2>6. Meshfree and particle methods</h2></summary>
+<p id="open-meshfree-and-particle-methods"><sub><b>6. Meshfree and particle methods</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Material point method</h3></summary>
-<p id="open-meshfree-and-particle-methods--material-point-method"><sub>Meshfree and particle methods › <b>Material point method</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="material-point-method"></a><h3>6.1 Material point method</h3></summary>
+<p id="open-meshfree-and-particle-methods--material-point-method"><sub>Meshfree and particle methods › <b>6.1 Material point method</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -429,8 +481,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Smoothed particle hydrodynamics</h3></summary>
-<p id="open-meshfree-and-particle-methods--smoothed-particle-hydrodynamics"><sub>Meshfree and particle methods › <b>Smoothed particle hydrodynamics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="smoothed-particle-hydrodynamics"></a><h3>6.2 Smoothed particle hydrodynamics</h3></summary>
+<p id="open-meshfree-and-particle-methods--smoothed-particle-hydrodynamics"><sub>Meshfree and particle methods › <b>6.2 Smoothed particle hydrodynamics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -442,8 +494,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Meshless methods</h3></summary>
-<p id="open-meshfree-and-particle-methods--meshless-methods"><sub>Meshfree and particle methods › <b>Meshless methods</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="meshless-methods"></a><h3>6.3 Meshless methods</h3></summary>
+<p id="open-meshfree-and-particle-methods--meshless-methods"><sub>Meshfree and particle methods › <b>6.3 Meshless methods</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -456,8 +508,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Peridynamics</h3></summary>
-<p id="open-meshfree-and-particle-methods--peridynamics"><sub>Meshfree and particle methods › <b>Peridynamics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="peridynamics"></a><h3>6.4 Peridynamics</h3></summary>
+<p id="open-meshfree-and-particle-methods--peridynamics"><sub>Meshfree and particle methods › <b>6.4 Peridynamics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -468,8 +520,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Discrete and coarse-grained particle models</h3></summary>
-<p id="open-meshfree-and-particle-methods--discrete-and-coarse-grained-particle-models"><sub>Meshfree and particle methods › <b>Discrete and coarse-grained particle models</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="discrete-and-coarse-grained-particle-models"></a><h3>6.5 Discrete and coarse-grained particle models</h3></summary>
+<p id="open-meshfree-and-particle-methods--discrete-and-coarse-grained-particle-models"><sub>Meshfree and particle methods › <b>6.5 Discrete and coarse-grained particle models</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -484,12 +536,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Soft-body, real-time and differentiable simulation</h2></summary>
-<p id="open-soft-body-real-time-and-differentiable-simulation"><sub><b>Soft-body, real-time and differentiable simulation</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="soft-body-real-time-and-differentiable-simulation"></a><h2>7. Soft-body, real-time and differentiable simulation</h2></summary>
+<p id="open-soft-body-real-time-and-differentiable-simulation"><sub><b>7. Soft-body, real-time and differentiable simulation</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Real-time finite elements</h3></summary>
-<p id="open-soft-body-real-time-and-differentiable-simulation--real-time-finite-elements"><sub>Soft-body, real-time and differentiable simulation › <b>Real-time finite elements</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="real-time-finite-elements"></a><h3>7.1 Real-time finite elements</h3></summary>
+<p id="open-soft-body-real-time-and-differentiable-simulation--real-time-finite-elements"><sub>Soft-body, real-time and differentiable simulation › <b>7.1 Real-time finite elements</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -504,8 +556,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Soft robotics</h3></summary>
-<p id="open-soft-body-real-time-and-differentiable-simulation--soft-robotics"><sub>Soft-body, real-time and differentiable simulation › <b>Soft robotics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="soft-robotics"></a><h3>7.2 Soft robotics</h3></summary>
+<p id="open-soft-body-real-time-and-differentiable-simulation--soft-robotics"><sub>Soft-body, real-time and differentiable simulation › <b>7.2 Soft robotics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -519,8 +571,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Position-based and implicit dynamics</h3></summary>
-<p id="open-soft-body-real-time-and-differentiable-simulation--position-based-and-implicit-dynamics"><sub>Soft-body, real-time and differentiable simulation › <b>Position-based and implicit dynamics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="position-based-and-implicit-dynamics"></a><h3>7.3 Position-based and implicit dynamics</h3></summary>
+<p id="open-soft-body-real-time-and-differentiable-simulation--position-based-and-implicit-dynamics"><sub>Soft-body, real-time and differentiable simulation › <b>7.3 Position-based and implicit dynamics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -532,8 +584,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Differentiable simulation</h3></summary>
-<p id="open-soft-body-real-time-and-differentiable-simulation--differentiable-simulation"><sub>Soft-body, real-time and differentiable simulation › <b>Differentiable simulation</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="differentiable-simulation"></a><h3>7.4 Differentiable simulation</h3></summary>
+<p id="open-soft-body-real-time-and-differentiable-simulation--differentiable-simulation"><sub>Soft-body, real-time and differentiable simulation › <b>7.4 Differentiable simulation</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -547,8 +599,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Manipulation benchmarks</h3></summary>
-<p id="open-soft-body-real-time-and-differentiable-simulation--manipulation-benchmarks"><sub>Soft-body, real-time and differentiable simulation › <b>Manipulation benchmarks</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="manipulation-benchmarks"></a><h3>7.5 Manipulation benchmarks</h3></summary>
+<p id="open-soft-body-real-time-and-differentiable-simulation--manipulation-benchmarks"><sub>Soft-body, real-time and differentiable simulation › <b>7.5 Manipulation benchmarks</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -561,12 +613,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Multibody dynamics and biomechanics</h2></summary>
-<p id="open-multibody-dynamics-and-biomechanics"><sub><b>Multibody dynamics and biomechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="multibody-dynamics-and-biomechanics"></a><h2>8. Multibody dynamics and biomechanics</h2></summary>
+<p id="open-multibody-dynamics-and-biomechanics"><sub><b>8. Multibody dynamics and biomechanics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Physics engines for multibody systems</h3></summary>
-<p id="open-multibody-dynamics-and-biomechanics--physics-engines-for-multibody-systems"><sub>Multibody dynamics and biomechanics › <b>Physics engines for multibody systems</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="physics-engines-for-multibody-systems"></a><h3>8.1 Physics engines for multibody systems</h3></summary>
+<p id="open-multibody-dynamics-and-biomechanics--physics-engines-for-multibody-systems"><sub>Multibody dynamics and biomechanics › <b>8.1 Physics engines for multibody systems</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -580,8 +632,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Musculoskeletal biomechanics</h3></summary>
-<p id="open-multibody-dynamics-and-biomechanics--musculoskeletal-biomechanics"><sub>Multibody dynamics and biomechanics › <b>Musculoskeletal biomechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="musculoskeletal-biomechanics"></a><h3>8.2 Musculoskeletal biomechanics</h3></summary>
+<p id="open-multibody-dynamics-and-biomechanics--musculoskeletal-biomechanics"><sub>Multibody dynamics and biomechanics › <b>8.2 Musculoskeletal biomechanics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -591,8 +643,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Cardiovascular mechanics</h3></summary>
-<p id="open-multibody-dynamics-and-biomechanics--cardiovascular-mechanics"><sub>Multibody dynamics and biomechanics › <b>Cardiovascular mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="cardiovascular-mechanics"></a><h3>8.3 Cardiovascular mechanics</h3></summary>
+<p id="open-multibody-dynamics-and-biomechanics--cardiovascular-mechanics"><sub>Multibody dynamics and biomechanics › <b>8.3 Cardiovascular mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -604,12 +656,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Constitutive modeling and material identification</h2></summary>
-<p id="open-constitutive-modeling-and-material-identification"><sub><b>Constitutive modeling and material identification</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="constitutive-modeling-and-material-identification"></a><h2>9. Constitutive modeling and material identification</h2></summary>
+<p id="open-constitutive-modeling-and-material-identification"><sub><b>9. Constitutive modeling and material identification</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Neural network constitutive models</h3></summary>
-<p id="open-constitutive-modeling-and-material-identification--neural-network-constitutive-models"><sub>Constitutive modeling and material identification › <b>Neural network constitutive models</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="neural-network-constitutive-models"></a><h3>9.1 Neural network constitutive models</h3></summary>
+<p id="open-constitutive-modeling-and-material-identification--neural-network-constitutive-models"><sub>Constitutive modeling and material identification › <b>9.1 Neural network constitutive models</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -632,8 +684,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Unsupervised model discovery</h3></summary>
-<p id="open-constitutive-modeling-and-material-identification--unsupervised-model-discovery"><sub>Constitutive modeling and material identification › <b>Unsupervised model discovery</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="unsupervised-model-discovery"></a><h3>9.2 Unsupervised model discovery</h3></summary>
+<p id="open-constitutive-modeling-and-material-identification--unsupervised-model-discovery"><sub>Constitutive modeling and material identification › <b>9.2 Unsupervised model discovery</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -648,8 +700,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Material subroutines and libraries</h3></summary>
-<p id="open-constitutive-modeling-and-material-identification--material-subroutines-and-libraries"><sub>Constitutive modeling and material identification › <b>Material subroutines and libraries</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="material-subroutines-and-libraries"></a><h3>9.3 Material subroutines and libraries</h3></summary>
+<p id="open-constitutive-modeling-and-material-identification--material-subroutines-and-libraries"><sub>Constitutive modeling and material identification › <b>9.3 Material subroutines and libraries</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -667,8 +719,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Experimental parameter identification</h3></summary>
-<p id="open-constitutive-modeling-and-material-identification--experimental-parameter-identification"><sub>Constitutive modeling and material identification › <b>Experimental parameter identification</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="experimental-parameter-identification"></a><h3>9.4 Experimental parameter identification</h3></summary>
+<p id="open-constitutive-modeling-and-material-identification--experimental-parameter-identification"><sub>Constitutive modeling and material identification › <b>9.4 Experimental parameter identification</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -684,12 +736,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Multiscale and homogenization</h2></summary>
-<p id="open-multiscale-and-homogenization"><sub><b>Multiscale and homogenization</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="multiscale-and-homogenization"></a><h2>10. Multiscale and homogenization</h2></summary>
+<p id="open-multiscale-and-homogenization"><sub><b>10. Multiscale and homogenization</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>FFT-based homogenization</h3></summary>
-<p id="open-multiscale-and-homogenization--fft-based-homogenization"><sub>Multiscale and homogenization › <b>FFT-based homogenization</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="fft-based-homogenization"></a><h3>10.1 FFT-based homogenization</h3></summary>
+<p id="open-multiscale-and-homogenization--fft-based-homogenization"><sub>Multiscale and homogenization › <b>10.1 FFT-based homogenization</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -700,8 +752,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>FE² and computational homogenization</h3></summary>
-<p id="open-multiscale-and-homogenization--fe2-and-computational-homogenization"><sub>Multiscale and homogenization › <b>FE² and computational homogenization</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="fe-and-computational-homogenization"></a><h3>10.2 FE² and computational homogenization</h3></summary>
+<p id="open-multiscale-and-homogenization--fe2-and-computational-homogenization"><sub>Multiscale and homogenization › <b>10.2 FE² and computational homogenization</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -712,8 +764,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Inverse homogenization</h3></summary>
-<p id="open-multiscale-and-homogenization--inverse-homogenization"><sub>Multiscale and homogenization › <b>Inverse homogenization</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="inverse-homogenization"></a><h3>10.3 Inverse homogenization</h3></summary>
+<p id="open-multiscale-and-homogenization--inverse-homogenization"><sub>Multiscale and homogenization › <b>10.3 Inverse homogenization</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -722,8 +774,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Crystal plasticity</h3></summary>
-<p id="open-multiscale-and-homogenization--crystal-plasticity"><sub>Multiscale and homogenization › <b>Crystal plasticity</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="crystal-plasticity"></a><h3>10.4 Crystal plasticity</h3></summary>
+<p id="open-multiscale-and-homogenization--crystal-plasticity"><sub>Multiscale and homogenization › <b>10.4 Crystal plasticity</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -738,12 +790,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Thermal, multiphysics and additive manufacturing</h2></summary>
-<p id="open-thermal-multiphysics-and-additive-manufacturing"><sub><b>Thermal, multiphysics and additive manufacturing</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="thermal-multiphysics-and-additive-manufacturing"></a><h2>11. Thermal, multiphysics and additive manufacturing</h2></summary>
+<p id="open-thermal-multiphysics-and-additive-manufacturing"><sub><b>11. Thermal, multiphysics and additive manufacturing</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Heat transfer and bio-heat</h3></summary>
-<p id="open-thermal-multiphysics-and-additive-manufacturing--heat-transfer-and-bio-heat"><sub>Thermal, multiphysics and additive manufacturing › <b>Heat transfer and bio-heat</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="heat-transfer-and-bio-heat"></a><h3>11.1 Heat transfer and bio-heat</h3></summary>
+<p id="open-thermal-multiphysics-and-additive-manufacturing--heat-transfer-and-bio-heat"><sub>Thermal, multiphysics and additive manufacturing › <b>11.1 Heat transfer and bio-heat</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -756,8 +808,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Thermoelasticity</h3></summary>
-<p id="open-thermal-multiphysics-and-additive-manufacturing--thermoelasticity"><sub>Thermal, multiphysics and additive manufacturing › <b>Thermoelasticity</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="thermoelasticity"></a><h3>11.2 Thermoelasticity</h3></summary>
+<p id="open-thermal-multiphysics-and-additive-manufacturing--thermoelasticity"><sub>Thermal, multiphysics and additive manufacturing › <b>11.2 Thermoelasticity</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -766,8 +818,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Additive manufacturing</h3></summary>
-<p id="open-thermal-multiphysics-and-additive-manufacturing--additive-manufacturing"><sub>Thermal, multiphysics and additive manufacturing › <b>Additive manufacturing</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="additive-manufacturing"></a><h3>11.3 Additive manufacturing</h3></summary>
+<p id="open-thermal-multiphysics-and-additive-manufacturing--additive-manufacturing"><sub>Thermal, multiphysics and additive manufacturing › <b>11.3 Additive manufacturing</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -778,8 +830,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Multiphysics coupling</h3></summary>
-<p id="open-thermal-multiphysics-and-additive-manufacturing--multiphysics-coupling"><sub>Thermal, multiphysics and additive manufacturing › <b>Multiphysics coupling</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="multiphysics-coupling"></a><h3>11.4 Multiphysics coupling</h3></summary>
+<p id="open-thermal-multiphysics-and-additive-manufacturing--multiphysics-coupling"><sub>Thermal, multiphysics and additive manufacturing › <b>11.4 Multiphysics coupling</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -791,12 +843,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Optimization and inverse problems</h2></summary>
-<p id="open-optimization-and-inverse-problems"><sub><b>Optimization and inverse problems</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="optimization-and-inverse-problems"></a><h2>12. Optimization and inverse problems</h2></summary>
+<p id="open-optimization-and-inverse-problems"><sub><b>12. Optimization and inverse problems</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Topology optimization solvers</h3></summary>
-<p id="open-optimization-and-inverse-problems--topology-optimization-solvers"><sub>Optimization and inverse problems › <b>Topology optimization solvers</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="topology-optimization-solvers"></a><h3>12.1 Topology optimization solvers</h3></summary>
+<p id="open-optimization-and-inverse-problems--topology-optimization-solvers"><sub>Optimization and inverse problems › <b>12.1 Topology optimization solvers</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -813,8 +865,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Learning-based topology optimization</h3></summary>
-<p id="open-optimization-and-inverse-problems--learning-based-topology-optimization"><sub>Optimization and inverse problems › <b>Learning-based topology optimization</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="learning-based-topology-optimization"></a><h3>12.2 Learning-based topology optimization</h3></summary>
+<p id="open-optimization-and-inverse-problems--learning-based-topology-optimization"><sub>Optimization and inverse problems › <b>12.2 Learning-based topology optimization</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -827,8 +879,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Inverse problems</h3></summary>
-<p id="open-optimization-and-inverse-problems--inverse-problems"><sub>Optimization and inverse problems › <b>Inverse problems</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="inverse-problems"></a><h3>12.3 Inverse problems</h3></summary>
+<p id="open-optimization-and-inverse-problems--inverse-problems"><sub>Optimization and inverse problems › <b>12.3 Inverse problems</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -842,12 +894,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Physics-informed learning and energy methods</h2></summary>
-<p id="open-physics-informed-learning-and-energy-methods"><sub><b>Physics-informed learning and energy methods</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="physics-informed-learning-and-energy-methods"></a><h2>13. Physics-informed learning and energy methods</h2></summary>
+<p id="open-physics-informed-learning-and-energy-methods"><sub><b>13. Physics-informed learning and energy methods</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Deep energy methods</h3></summary>
-<p id="open-physics-informed-learning-and-energy-methods--deep-energy-methods"><sub>Physics-informed learning and energy methods › <b>Deep energy methods</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="deep-energy-methods"></a><h3>13.1 Deep energy methods</h3></summary>
+<p id="open-physics-informed-learning-and-energy-methods--deep-energy-methods"><sub>Physics-informed learning and energy methods › <b>13.1 Deep energy methods</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -863,8 +915,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Residual-based networks</h3></summary>
-<p id="open-physics-informed-learning-and-energy-methods--residual-based-networks"><sub>Physics-informed learning and energy methods › <b>Residual-based networks</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="residual-based-networks"></a><h3>13.2 Residual-based networks</h3></summary>
+<p id="open-physics-informed-learning-and-energy-methods--residual-based-networks"><sub>Physics-informed learning and energy methods › <b>13.2 Residual-based networks</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -876,8 +928,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>PINN libraries and examples</h3></summary>
-<p id="open-physics-informed-learning-and-energy-methods--pinn-libraries-and-examples"><sub>Physics-informed learning and energy methods › <b>PINN libraries and examples</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="pinn-libraries-and-examples"></a><h3>13.3 PINN libraries and examples</h3></summary>
+<p id="open-physics-informed-learning-and-energy-methods--pinn-libraries-and-examples"><sub>Physics-informed learning and energy methods › <b>13.3 PINN libraries and examples</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -889,12 +941,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Surrogates and reduced-order models</h2></summary>
-<p id="open-surrogates-and-reduced-order-models"><sub><b>Surrogates and reduced-order models</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="surrogates-and-reduced-order-models"></a><h2>14. Surrogates and reduced-order models</h2></summary>
+<p id="open-surrogates-and-reduced-order-models"><sub><b>14. Surrogates and reduced-order models</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Stress-field prediction</h3></summary>
-<p id="open-surrogates-and-reduced-order-models--stress-field-prediction"><sub>Surrogates and reduced-order models › <b>Stress-field prediction</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="stress-field-prediction"></a><h3>14.1 Stress-field prediction</h3></summary>
+<p id="open-surrogates-and-reduced-order-models--stress-field-prediction"><sub>Surrogates and reduced-order models › <b>14.1 Stress-field prediction</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -909,8 +961,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Deformation and reduced dynamics</h3></summary>
-<p id="open-surrogates-and-reduced-order-models--deformation-and-reduced-dynamics"><sub>Surrogates and reduced-order models › <b>Deformation and reduced dynamics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="deformation-and-reduced-dynamics"></a><h3>14.2 Deformation and reduced dynamics</h3></summary>
+<p id="open-surrogates-and-reduced-order-models--deformation-and-reduced-dynamics"><sub>Surrogates and reduced-order models › <b>14.2 Deformation and reduced dynamics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -925,8 +977,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Projection-based model reduction</h3></summary>
-<p id="open-surrogates-and-reduced-order-models--projection-based-model-reduction"><sub>Surrogates and reduced-order models › <b>Projection-based model reduction</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="projection-based-model-reduction"></a><h3>14.3 Projection-based model reduction</h3></summary>
+<p id="open-surrogates-and-reduced-order-models--projection-based-model-reduction"><sub>Surrogates and reduced-order models › <b>14.3 Projection-based model reduction</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -938,8 +990,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Graph neural networks</h3></summary>
-<p id="open-surrogates-and-reduced-order-models--graph-neural-networks"><sub>Surrogates and reduced-order models › <b>Graph neural networks</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="graph-neural-networks"></a><h3>14.4 Graph neural networks</h3></summary>
+<p id="open-surrogates-and-reduced-order-models--graph-neural-networks"><sub>Surrogates and reduced-order models › <b>14.4 Graph neural networks</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -951,8 +1003,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Biomechanical surrogates</h3></summary>
-<p id="open-surrogates-and-reduced-order-models--biomechanical-surrogates"><sub>Surrogates and reduced-order models › <b>Biomechanical surrogates</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="biomechanical-surrogates"></a><h3>14.5 Biomechanical surrogates</h3></summary>
+<p id="open-surrogates-and-reduced-order-models--biomechanical-surrogates"><sub>Surrogates and reduced-order models › <b>14.5 Biomechanical surrogates</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -962,8 +1014,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Response histories and operator learning</h3></summary>
-<p id="open-surrogates-and-reduced-order-models--response-histories-and-operator-learning"><sub>Surrogates and reduced-order models › <b>Response histories and operator learning</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="response-histories-and-operator-learning"></a><h3>14.6 Response histories and operator learning</h3></summary>
+<p id="open-surrogates-and-reduced-order-models--response-histories-and-operator-learning"><sub>Surrogates and reduced-order models › <b>14.6 Response histories and operator learning</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -977,8 +1029,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Frameworks and introductory studies</h3></summary>
-<p id="open-surrogates-and-reduced-order-models--frameworks-and-introductory-studies"><sub>Surrogates and reduced-order models › <b>Frameworks and introductory studies</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="frameworks-and-introductory-studies"></a><h3>14.7 Frameworks and introductory studies</h3></summary>
+<p id="open-surrogates-and-reduced-order-models--frameworks-and-introductory-studies"><sub>Surrogates and reduced-order models › <b>14.7 Frameworks and introductory studies</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -989,8 +1041,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Benchmark datasets</h3></summary>
-<p id="open-surrogates-and-reduced-order-models--benchmark-datasets"><sub>Surrogates and reduced-order models › <b>Benchmark datasets</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="benchmark-datasets"></a><h3>14.8 Benchmark datasets</h3></summary>
+<p id="open-surrogates-and-reduced-order-models--benchmark-datasets"><sub>Surrogates and reduced-order models › <b>14.8 Benchmark datasets</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -1001,12 +1053,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Meshing, pre- and post-processing</h2></summary>
-<p id="open-meshing-pre--and-post-processing"><sub><b>Meshing, pre- and post-processing</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="meshing-pre--and-post-processing"></a><h2>15. Meshing, pre- and post-processing</h2></summary>
+<p id="open-meshing-pre--and-post-processing"><sub><b>15. Meshing, pre- and post-processing</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Mesh generation</h3></summary>
-<p id="open-meshing-pre--and-post-processing--mesh-generation"><sub>Meshing, pre- and post-processing › <b>Mesh generation</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="mesh-generation"></a><h3>15.1 Mesh generation</h3></summary>
+<p id="open-meshing-pre--and-post-processing--mesh-generation"><sub>Meshing, pre- and post-processing › <b>15.1 Mesh generation</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -1027,8 +1079,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Mesh processing and formats</h3></summary>
-<p id="open-meshing-pre--and-post-processing--mesh-processing-and-formats"><sub>Meshing, pre- and post-processing › <b>Mesh processing and formats</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="mesh-processing-and-formats"></a><h3>15.2 Mesh processing and formats</h3></summary>
+<p id="open-meshing-pre--and-post-processing--mesh-processing-and-formats"><sub>Meshing, pre- and post-processing › <b>15.2 Mesh processing and formats</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -1041,8 +1093,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Visualization and export</h3></summary>
-<p id="open-meshing-pre--and-post-processing--visualization-and-export"><sub>Meshing, pre- and post-processing › <b>Visualization and export</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="visualization-and-export"></a><h3>15.3 Visualization and export</h3></summary>
+<p id="open-meshing-pre--and-post-processing--visualization-and-export"><sub>Meshing, pre- and post-processing › <b>15.3 Visualization and export</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -1057,12 +1109,12 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h2>Courses, references and agents for mechanics</h2></summary>
-<p id="open-courses-references-and-agents-for-mechanics"><sub><b>Courses, references and agents for mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="courses-references-and-agents-for-mechanics"></a><h2>16. Courses, references and agents for mechanics</h2></summary>
+<p id="open-courses-references-and-agents-for-mechanics"><sub><b>16. Courses, references and agents for mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 <details>
-<summary><h3>Courses and tutorials</h3></summary>
-<p id="open-courses-references-and-agents-for-mechanics--courses-and-tutorials"><sub>Courses, references and agents for mechanics › <b>Courses and tutorials</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="courses-and-tutorials"></a><h3>16.1 Courses and tutorials</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--courses-and-tutorials"><sub>Courses, references and agents for mechanics › <b>16.1 Courses and tutorials</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -1078,8 +1130,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Curated lists</h3></summary>
-<p id="open-courses-references-and-agents-for-mechanics--curated-lists"><sub>Courses, references and agents for mechanics › <b>Curated lists</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="curated-lists"></a><h3>16.2 Curated lists</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--curated-lists"><sub>Courses, references and agents for mechanics › <b>16.2 Curated lists</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |
@@ -1092,8 +1144,8 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 </details>
 
 <details>
-<summary><h3>Agents for mechanics</h3></summary>
-<p id="open-courses-references-and-agents-for-mechanics--agents-for-mechanics"><sub>Courses, references and agents for mechanics › <b>Agents for mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
+<summary><a id="agents-for-mechanics"></a><h3>16.3 Agents for mechanics</h3></summary>
+<p id="open-courses-references-and-agents-for-mechanics--agents-for-mechanics"><sub>Courses, references and agents for mechanics › <b>16.3 Agents for mechanics</b> · <a href="#contents">Back to contents</a></sub></p>
 
 | Name | Descriptions | Languages | License | Note |
 | --- | --- | --- | --- | --- |

@@ -233,14 +233,22 @@ def link(text, topic, subtopic=None):
     return f"[{text}](#user-content-{target(topic, subtopic)})"
 
 
-def section(body, topic, subtopic=None):
+def plain_heading_id(title):
+    # GitHub's ID for a heading without its number. Unlike anchor(), it drops characters such as "²".
+    return re.sub(r"[^a-z0-9_ -]", "", title.lower()).replace(" ", "-")
+
+
+def section(body, number, topic, subtopic=None):
     # GitHub opens collapsed sections, and all their parents, only when a link uses the full
     # "user-content-" ID and its target is inside <details> but outside <summary>.
     # The target repeats the title because the heading scrolls under GitHub's sticky bar.
     # The blank lines are required for GitHub to render the Markdown inside.
-    heading = f"<h3>{subtopic}</h3>" if subtopic else f"<h2>{topic}</h2>"
-    title = f"{topic} › <b>{subtopic}</b>" if subtopic else f"<b>{topic}</b>"
-    return ["<details>", f"<summary>{heading}</summary>",
+    # Numbers follow the order of TOPICS and are left out of IDs, so renumbering does not break links.
+    # The empty anchor gives each heading an ID without its number.
+    name = subtopic or topic
+    heading = f"<h3>{number} {subtopic}</h3>" if subtopic else f"<h2>{number}. {topic}</h2>"
+    title = f"{topic} › <b>{number} {subtopic}</b>" if subtopic else f"<b>{number}. {topic}</b>"
+    return ["<details>", f'<summary><a id="{plain_heading_id(name)}"></a>{heading}</summary>',
             f'<p id="{target(topic, subtopic)}"><sub>{title} · '
             '<a href="#contents">Back to contents</a></sub></p>',
             "", *body, "", "</details>", ""]
@@ -300,15 +308,19 @@ def render(entries):
         "in the places checked, so do not assume you may reuse that code. Public does not always mean open source.",
         "", "## Contents", "",
     ]
-    for topic, size, groups in topics:
-        out += [f"- {link(topic, topic)} ({size})",
-                "  - " + " · ".join(f"{link(sub, topic, sub)} ({len(group)})" for sub, group in groups)]
-    out += ["- [Contributing](#contributing)", ""]
-    for topic, _, groups in topics:
+    for number, (topic, size, groups) in enumerate(topics, 1):
+        marker = f"{number}. "
+        lines = [f"{link(topic, topic)} ({size})"]
+        lines += [f"{number}.{minor} {link(sub, topic, sub)} ({len(group)})"
+                  for minor, (sub, group) in enumerate(groups, 1)]
+        # <br> keeps the sub-topics in their topic's list item: Markdown lists cannot number 1.1, 1.2.
+        out.append(marker + ("<br>\n" + " " * len(marker)).join(lines))
+    out += ["", "[Contributing](#contributing)", ""]
+    for number, (topic, _, groups) in enumerate(topics, 1):
         body = [INTROS[topic], ""] if topic in INTROS else []
-        for sub, group in groups:
-            body += section(table(group), topic, sub)
-        out += section(body[:-1], topic)
+        for minor, (sub, group) in enumerate(groups, 1):
+            body += section(table(group), f"{number}.{minor}", topic, sub)
+        out += section(body[:-1], number, topic)
     out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md)."]
     archive = [
         "# Archived and unmaintained", "",
