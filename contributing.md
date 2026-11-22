@@ -3,6 +3,8 @@
 ## What belongs here
 
 - A public repository that is directly useful for computational mechanics: solid or structural mechanics, soft bodies, biomechanics, particle methods, or machine learning applied to them.
+- Computational fluid dynamics that works with machine learning: differentiable solvers built for learning, learned closures and corrections, solver acceleration, coupling tools, flow control and agents. Not general CFD codes. Models that replace the solver go under surrogates.
+- Classical machine learning, deep learning and large language models used with simulation in mechanics or fluids, including surrogates, equation discovery, agents, tool servers, datasets and benchmarks.
 - General-purpose tools that computational mechanics work builds on, such as solvers, meshing, visualization, simulation languages and physics-informed learning libraries.
 - Material that helps make or judge a simulation: reference texts, verification cases, benchmarks, measured data, and calibration or uncertainty tools. Say in `note` when results could be mistaken for measured data or independent reference solutions.
 - A README or code that shows what it does.

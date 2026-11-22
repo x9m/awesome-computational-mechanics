@@ -5,7 +5,8 @@
 - [10.1 FFT-based homogenization](#fft-based-homogenization) (3)
 - [10.2 FE² and computational homogenization](#fe2-and-computational-homogenization) (3)
 - [10.3 Inverse homogenization](#inverse-homogenization) (1)
-- [10.4 Crystal plasticity](#crystal-plasticity) (5)
+- [10.4 Machine learning for multiscale simulation](#machine-learning-for-multiscale-simulation) (3)
+- [10.5 Crystal plasticity](#crystal-plasticity) (5)
 
 ## <a id="fft-based-homogenization"></a>10.1 FFT-based homogenization
 
@@ -29,7 +30,15 @@
 | --- | --- | --- |
 | [lavenklau/<br>homo3d](https://github.com/lavenklau/homo3d)<br><sub>C++ and CUDA</sub><br><sub>GPL-2.0</sub> | GPU solver for large-scale inverse homogenization. | Requires an NVIDIA GPU; README says the main branch is being refactored. |
 
-## <a id="crystal-plasticity"></a>10.4 Crystal plasticity
+## <a id="machine-learning-for-multiscale-simulation"></a>10.4 Machine learning for multiscale simulation
+
+| Name, language and license | Description | Note |
+| --- | --- | --- |
+| [bessagroup/<br>CRATE](https://github.com/bessagroup/CRATE)<br><sub>Python</sub><br><sub>BSD-3-Clause</sub> | Clustering-based reduced-order homogenization of nonlinear heterogeneous materials. |  |
+| [HamidrezaEiv/<br>FE2-Computations-<br>With-Deep-Neural-<br>Networks](https://github.com/HamidrezaEiv/FE2-Computations-With-Deep-Neural-Networks)<br><sub>Fortran and Python</sub><br><sub>none found, with LGPL Forpy files</sub> | Neural network surrogates deployed inside Fortran FE² computations. | Paper code. |
+| [SLIMM-Lab/<br>pyprnn](https://github.com/SLIMM-Lab/pyprnn)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Networks with constitutive models embedded for path-dependent homogenization. |  |
+
+## <a id="crystal-plasticity"></a>10.5 Crystal plasticity
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |

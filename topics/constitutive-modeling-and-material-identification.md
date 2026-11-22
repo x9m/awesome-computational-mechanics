@@ -2,7 +2,7 @@
 
 [← Back to the main list](../README.md#contents)
 
-- [9.1 Neural network constitutive models](#neural-network-constitutive-models) (15)
+- [9.1 Neural network constitutive models](#neural-network-constitutive-models) (16)
 - [9.2 Unsupervised model discovery](#unsupervised-model-discovery) (7)
 - [9.3 Material subroutines and libraries](#material-subroutines-and-libraries) (10)
 - [9.4 Experimental parameter identification](#experimental-parameter-identification) (6)
@@ -19,6 +19,7 @@
 | [hyoungsuksuh/<br>ABAQUS_NN](https://github.com/hyoungsuksuh/ABAQUS_NN)<br><sub>Python</sub><br><sub>none found</sub> | PyTorch-to-UMAT framework for deep-learning level-set plasticity. | Requires Abaqus. |
 | [LivingMatterLab/<br>CANN](https://github.com/LivingMatterLab/CANN)<br><sub>Jupyter Notebook</sub><br><sub>none found</sub> | Constitutive artificial neural networks for automated material model discovery. |  |
 | [meghbali/<br>ANNElastoplasticity](https://github.com/meghbali/ANNElastoplasticity)<br><sub>Python</sub><br><sub>MIT</sub> | Neural network approach to elastoplastic constitutive modeling. |  |
+| [nanogchen/<br>rnn-<br>viscoelasticity](https://github.com/nanogchen/rnn-viscoelasticity)<br><sub>Python</sub><br><sub>MIT</sub> | Recurrent neural networks that learn viscoelastic constitutive laws. | Paper code. |
 | [pantale/<br>Algorithms-2023](https://github.com/pantale/Algorithms-2023)<br><sub>Fortran and Jupyter Notebook</sub><br><sub>GPL-3.0</sub> | Activation function comparison for neural flow laws in thermomechanical forming. | Requires Abaqus for the subroutines. |
 | [pantale/<br>ANN-Constitutive<br>Law](https://github.com/pantale/ANN-ConstitutiveLaw)<br><sub>Jupyter Notebook</sub><br><sub>none found</sub> | Neural network flow laws for metals, implemented as VUHARD subroutines. | Requires Abaqus/Explicit for the subroutines. |
 | [tajtac/<br>Anisotropic_NN_<br>UMAT](https://github.com/tajtac/Anisotropic_NN_UMAT)<br><sub>Jupyter Notebook and Fortran</sub><br><sub>none found</sub> | Neural network model of anisotropic soft tissue with a UMAT. | Requires Abaqus for the UMAT. |

@@ -3,8 +3,8 @@
 [← Back to the main list](../README.md#contents)
 
 - [13.1 Deep energy methods](#deep-energy-methods) (8)
-- [13.2 Residual-based networks](#residual-based-networks) (4)
-- [13.3 PINN libraries and examples](#pinn-libraries-and-examples) (2)
+- [13.2 Residual-based networks](#residual-based-networks) (6)
+- [13.3 PINN libraries and examples](#pinn-libraries-and-examples) (3)
 
 ## <a id="deep-energy-methods"></a>13.1 Deep energy methods
 
@@ -26,7 +26,9 @@
 | [JinshuaiBai/<br>LSWR_loss_<br>function_PINN](https://github.com/JinshuaiBai/LSWR_loss_function_PINN)<br><sub>Python</sub><br><sub>none found</sub> | Least squares weighted residual loss for PINN solid mechanics. |  |
 | [JinshuaiBai/<br>PINN_Comp_Mech](https://github.com/JinshuaiBai/PINN_Comp_Mech)<br><sub>Python</sub><br><sub>none found</sub> | Introductory PINN examples in solid mechanics with collocation and energy losses. |  |
 | [JinshuaiBai/<br>PIRBN](https://github.com/JinshuaiBai/PIRBN)<br><sub>Python</sub><br><sub>none found</sub> | Physics-informed radial basis networks with spring, wave and viscoelastic flow examples. |  |
+| [Neural-Mechanics-<br>Lab/<br>folax](https://github.com/Neural-Mechanics-Lab/folax)<br><sub>Python</sub><br><sub>BSD-4-Clause, with MIT files</sub> | Finite operator learning trained on discrete residuals from classical discretizations. |  |
 | [Raocp/<br>PINN-<br>elastodynamics](https://github.com/Raocp/PINN-elastodynamics)<br><sub>Python</sub><br><sub>none found</sub> | Physics-informed networks for elastodynamics without labeled data. |  |
+| [ThangLe-duc/<br>FEINN](https://github.com/ThangLe-duc/FEINN)<br><sub>MATLAB</sub><br><sub>Apache-2.0</sub> | Networks trained with a finite element residual loss for structural statics. | Written for MATLAB, Octave support not documented. |
 
 ## <a id="pinn-libraries-and-examples"></a>13.3 PINN libraries and examples
 
@@ -34,5 +36,6 @@
 | --- | --- | --- |
 | [ehsanhaghighat/<br>sciann-<br>applications](https://github.com/ehsanhaghighat/sciann-applications)<br><sub>Jupyter Notebook</sub><br><sub>MIT</sub> | SciANN examples, including elasticity, elastoplasticity, vibration and poroelasticity. | SciANN itself is unmaintained. |
 | [lululxvi/<br>deepxde](https://github.com/lululxvi/deepxde)<br><sub>Python</sub><br><sub>LGPL-2.1</sub> | Library for physics-informed learning of forward and inverse differential equation problems. |  |
+| [PINA-org/<br>PINA](https://github.com/PINA-org/PINA)<br><sub>Python</sub><br><sub>MIT</sub> | Library for physics-informed networks, neural operators and data-driven models. |  |
 
 [← Back to the main list](../README.md#contents)

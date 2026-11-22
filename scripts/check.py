@@ -79,6 +79,7 @@ TOPICS = {
         "FFT-based homogenization",
         "FE² and computational homogenization",
         "Inverse homogenization",
+        "Machine learning for multiscale simulation",
         "Crystal plasticity",
     ],
     "Thermal, multiphysics and additive manufacturing": [
@@ -100,12 +101,28 @@ TOPICS = {
     "Surrogates and reduced-order models": [
         "Stress-field prediction",
         "Deformation and reduced dynamics",
+        "Classical machine learning and equation discovery",
         "Projection-based model reduction",
         "Graph neural networks",
         "Biomechanical surrogates",
         "Response histories and operator learning",
         "Frameworks and introductory studies",
         "Benchmark datasets",
+    ],
+    "Hybrid AI and numerical solvers": [
+        "Learned preconditioners and iterative solvers",
+        "Finite element and neural network hybrids",
+        "Connecting machine learning to solvers",
+        "Neural subspaces inside simulators",
+        "Learned physics inside simulators",
+        "Learned meshing and coarsening",
+    ],
+    "Hybrid AI and computational fluid dynamics": [
+        "Differentiable CFD for machine learning",
+        "Learned turbulence closures",
+        "Learned correction and acceleration",
+        "Connecting machine learning to CFD codes",
+        "Reinforcement learning with flow solvers",
     ],
     "Meshing, pre- and post-processing": [
         "Mesh generation",
@@ -134,6 +151,10 @@ TOPICS = {
         "Reproducible research software",
         "Curated lists",
         "Agents for mechanics",
+        "Agents for fluid dynamics",
+        "Tool servers for simulation software",
+        "Language models for material and solver code",
+        "Language model benchmarks and datasets",
     ],
 }
 FIELDS = {"url", "category", "subtopic", "description", "language", "license", "note", "status", "maintainer"}
@@ -154,6 +175,8 @@ DISPLAY_NAMES = {
         "KratosMultiphysics/Examples (structural)",
     "https://github.com/KratosMultiphysics/Examples/tree/master/contact_structural_mechanics/validation":
         "KratosMultiphysics/Examples (contact)",
+    "https://github.com/NVIDIAGameWorks/kaolin/tree/master/kaolin/physics/simplicits":
+        "NVIDIAGameWorks/kaolin (Simplicits)",
 }
 # Former titles of sub-topics, whose links must keep working.
 FORMER_TITLES = {
@@ -195,6 +218,37 @@ INTROS = {
         "Some links open the relevant file inside a larger project. DTU's MATLAB TopTMC code is not in a "
         "repository and can be downloaded from the [TopOpt software page]"
         "(https://www.topopt.mek.dtu.dk/apps-and-software).",
+    "Hybrid AI and numerical solvers":
+        "Here machine learning works with a classical solver: it speeds up a solve, supplies part of the model, "
+        "shares the domain or shapes the discretization. This topic also has the tools that connect the two.\n\n"
+        "Models that mostly replace the solver are under "
+        "[surrogates](surrogates-and-reduced-order-models.md), networks trained on governing equations under "
+        "[physics-informed learning](physics-informed-learning-and-energy-methods.md) and standalone material models "
+        "under [constitutive modeling](constitutive-modeling-and-material-identification.md).\n\n"
+        "Check where the network acts. If it only preconditions or provides an initial guess, the solver's residual "
+        "can still control the algebraic error. If it changes the equations, the material law or the solution space, "
+        "it changes the answer, so validate it outside the training data.\n\n"
+        "For fluids, see [hybrid AI and CFD](hybrid-ai-and-computational-fluid-dynamics.md).",
+    "Hybrid AI and computational fluid dynamics":
+        "Here machine learning works with flow solvers: it learns closures and corrections, speeds up solves or "
+        "controls flows. Differentiable solvers and coupling tools built for this are included. General CFD codes "
+        "are not. Models that mostly replace the solver, and datasets to train them, are under "
+        "[surrogates](surrogates-and-reduced-order-models.md).\n\n"
+        "Test learned closures inside the solver. A model can fit high-fidelity data well and still be inaccurate or "
+        "unstable once coupled, and may not carry over to other geometries, Reynolds numbers or meshes.\n\n"
+        "Further reading: [Duraisamy et al. (2019)](https://doi.org/10.1146/annurev-fluid-010518-040547) on "
+        "turbulence modeling with data, and "
+        "[Agdestein and Sanderse (2025)](https://doi.org/10.1016/j.jcp.2024.113577) on closures that match the "
+        "discretization.",
+    "Courses, references and agents for mechanics":
+        "Besides learning material, this topic covers large language models (LLMs) that set up, run or write "
+        "simulations, and benchmarks that test them.\n\n"
+        "A simulation that runs can still solve the wrong physics "
+        "([Song et al., 2026](https://arxiv.org/abs/2605.09360), preprint), so check equations, units, boundary "
+        "conditions and convergence yourself. Agents and tool servers can also execute arbitrary code "
+        "([MCP specification](https://modelcontextprotocol.io/specification/2025-06-18)), so isolate them from files, "
+        "credentials and license servers they don't need, and don't send confidential models to a hosted LLM without "
+        "permission.",
     "Linear, eigenvalue and nonlinear solvers":
         "The right solver depends on the structure of the discrete problem.\n\n"
         "- **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, "
@@ -426,8 +480,8 @@ def render(entries):
             topics.append((topic, sum(len(group) for _, group in groups), groups))
     out = [
         "# Awesome Computational Mechanics", "",
-        f"**{len(listed)} entries for computational mechanics, from finite elements and soft tissue to solvers "
-        "and validation**, with licenses, commercial-software requirements and known usage restrictions noted.", "",
+        f"**{len(listed)} entries for computational mechanics, from finite elements and soft tissue to AI-coupled "
+        "CFD, LLM agents, solvers and validation**, with licenses, commercial-software requirements and known usage restrictions noted.", "",
         *BANNER, "",
         "## Start here", "",
         "| I want to | Start with | Then browse |",
