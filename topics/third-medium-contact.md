@@ -6,14 +6,14 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 
 - [5.1 Modules and examples in FEM libraries](#modules-and-examples-in-fem-libraries) (7)
 - [5.2 Optimization and metamaterials](#optimization-and-metamaterials) (4)
-- [5.3 Standalone study codes](#standalone-study-codes) (2)
+- [5.3 Standalone study codes](#standalone-study-codes) (1)
 
 ## <a id="modules-and-examples-in-fem-libraries"></a>5.1 Modules and examples in FEM libraries
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
 | [adtzlr/<br>felupe](https://github.com/adtzlr/felupe/blob/main/examples/ex20_third-medium-contact.py)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Third medium contact example in the FElupe nonlinear finite element package. |  |
-| [deepmodeling/<br>jax-fem](https://github.com/deepmodeling/jax-fem/tree/main/applications/third_medium_contact)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Third medium contact application in JAX-FEM. |  |
+| [deepmodeling/<br>jax-fem](https://github.com/deepmodeling/jax-fem/tree/main/applications/third_medium_contact)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Third medium contact application in JAX-FEM. | README asks commercial users to contact the author. |
 | [fenics-dolfiny/<br>dolfiny](https://github.com/fenics-dolfiny/dolfiny/tree/main/demo/tmc)<br><sub>Python</sub><br><sub>LGPL-3.0</sub> | Third medium contact demo built on FEniCSx. |  |
 | [idaholab/<br>moose](https://github.com/idaholab/moose/blob/next/modules/solid_mechanics/doc/content/source/kernels/SecondDerivativeRegularization.md)<br><sub>C++</sub><br><sub>LGPL-2.1</sub> | HuHu, LuLu and HuHu-LuLu regularization kernels for solid mechanics. | Regularization component, not a complete contact example. |
 | [meyer-nils/<br>torch-fem](https://github.com/meyer-nils/torch-fem/blob/main/examples/basic/planar/third_medium_contact.ipynb)<br><sub>Python</sub><br><sub>MIT</sub> | Third medium contact example in a differentiable PyTorch finite element solver. |  |
@@ -33,7 +33,6 @@ Third medium contact (TMC) models contact by meshing the gap with a very complia
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
-| [chennachaos/<br>FEniCSx-TMC](https://github.com/chennachaos/FEniCSx-TMC)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Attempt at third medium contact in FEniCSx. | Author reports it did not work for the paper's parameters. |
 | [MechEngrLorenzo<br>Fiore/<br>FEA_studies](https://github.com/MechEngrLorenzoFiore/FEA_studies/tree/main/Third_medium_contact)<br><sub>Python</sub><br><sub>MIT</sub> | Study script based on the 2024 paper by Faltus, Horak, Doskar and Rokos. | Learning project. |
 
 [← Back to the main list](../README.md#contents)

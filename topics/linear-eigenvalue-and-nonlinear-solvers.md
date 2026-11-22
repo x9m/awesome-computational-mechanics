@@ -1,26 +1,26 @@
-# 18. Linear, eigenvalue and nonlinear solvers
+# 19. Linear, eigenvalue and nonlinear solvers
 
 [← Back to the main list](../README.md#contents)
 
 The right solver depends on the structure of the discrete problem.
 
 - **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, or conjugate gradients with a preconditioner. For smoothed-aggregation multigrid, supply the rigid body modes.
-- **Symmetric indefinite**, as in mixed formulations and frictionless Lagrange multiplier contact: use an LDLᵀ factorization, MINRES with a positive definite preconditioner, or GMRES with a block preconditioner.
+- **Symmetric indefinite**, as in mixed formulations and frictionless Lagrange multiplier contact: use an LDLᵀ factorization, MINRES with a symmetric positive definite preconditioner, or GMRES with a block preconditioner.
 - **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB with a preconditioner.
 - **Snap-through and buckling**: the tangent becomes singular. Arc-length continuation can pass a limit point, where load-controlled Newton fails. Following a buckled branch from a bifurcation also needs an imperfection or branch switching.
 - **Any system**: a small residual does not guarantee a small error when the matrix is ill-conditioned.
 
 Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076) on direct methods, [Saad (2003)](https://doi.org/10.1137/1.9780898718003) on iterative methods, [Benzi et al. (2005)](https://doi.org/10.1017/S0962492904000212) on saddle point problems and [Higham (2002)](https://doi.org/10.1137/1.9780898718027) on accuracy and stability.
 
-- [18.1 Solver toolkits](#solver-toolkits) (4)
-- [18.2 Dense linear algebra](#dense-linear-algebra) (4)
-- [18.3 Sparse direct solvers](#sparse-direct-solvers) (6)
-- [18.4 Iterative solvers and preconditioners](#iterative-solvers-and-preconditioners) (8)
-- [18.5 Nonlinear solvers, time integration and continuation](#nonlinear-solvers-time-integration-and-continuation) (5)
-- [18.6 Eigenvalue solvers](#eigenvalue-solvers) (4)
-- [18.7 Matrix-free operators and partitioning](#matrix-free-operators-and-partitioning) (4)
+- [19.1 Solver toolkits](#solver-toolkits) (4)
+- [19.2 Dense linear algebra](#dense-linear-algebra) (4)
+- [19.3 Sparse direct solvers](#sparse-direct-solvers) (6)
+- [19.4 Iterative solvers and preconditioners](#iterative-solvers-and-preconditioners) (8)
+- [19.5 Nonlinear solvers, time integration and continuation](#nonlinear-solvers-time-integration-and-continuation) (5)
+- [19.6 Eigenvalue solvers](#eigenvalue-solvers) (4)
+- [19.7 Matrix-free operators and partitioning](#matrix-free-operators-and-partitioning) (4)
 
-## <a id="solver-toolkits"></a>18.1 Solver toolkits
+## <a id="solver-toolkits"></a>19.1 Solver toolkits
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076
 | [polyfem/<br>polysolve](https://github.com/polyfem/polysolve)<br><sub>C++</sub><br><sub>MIT</sub> | Common interface to external linear solvers, with its own nonlinear solvers. |  |
 | [trilinos/<br>Trilinos](https://github.com/trilinos/Trilinos)<br><sub>C++</sub><br><sub>BSD and (L)GPL, by package</sub> | Collection of packages for large-scale solvers, discretization and optimization. |  |
 
-## <a id="dense-linear-algebra"></a>18.2 Dense linear algebra
+## <a id="dense-linear-algebra"></a>19.2 Dense linear algebra
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
@@ -38,7 +38,7 @@ Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076
 | [OpenMathLib/<br>OpenBLAS](https://github.com/OpenMathLib/OpenBLAS)<br><sub>C</sub><br><sub>BSD-3-Clause</sub> | Optimized implementation of the BLAS kernels used by many solvers. |  |
 | [Reference-LAPACK/<br>lapack](https://github.com/Reference-LAPACK/lapack)<br><sub>Fortran</sub><br><sub>BSD-3-Clause</sub> | Reference routines for linear systems, least squares and eigenvalue problems. |  |
 
-## <a id="sparse-direct-solvers"></a>18.3 Sparse direct solvers
+## <a id="sparse-direct-solvers"></a>19.3 Sparse direct solvers
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
@@ -49,7 +49,7 @@ Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076
 | [xiaoyeli/<br>superlu](https://github.com/xiaoyeli/superlu)<br><sub>C</sub><br><sub>BSD-3-Clause, with restricted MC64 code</sub> | Sequential supernodal LU factorization for sparse nonsymmetric systems. | Bundled MC64 may not be passed to third parties without its authors' consent. |
 | [xiaoyeli/<br>superlu_dist](https://github.com/xiaoyeli/superlu_dist)<br><sub>C</sub><br><sub>BSD-3-Clause, with restricted MC64 code</sub> | Distributed-memory sparse LU factorization with static pivoting. | Bundled MC64 may not be passed to third parties without its authors' consent. |
 
-## <a id="iterative-solvers-and-preconditioners"></a>18.4 Iterative solvers and preconditioners
+## <a id="iterative-solvers-and-preconditioners"></a>19.4 Iterative solvers and preconditioners
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
@@ -62,7 +62,7 @@ Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076
 | [NVIDIA/<br>AMGX](https://github.com/NVIDIA/AMGX)<br><sub>C++ and CUDA</sub><br><sub>BSD-3-Clause, with Apache-2.0 CUSP</sub> | Distributed algebraic multigrid and Krylov solvers for GPUs. | Requires CUDA. |
 | [pyamg/<br>pyamg](https://github.com/pyamg/pyamg)<br><sub>Python</sub><br><sub>MIT</sub> | Algebraic multigrid solvers in Python. |  |
 
-## <a id="nonlinear-solvers-time-integration-and-continuation"></a>18.5 Nonlinear solvers, time integration and continuation
+## <a id="nonlinear-solvers-time-integration-and-continuation"></a>19.5 Nonlinear solvers, time integration and continuation
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076
 | [pprachas/<br>fenics_arclength](https://github.com/pprachas/fenics_arclength)<br><sub>Python</sub><br><sub>MIT</sub> | Riks arc-length solver for tracing unstable equilibrium paths in FEniCS. | Requires legacy FEniCS 2019.1, not FEniCSx. |
 | [SciML/<br>NonlinearSolve.jl](https://github.com/SciML/NonlinearSolve.jl)<br><sub>Julia</sub><br><sub>MIT</sub> | Newton-type and other root-finding methods for nonlinear systems. |  |
 
-## <a id="eigenvalue-solvers"></a>18.6 Eigenvalue solvers
+## <a id="eigenvalue-solvers"></a>19.6 Eigenvalue solvers
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
@@ -81,7 +81,7 @@ Further reading: [Davis et al. (2016)](https://doi.org/10.1017/S0962492916000076
 | [slepc/<br>slepc](https://gitlab.com/slepc/slepc)<br><sub>C</sub><br><sub>BSD-2-Clause</sub> | Parallel solvers for large sparse eigenvalue problems, built on PETSc. |  |
 | [yixuan/<br>spectra](https://github.com/yixuan/spectra)<br><sub>C++</sub><br><sub>MPL-2.0</sub> | Header-only C++ library for computing a few eigenvalues of large matrices. |  |
 
-## <a id="matrix-free-operators-and-partitioning"></a>18.7 Matrix-free operators and partitioning
+## <a id="matrix-free-operators-and-partitioning"></a>19.7 Matrix-free operators and partitioning
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |

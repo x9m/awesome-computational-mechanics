@@ -1,6 +1,6 @@
-# Awesome Computational Mechanics
+# Awesome Computational Mechanics and AI
 
-**547 entries for computational mechanics, from finite elements and soft tissue to AI-coupled CFD, LLM agents, solvers and validation**, with licenses, commercial-software requirements and known usage restrictions noted.
+**543 entries for computational mechanics, from finite elements and soft tissue to AI-coupled CFD, LLM agents, solvers and validation**, with licenses, commercial-software requirements and known usage restrictions noted.
 
 <p align="center">
 <img src="assets/banner.png" width="420" alt="A soft cube with circular cuts at 0, 25 and 50 mm of stretch, colored by displacement">
@@ -19,6 +19,7 @@
 | Learn material laws from data | [EUCLID](https://github.com/EUCLID-code/EUCLID-hyperelasticity) | [Unsupervised model discovery](topics/constitutive-modeling-and-material-identification.md#unsupervised-model-discovery) |
 | Try virtual elements | [50 lines of VEM](https://github.com/oliversutton/50LinesOfVEM) | [Virtual element method](topics/virtual-element-method.md) |
 | Solve large systems | [PETSc](https://gitlab.com/petsc/petsc) | [Linear, eigenvalue and nonlinear solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md) |
+| Combine AI with CFD | [TU Dresden course](https://github.com/AndreWeiner/ml-cfd-lecture) | [Hybrid AI and computational fluid dynamics](topics/hybrid-ai-and-computational-fluid-dynamics.md) |
 | Verify and validate a model | [SimEval](https://github.com/OSEL-DAM/SimEval) | [Verification, validation and uncertainty](topics/verification-validation-and-uncertainty.md) |
 
 ## Contents
@@ -27,7 +28,7 @@
 2. [Finite volume methods](topics/finite-volume-methods.md) (1)
 3. [Virtual element method](topics/virtual-element-method.md) (30)
 4. [Contact mechanics](topics/contact-mechanics.md) (9)
-5. [Third medium contact](topics/third-medium-contact.md) (13)
+5. [Third medium contact](topics/third-medium-contact.md) (12)
 6. [Meshfree and particle methods](topics/meshfree-and-particle-methods.md) (28)
 7. [Soft-body, real-time and differentiable simulation](topics/soft-body-real-time-and-differentiable-simulation.md) (26)
 8. [Multibody dynamics and biomechanics](topics/multibody-dynamics-and-biomechanics.md) (10)
@@ -39,10 +40,11 @@
 14. [Surrogates and reduced-order models](topics/surrogates-and-reduced-order-models.md) (50)
 15. [Hybrid AI and numerical solvers](topics/hybrid-ai-and-numerical-solvers.md) (30)
 16. [Hybrid AI and computational fluid dynamics](topics/hybrid-ai-and-computational-fluid-dynamics.md) (31)
-17. [Meshing, pre- and post-processing](topics/meshing-pre--and-post-processing.md) (23)
-18. [Linear, eigenvalue and nonlinear solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md) (35)
-19. [Verification, validation and uncertainty](topics/verification-validation-and-uncertainty.md) (33)
-20. [Courses, references and agents for mechanics](topics/courses-references-and-agents-for-mechanics.md) (51)
+17. [LLMs and simulation agents](topics/llms-and-simulation-agents.md) (22)
+18. [Meshing, pre- and post-processing](topics/meshing-pre--and-post-processing.md) (20)
+19. [Linear, eigenvalue and nonlinear solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md) (35)
+20. [Verification, validation and uncertainty](topics/verification-validation-and-uncertainty.md) (33)
+21. [Courses and references](topics/courses-references-and-agents-for-mechanics.md) (29)
 
 <details>
 <summary>All 98 sub-topics</summary>
@@ -70,10 +72,10 @@
 4. <a id="contact-mechanics"></a><a id="open-contact-mechanics"></a>[Contact mechanics](topics/contact-mechanics.md) (9)<br>
    4.1 <a id="contact-formulations"></a><a id="open-contact-mechanics--contact-formulations"></a>[Contact formulations](topics/contact-mechanics.md#contact-formulations) (4)<br>
    4.2 <a id="incremental-potential-contact"></a><a id="open-contact-mechanics--incremental-potential-contact"></a>[Incremental potential contact](topics/contact-mechanics.md#incremental-potential-contact) (5)
-5. <a id="third-medium-contact"></a><a id="open-third-medium-contact"></a>[Third medium contact](topics/third-medium-contact.md) (13)<br>
+5. <a id="third-medium-contact"></a><a id="open-third-medium-contact"></a>[Third medium contact](topics/third-medium-contact.md) (12)<br>
    5.1 <a id="modules-and-examples-in-fem-libraries"></a><a id="open-third-medium-contact--modules-and-examples-in-fem-libraries"></a>[Modules and examples in FEM libraries](topics/third-medium-contact.md#modules-and-examples-in-fem-libraries) (7)<br>
    5.2 <a id="optimization-and-metamaterials"></a><a id="open-third-medium-contact--optimization-and-metamaterials"></a>[Optimization and metamaterials](topics/third-medium-contact.md#optimization-and-metamaterials) (4)<br>
-   5.3 <a id="standalone-study-codes"></a><a id="open-third-medium-contact--standalone-study-codes"></a>[Standalone study codes](topics/third-medium-contact.md#standalone-study-codes) (2)
+   5.3 <a id="standalone-study-codes"></a><a id="open-third-medium-contact--standalone-study-codes"></a>[Standalone study codes](topics/third-medium-contact.md#standalone-study-codes) (1)
 6. <a id="meshfree-and-particle-methods"></a><a id="open-meshfree-and-particle-methods"></a>[Meshfree and particle methods](topics/meshfree-and-particle-methods.md) (28)<br>
    6.1 <a id="material-point-method"></a><a id="open-meshfree-and-particle-methods--material-point-method"></a>[Material point method](topics/meshfree-and-particle-methods.md#material-point-method) (11)<br>
    6.2 <a id="smoothed-particle-hydrodynamics"></a><a id="open-meshfree-and-particle-methods--smoothed-particle-hydrodynamics"></a>[Smoothed particle hydrodynamics](topics/meshfree-and-particle-methods.md#smoothed-particle-hydrodynamics) (4)<br>
@@ -137,34 +139,35 @@
     16.3 <a id="learned-correction-and-acceleration"></a><a id="open-hybrid-ai-and-computational-fluid-dynamics--learned-correction-and-acceleration"></a>[Learned correction and acceleration](topics/hybrid-ai-and-computational-fluid-dynamics.md#learned-correction-and-acceleration) (6)<br>
     16.4 <a id="connecting-machine-learning-to-cfd-codes"></a><a id="open-hybrid-ai-and-computational-fluid-dynamics--connecting-machine-learning-to-cfd-codes"></a>[Connecting machine learning to CFD codes](topics/hybrid-ai-and-computational-fluid-dynamics.md#connecting-machine-learning-to-cfd-codes) (5)<br>
     16.5 <a id="reinforcement-learning-with-flow-solvers"></a><a id="open-hybrid-ai-and-computational-fluid-dynamics--reinforcement-learning-with-flow-solvers"></a>[Reinforcement learning with flow solvers](topics/hybrid-ai-and-computational-fluid-dynamics.md#reinforcement-learning-with-flow-solvers) (4)
-17. <a id="meshing-pre--and-post-processing"></a><a id="open-meshing-pre--and-post-processing"></a>[Meshing, pre- and post-processing](topics/meshing-pre--and-post-processing.md) (23)<br>
-    17.1 <a id="mesh-generation"></a><a id="open-meshing-pre--and-post-processing--mesh-generation"></a>[Mesh generation](topics/meshing-pre--and-post-processing.md#mesh-generation) (13)<br>
-    17.2 <a id="mesh-processing-and-formats"></a><a id="open-meshing-pre--and-post-processing--mesh-processing-and-formats"></a>[Mesh processing and formats](topics/meshing-pre--and-post-processing.md#mesh-processing-and-formats) (5)<br>
-    17.3 <a id="visualization-and-export"></a><a id="open-meshing-pre--and-post-processing--visualization-and-export"></a>[Visualization and export](topics/meshing-pre--and-post-processing.md#visualization-and-export) (5)
-18. <a id="linear-eigenvalue-and-nonlinear-solvers"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers"></a>[Linear, eigenvalue and nonlinear solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md) (35)<br>
-    18.1 <a id="solver-toolkits"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--solver-toolkits"></a>[Solver toolkits](topics/linear-eigenvalue-and-nonlinear-solvers.md#solver-toolkits) (4)<br>
-    18.2 <a id="dense-linear-algebra"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--dense-linear-algebra"></a>[Dense linear algebra](topics/linear-eigenvalue-and-nonlinear-solvers.md#dense-linear-algebra) (4)<br>
-    18.3 <a id="sparse-direct-solvers"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--sparse-direct-solvers"></a>[Sparse direct solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md#sparse-direct-solvers) (6)<br>
-    18.4 <a id="iterative-solvers-and-preconditioners"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--iterative-solvers-and-preconditioners"></a>[Iterative solvers and preconditioners](topics/linear-eigenvalue-and-nonlinear-solvers.md#iterative-solvers-and-preconditioners) (8)<br>
-    18.5 <a id="nonlinear-solvers-time-integration-and-continuation"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--nonlinear-solvers-time-integration-and-continuation"></a>[Nonlinear solvers, time integration and continuation](topics/linear-eigenvalue-and-nonlinear-solvers.md#nonlinear-solvers-time-integration-and-continuation) (5)<br>
-    18.6 <a id="eigenvalue-solvers"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--eigenvalue-solvers"></a>[Eigenvalue solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md#eigenvalue-solvers) (4)<br>
-    18.7 <a id="matrix-free-operators-and-partitioning"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--matrix-free-operators-and-partitioning"></a>[Matrix-free operators and partitioning](topics/linear-eigenvalue-and-nonlinear-solvers.md#matrix-free-operators-and-partitioning) (4)
-19. <a id="verification-validation-and-uncertainty"></a><a id="open-verification-validation-and-uncertainty"></a>[Verification, validation and uncertainty](topics/verification-validation-and-uncertainty.md) (33)<br>
-    19.1 <a id="code-and-solution-verification"></a><a id="open-verification-validation-and-uncertainty--code-and-solution-verification"></a>[Code and solution verification](topics/verification-validation-and-uncertainty.md#code-and-solution-verification) (4)<br>
-    19.2 <a id="benchmarks-and-reference-solutions"></a><a id="open-verification-validation-and-uncertainty--benchmarks-and-reference-solutions"></a>[Benchmarks and reference solutions](topics/verification-validation-and-uncertainty.md#benchmarks-and-reference-solutions) (8)<br>
-    19.3 <a id="experimental-data-for-validation"></a><a id="open-verification-validation-and-uncertainty--experimental-data-for-validation"></a>[Experimental data for validation](topics/verification-validation-and-uncertainty.md#experimental-data-for-validation) (4)<br>
-    19.4 <a id="calibration-and-bayesian-inference"></a><a id="open-verification-validation-and-uncertainty--calibration-and-bayesian-inference"></a>[Calibration and Bayesian inference](topics/verification-validation-and-uncertainty.md#calibration-and-bayesian-inference) (4)<br>
-    19.5 <a id="uncertainty-and-sensitivity-analysis"></a><a id="open-verification-validation-and-uncertainty--uncertainty-and-sensitivity-analysis"></a>[Uncertainty and sensitivity analysis](topics/verification-validation-and-uncertainty.md#uncertainty-and-sensitivity-analysis) (13)
-20. <a id="courses-references-and-agents-for-mechanics"></a><a id="open-courses-references-and-agents-for-mechanics"></a>[Courses, references and agents for mechanics](topics/courses-references-and-agents-for-mechanics.md) (51)<br>
-    20.1 <a id="courses-and-tutorials"></a><a id="open-courses-references-and-agents-for-mechanics--courses-and-tutorials"></a><a id="textbooks-and-numerical-tutorials"></a><a id="open-courses-references-and-agents-for-mechanics--textbooks-and-numerical-tutorials"></a>[Courses and tutorials](topics/courses-references-and-agents-for-mechanics.md#courses-and-tutorials) (17)<br>
-    20.2 <a id="element-definitions-and-form-languages"></a><a id="open-courses-references-and-agents-for-mechanics--element-definitions-and-form-languages"></a>[Element definitions and form languages](topics/courses-references-and-agents-for-mechanics.md#element-definitions-and-form-languages) (5)<br>
-    20.3 <a id="reproducible-research-software"></a><a id="open-courses-references-and-agents-for-mechanics--reproducible-research-software"></a>[Reproducible research software](topics/courses-references-and-agents-for-mechanics.md#reproducible-research-software) (2)<br>
-    20.4 <a id="curated-lists"></a><a id="open-courses-references-and-agents-for-mechanics--curated-lists"></a>[Curated lists](topics/courses-references-and-agents-for-mechanics.md#curated-lists) (5)<br>
-    20.5 <a id="agents-for-mechanics"></a><a id="open-courses-references-and-agents-for-mechanics--agents-for-mechanics"></a>[Agents for mechanics](topics/courses-references-and-agents-for-mechanics.md#agents-for-mechanics) (8)<br>
-    20.6 <a id="agents-for-fluid-dynamics"></a><a id="open-courses-references-and-agents-for-mechanics--agents-for-fluid-dynamics"></a>[Agents for fluid dynamics](topics/courses-references-and-agents-for-mechanics.md#agents-for-fluid-dynamics) (3)<br>
-    20.7 <a id="tool-servers-for-simulation-software"></a><a id="open-courses-references-and-agents-for-mechanics--tool-servers-for-simulation-software"></a>[Tool servers for simulation software](topics/courses-references-and-agents-for-mechanics.md#tool-servers-for-simulation-software) (3)<br>
-    20.8 <a id="language-models-for-material-and-solver-code"></a><a id="open-courses-references-and-agents-for-mechanics--language-models-for-material-and-solver-code"></a>[Language models for material and solver code](topics/courses-references-and-agents-for-mechanics.md#language-models-for-material-and-solver-code) (4)<br>
-    20.9 <a id="language-model-benchmarks-and-datasets"></a><a id="open-courses-references-and-agents-for-mechanics--language-model-benchmarks-and-datasets"></a>[Language model benchmarks and datasets](topics/courses-references-and-agents-for-mechanics.md#language-model-benchmarks-and-datasets) (4)
+17. <a id="llms-and-simulation-agents"></a><a id="open-llms-and-simulation-agents"></a>[LLMs and simulation agents](topics/llms-and-simulation-agents.md) (22)<br>
+    17.1 <a id="agents-for-mechanics"></a><a id="open-llms-and-simulation-agents--agents-for-mechanics"></a><a id="open-courses-references-and-agents-for-mechanics--agents-for-mechanics"></a>[Agents for mechanics](topics/llms-and-simulation-agents.md#agents-for-mechanics) (8)<br>
+    17.2 <a id="agents-for-fluid-dynamics"></a><a id="open-llms-and-simulation-agents--agents-for-fluid-dynamics"></a><a id="open-courses-references-and-agents-for-mechanics--agents-for-fluid-dynamics"></a>[Agents for fluid dynamics](topics/llms-and-simulation-agents.md#agents-for-fluid-dynamics) (3)<br>
+    17.3 <a id="tool-servers-for-simulation-software"></a><a id="open-llms-and-simulation-agents--tool-servers-for-simulation-software"></a><a id="open-courses-references-and-agents-for-mechanics--tool-servers-for-simulation-software"></a>[Tool servers for simulation software](topics/llms-and-simulation-agents.md#tool-servers-for-simulation-software) (3)<br>
+    17.4 <a id="language-models-for-material-and-solver-code"></a><a id="open-llms-and-simulation-agents--language-models-for-material-and-solver-code"></a><a id="open-courses-references-and-agents-for-mechanics--language-models-for-material-and-solver-code"></a>[Language models for material and solver code](topics/llms-and-simulation-agents.md#language-models-for-material-and-solver-code) (4)<br>
+    17.5 <a id="language-model-benchmarks-and-datasets"></a><a id="open-llms-and-simulation-agents--language-model-benchmarks-and-datasets"></a><a id="open-courses-references-and-agents-for-mechanics--language-model-benchmarks-and-datasets"></a>[Language model benchmarks and datasets](topics/llms-and-simulation-agents.md#language-model-benchmarks-and-datasets) (4)
+18. <a id="meshing-pre--and-post-processing"></a><a id="open-meshing-pre--and-post-processing"></a>[Meshing, pre- and post-processing](topics/meshing-pre--and-post-processing.md) (20)<br>
+    18.1 <a id="mesh-generation"></a><a id="open-meshing-pre--and-post-processing--mesh-generation"></a>[Mesh generation](topics/meshing-pre--and-post-processing.md#mesh-generation) (11)<br>
+    18.2 <a id="mesh-processing-and-formats"></a><a id="open-meshing-pre--and-post-processing--mesh-processing-and-formats"></a>[Mesh processing and formats](topics/meshing-pre--and-post-processing.md#mesh-processing-and-formats) (4)<br>
+    18.3 <a id="visualization-and-export"></a><a id="open-meshing-pre--and-post-processing--visualization-and-export"></a>[Visualization and export](topics/meshing-pre--and-post-processing.md#visualization-and-export) (5)
+19. <a id="linear-eigenvalue-and-nonlinear-solvers"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers"></a>[Linear, eigenvalue and nonlinear solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md) (35)<br>
+    19.1 <a id="solver-toolkits"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--solver-toolkits"></a>[Solver toolkits](topics/linear-eigenvalue-and-nonlinear-solvers.md#solver-toolkits) (4)<br>
+    19.2 <a id="dense-linear-algebra"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--dense-linear-algebra"></a>[Dense linear algebra](topics/linear-eigenvalue-and-nonlinear-solvers.md#dense-linear-algebra) (4)<br>
+    19.3 <a id="sparse-direct-solvers"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--sparse-direct-solvers"></a>[Sparse direct solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md#sparse-direct-solvers) (6)<br>
+    19.4 <a id="iterative-solvers-and-preconditioners"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--iterative-solvers-and-preconditioners"></a>[Iterative solvers and preconditioners](topics/linear-eigenvalue-and-nonlinear-solvers.md#iterative-solvers-and-preconditioners) (8)<br>
+    19.5 <a id="nonlinear-solvers-time-integration-and-continuation"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--nonlinear-solvers-time-integration-and-continuation"></a>[Nonlinear solvers, time integration and continuation](topics/linear-eigenvalue-and-nonlinear-solvers.md#nonlinear-solvers-time-integration-and-continuation) (5)<br>
+    19.6 <a id="eigenvalue-solvers"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--eigenvalue-solvers"></a>[Eigenvalue solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md#eigenvalue-solvers) (4)<br>
+    19.7 <a id="matrix-free-operators-and-partitioning"></a><a id="open-linear-eigenvalue-and-nonlinear-solvers--matrix-free-operators-and-partitioning"></a>[Matrix-free operators and partitioning](topics/linear-eigenvalue-and-nonlinear-solvers.md#matrix-free-operators-and-partitioning) (4)
+20. <a id="verification-validation-and-uncertainty"></a><a id="open-verification-validation-and-uncertainty"></a>[Verification, validation and uncertainty](topics/verification-validation-and-uncertainty.md) (33)<br>
+    20.1 <a id="code-and-solution-verification"></a><a id="open-verification-validation-and-uncertainty--code-and-solution-verification"></a>[Code and solution verification](topics/verification-validation-and-uncertainty.md#code-and-solution-verification) (4)<br>
+    20.2 <a id="benchmarks-and-reference-solutions"></a><a id="open-verification-validation-and-uncertainty--benchmarks-and-reference-solutions"></a>[Benchmarks and reference solutions](topics/verification-validation-and-uncertainty.md#benchmarks-and-reference-solutions) (8)<br>
+    20.3 <a id="experimental-data-for-validation"></a><a id="open-verification-validation-and-uncertainty--experimental-data-for-validation"></a>[Experimental data for validation](topics/verification-validation-and-uncertainty.md#experimental-data-for-validation) (4)<br>
+    20.4 <a id="calibration-and-bayesian-inference"></a><a id="open-verification-validation-and-uncertainty--calibration-and-bayesian-inference"></a>[Calibration and Bayesian inference](topics/verification-validation-and-uncertainty.md#calibration-and-bayesian-inference) (4)<br>
+    20.5 <a id="uncertainty-and-sensitivity-analysis"></a><a id="open-verification-validation-and-uncertainty--uncertainty-and-sensitivity-analysis"></a>[Uncertainty and sensitivity analysis](topics/verification-validation-and-uncertainty.md#uncertainty-and-sensitivity-analysis) (13)
+21. <a id="courses-references-and-agents-for-mechanics"></a><a id="open-courses-references-and-agents-for-mechanics"></a>[Courses and references](topics/courses-references-and-agents-for-mechanics.md) (29)<br>
+    21.1 <a id="courses-and-tutorials"></a><a id="open-courses-references-and-agents-for-mechanics--courses-and-tutorials"></a><a id="textbooks-and-numerical-tutorials"></a><a id="open-courses-references-and-agents-for-mechanics--textbooks-and-numerical-tutorials"></a>[Courses and tutorials](topics/courses-references-and-agents-for-mechanics.md#courses-and-tutorials) (17)<br>
+    21.2 <a id="element-definitions-and-form-languages"></a><a id="open-courses-references-and-agents-for-mechanics--element-definitions-and-form-languages"></a>[Element definitions and form languages](topics/courses-references-and-agents-for-mechanics.md#element-definitions-and-form-languages) (5)<br>
+    21.3 <a id="reproducible-research-software"></a><a id="open-courses-references-and-agents-for-mechanics--reproducible-research-software"></a>[Reproducible research software](topics/courses-references-and-agents-for-mechanics.md#reproducible-research-software) (2)<br>
+    21.4 <a id="curated-lists"></a><a id="open-courses-references-and-agents-for-mechanics--curated-lists"></a>[Curated lists](topics/courses-references-and-agents-for-mechanics.md#curated-lists) (5)
 
 </details>
 

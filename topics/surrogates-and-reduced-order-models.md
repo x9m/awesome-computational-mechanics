@@ -32,7 +32,7 @@
 | [haller-group/<br>SSMLearn](https://github.com/haller-group/SSMLearn)<br><sub>MATLAB</sub><br><sub>AGPL-3.0</sub> | Data-driven reduced models of nonlinear dynamics on spectral submanifolds. | Written for MATLAB, Octave support not documented; requires SSMTool. |
 | [lawsonfulton/<br>AutoDef](https://github.com/lawsonfulton/AutoDef)<br><sub>C++</sub><br><sub>MIT</sub> | Latent-space dynamics for reduced deformable simulation. | Install script can overwrite your Keras configuration. |
 | [llnl/<br>GPLaSDI](https://github.com/llnl/GPLaSDI)<br><sub>Python</sub><br><sub>MIT</sub> | Autoencoders and Gaussian processes that learn latent dynamics of simulations. | Not specific to solid mechanics. |
-| [lrquad/<br>NNWarp](https://github.com/lrquad/NNWarp)<br><sub>C++</sub><br><sub>MIT</sub> | Neural network-based nonlinear deformable simulator. |  |
+| [lrquad/<br>NNWarp](https://github.com/lrquad/NNWarp)<br><sub>C++</sub><br><sub>MIT, excluding bundled binaries</sub> | Neural network-based nonlinear deformable simulator. | Bundled Windows binaries, including Intel and EASendMail libraries, have their own licenses. |
 | [saurabhdeshpande93/<br>convolution-<br>aggregation-<br>attention](https://github.com/saurabhdeshpande93/convolution-aggregation-attention)<br><sub>Python and Mathematica</sub><br><sub>MIT</sub> | CNN, graph and attention surrogates for nonlinear finite element simulations. | Data generation uses AceFEM. |
 | [stefaniafresca/<br>POD-DL-ROM](https://github.com/stefaniafresca/POD-DL-ROM)<br><sub>Python</sub><br><sub>none found</sub> | Deep learning reduced-order models enhanced by proper orthogonal decomposition. | README reports nonlinear elastodynamics tests; the example scripts are templates with blank settings. |
 | [vividda/<br>3D-PhysNet](https://github.com/vividda/3D-PhysNet)<br><sub>Python</sub><br><sub>none found</sub> | Learned prediction of non-rigid 3D object deformation. | Python 2.7. |
@@ -41,7 +41,7 @@
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
-| [astroautomata/<br>PySR](https://github.com/astroautomata/PySR)<br><sub>Python and Julia</sub><br><sub>Apache-2.0</sub> | Symbolic regression that searches for interpretable equations. | General-purpose. |
+| [astroautomata/<br>PySR](https://github.com/astroautomata/PySR)<br><sub>Python</sub><br><sub>Apache-2.0</sub> | Symbolic regression that searches for interpretable equations. | General-purpose. |
 | [bessagroup/<br>f3dasm](https://github.com/bessagroup/f3dasm)<br><sub>Python</sub><br><sub>BSD-3-Clause</sub> | Framework for data-driven design and analysis of structures and materials. |  |
 | [dynamicslab/<br>pysindy](https://github.com/dynamicslab/pysindy)<br><sub>Python</sub><br><sub>MIT</sub> | Sparse regression that identifies governing equations from data. | General-purpose. |
 | [mathLab/<br>EZyRB](https://github.com/mathLab/EZyRB)<br><sub>Python</sub><br><sub>MIT</sub> | Data-driven reduced-order models of parametrized simulations. |  |
@@ -102,7 +102,7 @@
 | --- | --- | --- |
 | [elejeune11/<br>Mechanical-MNIST](https://github.com/elejeune11/Mechanical-MNIST)<br><sub>Python</sub><br><sub>MIT code, CC-BY-SA-3.0 data</sub> | Benchmark of 70,000 large-deformation finite element simulations for surrogate models. |  |
 | [Extrality/<br>AirfRANS](https://github.com/Extrality/AirfRANS)<br><sub>Python</sub><br><sub>ODbL-1.0</sub> | Dataset and baselines for learning RANS solutions around airfoils. | Simulated data, not measurements. |
-| [Mohamedelrefaie/<br>DrivAerNet](https://github.com/Mohamedelrefaie/DrivAerNet)<br><sub>Python</sub><br><sub>CC-BY-NC-4.0 data, MIT code (stated in README)</sub> | Car aerodynamics CFD datasets and deep learning benchmarks. | Simulated data, not measurements; data prohibit commercial use. |
+| [Mohamedelrefaie/<br>DrivAerNet](https://github.com/Mohamedelrefaie/DrivAerNet)<br><sub>Python</sub><br><sub>CC-BY-NC-4.0 data, conflicting statements on code</sub> | Car aerodynamics CFD datasets and deep learning benchmarks. | Simulated data, not measurements; data prohibit commercial use; README calls the code MIT, but the LICENSE file is CC-BY-NC-4.0. |
 | [pdebench/<br>PDEBench](https://github.com/pdebench/PDEBench)<br><sub>Python</sub><br><sub>MIT, with non-commercial NEC files</sub> | Datasets and baselines for machine learning on PDEs, including fluid flows. | Simulated data, not measurements; some core scripts allow non-commercial research use only. |
 | [PolymathicAI/<br>the_well](https://github.com/PolymathicAI/the_well)<br><sub>Python</sub><br><sub>BSD-3-Clause, with CC-BY-4.0 data</sub> | Large collection of physics simulation datasets for machine learning. | Simulated data, not measurements. |
 | [tum-pbs/<br>apebench](https://github.com/tum-pbs/apebench)<br><sub>Python</sub><br><sub>MIT</sub> | Benchmark of autoregressive PDE emulators with a differentiable reference solver. | Simulated data, not measurements. |

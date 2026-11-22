@@ -64,7 +64,7 @@
 | Name, language and license | Description | Note |
 | --- | --- | --- |
 | [camlab-ethz/<br>TensorMesh](https://github.com/camlab-ethz/TensorMesh)<br><sub>Python</sub><br><sub>Apache-2.0</sub> | Differentiable finite element library built on PyTorch. |  |
-| [deepmodeling/<br>jax-fem](https://github.com/deepmodeling/jax-fem)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Differentiable finite element package built on JAX. |  |
+| [deepmodeling/<br>jax-fem](https://github.com/deepmodeling/jax-fem)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Differentiable finite element package built on JAX. | README asks commercial users to contact the author. |
 | [kailaix/<br>AdFem.jl](https://github.com/kailaix/AdFem.jl)<br><sub>Julia and C++</sub><br><sub>MIT</sub> | Differentiable finite element operators for inverse modeling. |  |
 | [liangbright/<br>pytorch_fea_paper](https://github.com/liangbright/pytorch_fea_paper)<br><sub>Python</sub><br><sub>none found</sub> | Differentiable finite element analysis applied to human aorta biomechanics. | Paper code; the author's refactored successor is [pytorch_fea](https://github.com/liangbright/pytorch_fea). |
 | [mo-hanxuan/<br>FEMcy](https://github.com/mo-hanxuan/FEMcy)<br><sub>Python</sub><br><sub>MIT</sub> | Taichi-based parallel structural finite element solver with small and large deformation. |  |

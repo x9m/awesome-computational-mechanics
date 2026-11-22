@@ -10,6 +10,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 import unicodedata
 import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
@@ -124,6 +125,13 @@ TOPICS = {
         "Connecting machine learning to CFD codes",
         "Reinforcement learning with flow solvers",
     ],
+    "LLMs and simulation agents": [
+        "Agents for mechanics",
+        "Agents for fluid dynamics",
+        "Tool servers for simulation software",
+        "Language models for material and solver code",
+        "Language model benchmarks and datasets",
+    ],
     "Meshing, pre- and post-processing": [
         "Mesh generation",
         "Mesh processing and formats",
@@ -145,27 +153,25 @@ TOPICS = {
         "Calibration and Bayesian inference",
         "Uncertainty and sensitivity analysis",
     ],
-    "Courses, references and agents for mechanics": [
+    "Courses and references": [
         "Courses and tutorials",
         "Element definitions and form languages",
         "Reproducible research software",
         "Curated lists",
-        "Agents for mechanics",
-        "Agents for fluid dynamics",
-        "Tool servers for simulation software",
-        "Language models for material and solver code",
-        "Language model benchmarks and datasets",
     ],
 }
 FIELDS = {"url", "category", "subtopic", "description", "language", "license", "note", "status", "maintainer"}
 NAME_WIDTH = 18  # characters on one line of the name column
 BATCH = 50  # repositories per GraphQL request
+RETRY_DELAY = 10  # seconds before a failed online check is repeated
 URL = re.compile(
     r"https://(github\.com|gitlab\.com|gitlab\.onelab\.info|gitlab\.dune-project\.org)/([\w.-]+/[\w.-]+)"
     # Optionally, a file or folder inside a GitHub repository.
     # A "/" in a branch name is written %2F, to tell it apart from the path.
     r"(?:/(?:tree|blob)/([\w.-]+(?:%2[Ff][\w.-]+)*)/([\w./-]+))?"
 )
+# The target of a Markdown link, or of an HTML src or href.
+TARGET = re.compile(r'\]\(([^()\s]+)\)|(?:src|href)="([^"]+)"')
 MARKDOWN_LINK = re.compile(r"\]\((https?://(?:[^()\s]|\([^()\s]*\))+)\)")
 # Names to show where owner/repository would not be recognizable.
 DISPLAY_NAMES = {
@@ -181,6 +187,18 @@ DISPLAY_NAMES = {
 # Former titles of sub-topics, whose links must keep working.
 FORMER_TITLES = {
     "Courses and tutorials": ["Textbooks and numerical tutorials"],
+}
+# A renamed topic keeps the page and IDs of its first title.
+FIRST_TITLES = {
+    "Courses and references": "Courses, references and agents for mechanics",
+}
+# Sub-topics moved between topics: their old topic links to where they are now.
+MOVED = {
+    "Agents for mechanics": "Courses and references",
+    "Agents for fluid dynamics": "Courses and references",
+    "Tool servers for simulation software": "Courses and references",
+    "Language models for material and solver code": "Courses and references",
+    "Language model benchmarks and datasets": "Courses and references",
 }
 # The "Start here" table: (goal, link text, URL of an entry, topic to browse next, sub-topic or None).
 START = [
@@ -198,6 +216,8 @@ START = [
      "Virtual element method", None),
     ("Solve large systems", "PETSc", "https://gitlab.com/petsc/petsc",
      "Linear, eigenvalue and nonlinear solvers", None),
+    ("Combine AI with CFD", "TU Dresden course", "https://github.com/AndreWeiner/ml-cfd-lecture",
+     "Hybrid AI and computational fluid dynamics", None),
     ("Verify and validate a model", "SimEval", "https://github.com/OSEL-DAM/SimEval",
      "Verification, validation and uncertainty", None),
 ]
@@ -226,7 +246,8 @@ INTROS = {
         "[physics-informed learning](physics-informed-learning-and-energy-methods.md) and standalone material models "
         "under [constitutive modeling](constitutive-modeling-and-material-identification.md).\n\n"
         "Check where the network acts. If it only preconditions or provides an initial guess, the solver's residual "
-        "can still control the algebraic error. If it changes the equations, the material law or the solution space, "
+        "can still be checked, though a small residual does not guarantee a small error and a nonlinear solve "
+        "may converge to a different solution. If it changes the equations, the material law or the solution space, "
         "it changes the answer, so validate it outside the training data.\n\n"
         "For fluids, see [hybrid AI and CFD](hybrid-ai-and-computational-fluid-dynamics.md).",
     "Hybrid AI and computational fluid dynamics":
@@ -240,13 +261,13 @@ INTROS = {
         "turbulence modeling with data, and "
         "[Agdestein and Sanderse (2025)](https://doi.org/10.1016/j.jcp.2024.113577) on closures that match the "
         "discretization.",
-    "Courses, references and agents for mechanics":
-        "Besides learning material, this topic covers large language models (LLMs) that set up, run or write "
-        "simulations, and benchmarks that test them.\n\n"
+    "LLMs and simulation agents":
+        "This topic covers large language models (LLMs) that set up, run or write simulations, the tool servers "
+        "that connect them to simulation software, and benchmarks that test them.\n\n"
         "A simulation that runs can still solve the wrong physics "
         "([Song et al., 2026](https://arxiv.org/abs/2605.09360), preprint), so check equations, units, boundary "
         "conditions and convergence yourself. Agents and tool servers can also execute arbitrary code "
-        "([MCP specification](https://modelcontextprotocol.io/specification/2025-06-18)), so isolate them from files, "
+        "([MCP specification](https://modelcontextprotocol.io/specification/2026-07-28)), so isolate them from files, "
         "credentials and license servers they don't need, and don't send confidential models to a hosted LLM without "
         "permission.",
     "Linear, eigenvalue and nonlinear solvers":
@@ -254,7 +275,7 @@ INTROS = {
         "- **Symmetric positive definite**, as in many compressible elasticity problems: use Cholesky, "
         "or conjugate gradients with a preconditioner. For smoothed-aggregation multigrid, supply the rigid body modes.\n"
         "- **Symmetric indefinite**, as in mixed formulations and frictionless Lagrange multiplier contact: use an LDLᵀ "
-        "factorization, MINRES with a positive definite preconditioner, or GMRES with a block preconditioner.\n"
+        "factorization, MINRES with a symmetric positive definite preconditioner, or GMRES with a block preconditioner.\n"
         "- **Nonsymmetric**, as with friction or non-associated plasticity: use LU, or GMRES or BiCGSTAB "
         "with a preconditioner.\n"
         "- **Snap-through and buckling**: the tangent becomes singular. Arc-length continuation can pass a "
@@ -370,8 +391,8 @@ def load():
     return entries, errors
 
 
-def start_problems(entries):
-    """Return what is wrong with the "Start here" table."""
+def settings_problems(entries):
+    """Return what is wrong with the settings at the top of this file."""
     listed = {e["url"]: e for e in entries if e["status"] == "listed"}
     used = {(e["category"], sub) for e in listed.values() for sub in (None, e["subtopic"])}
     found = []
@@ -380,6 +401,15 @@ def start_problems(entries):
             found.append(f"START, {goal}: {url} is not a listed entry")
         if (topic, sub) not in used:
             found.append(f"START, {goal}: no section {sub or topic}")
+    found += [f"MOVED: unknown topic {old}" for old in set(MOVED.values()) if old not in TOPICS]
+    subtopics = {sub for subs in TOPICS.values() for sub in subs}
+    # A misspelled key would otherwise be ignored without a message.
+    for setting, keys, known in (("DISPLAY_NAMES", DISPLAY_NAMES, {e["url"] for e in entries}),
+                                 ("INTROS", INTROS, set(TOPICS)),
+                                 ("FIRST_TITLES", FIRST_TITLES, set(TOPICS)),
+                                 ("FORMER_TITLES", FORMER_TITLES, subtopics),
+                                 ("MOVED", MOVED, subtopics)):
+        found += [f"{setting}: unknown key {key}" for key in keys if key not in known]
     return found
 
 
@@ -389,8 +419,16 @@ def anchor(title):
     return re.sub(r"[^\w -]", "", plain.lower()).replace(" ", "-")
 
 
+def first_title(topic):
+    return FIRST_TITLES.get(topic, topic)
+
+
 def page(topic):
-    return f"topics/{anchor(topic)}.md"
+    return f"topics/{anchor(first_title(topic))}.md"
+
+
+def topic_of(subtopic):
+    return next(topic for topic, subs in TOPICS.items() if subtopic in subs)
 
 
 def link(text, topic, subtopic=None):
@@ -405,9 +443,14 @@ def plain_heading_id(title):
 
 def readme_anchors(topic, subtopic=None):
     # The README used to hold every section. These IDs land old links on the index line that leads to the new page.
-    ids = []
-    for name in [subtopic, *FORMER_TITLES.get(subtopic, [])] if subtopic else [None]:
-        ids += [plain_heading_id(name or topic), f"open-{anchor(topic)}" + (f"--{anchor(name)}" if name else "")]
+    ids, original = [], anchor(first_title(topic))
+    if subtopic:
+        for name in [subtopic, *FORMER_TITLES.get(subtopic, [])]:
+            ids += [plain_heading_id(name), f"open-{original}--{anchor(name)}"]
+            if subtopic in MOVED:
+                ids.append(f"open-{anchor(first_title(MOVED[subtopic]))}--{anchor(name)}")
+    else:
+        ids = [plain_heading_id(first_title(topic)), f"open-{original}"]
     return "".join(f'<a id="{i}"></a>' for i in ids)
 
 
@@ -419,6 +462,13 @@ def topic_page(number, topic, groups):
     if len(groups) > 1:
         out += [f"- [{number}.{minor} {sub}](#{anchor(sub)}) ({len(group)})"
                 for minor, (sub, group) in enumerate(groups, 1)] + [""]
+    moved = [sub for sub, old in MOVED.items() if old == topic]
+    if moved:
+        out += ["Moved to another topic:", ""]
+        for sub in moved:
+            target = f"{page(topic_of(sub)).split('/')[-1]}#{anchor(sub)}"
+            out.append(f'- <a id="{anchor(sub)}"></a>[{sub}]({target})')
+        out.append("")
     for minor, (sub, group) in enumerate(groups, 1):
         # Numbers follow the order of TOPICS and are left out of IDs, so renumbering does not break links.
         ids = "".join(f'<a id="{anchor(name)}"></a>' for name in [sub, *FORMER_TITLES.get(sub, [])])
@@ -479,7 +529,7 @@ def render(entries):
         if groups:
             topics.append((topic, sum(len(group) for _, group in groups), groups))
     out = [
-        "# Awesome Computational Mechanics", "",
+        "# Awesome Computational Mechanics and AI", "",
         f"**{len(listed)} entries for computational mechanics, from finite elements and soft tissue to AI-coupled "
         "CFD, LLM agents, solvers and validation**, with licenses, commercial-software requirements and known usage restrictions noted.", "",
         *BANNER, "",
@@ -501,7 +551,7 @@ def render(entries):
         # <br> keeps the sub-topics in their topic's list item: Markdown lists cannot number 1.1, 1.2.
         out.append(marker + ("<br>\n" + " " * len(marker)).join(lines))
     out += ["", "</details>", "", f"[Archived and unmaintained projects](archive.md) ({len(inactive)})", ""]
-    curated = link("curated lists", "Courses, references and agents for mechanics", "Curated lists")
+    curated = link("curated lists", "Courses and references", "Curated lists")
     out += ["## Contributing", "", "Corrections and additions are welcome. See [contributing.md](contributing.md).", "",
             "## Acknowledgements", "",
             "Thanks to the authors and maintainers of the listed projects, and to those of the "
@@ -514,6 +564,27 @@ def render(entries):
     ]
     files = {page(topic): topic_page(number, topic, groups) for number, (topic, _, groups) in enumerate(topics, 1)}
     return {"README.md": "\n".join(out) + "\n", "archive.md": "\n".join(archive) + "\n", **files}
+
+
+def link_problems(files):
+    """Return the relative links in the generated files that lead nowhere."""
+    found = []
+    for filename, text in files.items():
+        for match in TARGET.finditer(text):
+            target = match[1] or match[2]
+            if re.match(r"[a-z][a-z0-9+.-]*:", target):
+                continue
+            path, _, fragment = target.partition("#")
+            name = os.path.normpath(os.path.join(os.path.dirname(filename), path)) if path else filename
+            name = Path(name).as_posix()  # normpath uses backslashes on Windows
+            if name in files:
+                headings = {anchor(h) for h in re.findall(r"^#+ (.+)$", files[name], re.M)}
+                missing = fragment and fragment not in headings and f'id="{fragment}"' not in files[name]
+            else:
+                missing = not (ROOT / name).exists()
+            if missing:
+                found.append(f"{filename}: broken link {target}")
+    return found
 
 
 def fetch(command):
@@ -594,8 +665,8 @@ def probe_github(batch):
 
 
 def extra_links(entries):
-    """Return the links in notes and introductions, which are not entries themselves."""
-    texts = [*INTROS.values(), *(e["note"] for e in entries)]
+    """Return the links in descriptions, notes and introductions, which are not entries themselves."""
+    texts = [*INTROS.values(), *(e[field] for e in entries for field in ("description", "note"))]
     return sorted({url for text in texts for url in MARKDOWN_LINK.findall(text)} - {e["url"] for e in entries})
 
 
@@ -619,6 +690,17 @@ def probe_link(url):
     return [], []
 
 
+def retry_once(probe):
+    """Repeat a probe that found something, so one network glitch does not fail the check."""
+    def run(item):
+        found = probe(item)
+        if not any(found):
+            return found
+        time.sleep(RETRY_DELAY)
+        return probe(item)
+    return run
+
+
 def probe_all(entries):
     """Return (errors, warnings)."""
     github = [e for e in entries if e["host"] == "github.com"]
@@ -633,8 +715,8 @@ def probe_all(entries):
     batches = [github[i:i + BATCH] for i in range(0, len(github), BATCH)]
     gitlab = [e for e in entries if e["host"] != "github.com"]
     with ThreadPoolExecutor(4) as pool:
-        results = [*pool.map(probe_github, batches), *pool.map(probe_gitlab, gitlab)]
-        links = list(pool.map(probe_link, others))
+        results = [*pool.map(retry_once(probe_github), batches), *pool.map(retry_once(probe_gitlab), gitlab)]
+        links = list(pool.map(retry_once(probe_link), others))
     results += [found for found, _ in links]
     return [error for result in results for error in result], [warning for _, found in links for warning in found]
 
@@ -649,21 +731,25 @@ def main():
     if args - {"--write", "--online"}:
         sys.exit(__doc__)
     entries, errors = load()
-    errors = errors or start_problems(entries)
+    errors = errors or settings_problems(entries)
     warnings = []
     if not errors:
         files = render(entries)
+        errors += link_problems(files)
         for path in sorted((ROOT / "topics").glob("*.md")):
             if f"topics/{path.name}" not in files:
                 errors.append(f"topics/{path.name}: not a current topic, delete it")
         for filename, text in files.items():
             path = ROOT / filename
-            if "--write" in args:
-                path.parent.mkdir(exist_ok=True)
-                # Bytes keep "\n" line endings on Windows, and are encoded before the file is emptied.
-                path.write_bytes(text.encode("utf-8"))
-            elif not path.exists() or path.read_text(encoding="utf-8") != text:
-                errors.append(f"{filename}: out of date, run with --write")
+            try:
+                if "--write" in args:
+                    path.parent.mkdir(exist_ok=True)
+                    # Bytes keep "\n" line endings on Windows, and are encoded before the file is emptied.
+                    path.write_bytes(text.encode("utf-8"))
+                elif not path.exists() or path.read_text(encoding="utf-8") != text:
+                    errors.append(f"{filename}: out of date, run with --write")
+            except (OSError, ValueError) as exc:
+                errors.append(f"{filename}: cannot read or write it ({exc})")
         if "--online" in args:
             found, warnings = probe_all(entries)
             errors += found

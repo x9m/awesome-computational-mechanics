@@ -6,7 +6,7 @@ Here machine learning works with a classical solver: it speeds up a solve, suppl
 
 Models that mostly replace the solver are under [surrogates](surrogates-and-reduced-order-models.md), networks trained on governing equations under [physics-informed learning](physics-informed-learning-and-energy-methods.md) and standalone material models under [constitutive modeling](constitutive-modeling-and-material-identification.md).
 
-Check where the network acts. If it only preconditions or provides an initial guess, the solver's residual can still control the algebraic error. If it changes the equations, the material law or the solution space, it changes the answer, so validate it outside the training data.
+Check where the network acts. If it only preconditions or provides an initial guess, the solver's residual can still be checked, though a small residual does not guarantee a small error and a nonlinear solve may converge to a different solution. If it changes the equations, the material law or the solution space, it changes the answer, so validate it outside the training data.
 
 For fluids, see [hybrid AI and CFD](hybrid-ai-and-computational-fluid-dynamics.md).
 
@@ -31,7 +31,7 @@ For fluids, see [hybrid AI and CFD](hybrid-ai-and-computational-fluid-dynamics.m
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
-| [achraf-15/<br>HiDeNN-FEM](https://github.com/achraf-15/HiDeNN-FEM)<br><sub>Python</sub><br><sub>none found</sub> | Hierarchical neural network finite elements with r-adaptivity, with linear elasticity examples. |  |
+| [achraf-15/<br>HiDeNN-FEM](https://github.com/achraf-15/HiDeNN-FEM)<br><sub>Python</sub><br><sub>MIT (README badge)</sub> | Hierarchical neural network finite elements with r-adaptivity, with linear elasticity examples. | No license file. |
 | [AlexandreDaby<br>Seesaram/<br>NeuROM](https://github.com/AlexandreDabySeesaram/NeuROM)<br><sub>Python</sub><br><sub>GPL-3.0-or-later (stated in README)</sub> | Reduced-order models that combine finite element interpolation, neural networks and tensor decomposition. | Main branch is being refactored, README recommends a tagged release. |
 | [Centrum-Intelli<br>Physics/<br>Time-Marching-<br>Neural-Operator-<br>FE-Coupling](https://github.com/Centrum-IntelliPhysics/Time-Marching-Neural-Operator-FE-Coupling)<br><sub>Python</sub><br><sub>Apache-2.0</sub> | Finite elements coupled to a neural operator by overlapping domain decomposition, for solid mechanics. | Paper code. |
 | [Centrum-Intelli<br>Physics/<br>Time-Marching-Non-<br>overlapping-<br>Neural-operator-<br>FE-Coupling](https://github.com/Centrum-IntelliPhysics/Time-Marching-Non-overlapping-Neural-operator-FE-Coupling)<br><sub>Python</sub><br><sub>none found</sub> | Non-overlapping coupling of finite elements and neural operators, including elastodynamics. | Paper code. |

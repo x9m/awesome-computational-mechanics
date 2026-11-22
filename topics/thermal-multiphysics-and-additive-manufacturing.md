@@ -27,7 +27,7 @@
 
 | Name, language and license | Description | Note |
 | --- | --- | --- |
-| [CMSL-HKUST/<br>jax-am](https://github.com/CMSL-HKUST/jax-am)<br><sub>Jupyter Notebook</sub><br><sub>GPL-3.0</sub> | Differentiable GPU toolbox for additive manufacturing process, structure and property simulation. |  |
+| [CMSL-HKUST/<br>jax-am](https://github.com/CMSL-HKUST/jax-am)<br><sub>Python</sub><br><sub>GPL-3.0</sub> | Differentiable GPU toolbox for additive manufacturing process, structure and property simulation. |  |
 | [CMSL-HKUST/<br>Opt-IS](https://github.com/CMSL-HKUST/Opt-IS)<br><sub>Python</sub><br><sub>none found</sub> | Inherent strain calibration for residual stress and distortion in additive manufacturing. |  |
 | [JLnorthwestern/<br>GO-MELT](https://github.com/JLnorthwestern/GO-MELT)<br><sub>Python</sub><br><sub>MIT</sub> | GPU multilevel thermal simulation of laser powder bed fusion. |  |
 
