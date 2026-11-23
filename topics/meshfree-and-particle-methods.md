@@ -2,9 +2,9 @@
 
 [← Back to the main list](../README.md#contents)
 
-- [6.1 Material point method](#material-point-method) (11)
+- [6.1 Material point method](#material-point-method) (12)
 - [6.2 Smoothed particle hydrodynamics](#smoothed-particle-hydrodynamics) (4)
-- [6.3 Meshless methods](#meshless-methods) (5)
+- [6.3 Meshless methods](#meshless-methods) (6)
 - [6.4 Peridynamics](#peridynamics) (3)
 - [6.5 Discrete and coarse-grained particle models](#discrete-and-coarse-grained-particle-models) (5)
 
@@ -16,6 +16,7 @@
 | [bcolloran/<br>tlmpm](https://github.com/bcolloran/tlmpm)<br><sub>Python</sub><br><sub>none found</sub> | Teaching implementation of the total Lagrangian material point method in Taichi. |  |
 | [cb-geo/<br>mpm](https://github.com/cb-geo/mpm)<br><sub>C++</sub><br><sub>MIT</sub> | High-performance material point method code for computational geomechanics. |  |
 | [cb-geo/<br>mpm-benchmarks](https://github.com/cb-geo/mpm-benchmarks)<br><sub>Jupyter Notebook</sub><br><sub>CC-BY-4.0</sub> | Benchmark cases for the CB-Geo material point method code. |  |
+| [ethz-pbs21/<br>SandyFluid](https://github.com/ethz-pbs21/SandyFluid)<br><sub>Python</sub><br><sub>none found</sub> | Course project that simulates water and sand with PIC, FLIP and APIC particle-grid transfers in Taichi. | A particle-in-cell solver with a frictional yield model for sand, not a material point code; requires Taichi 0.9.0. |
 | [penn-graphics-<br>research/<br>ziran2019](https://github.com/penn-graphics-research/ziran2019)<br><sub>C++</sub><br><sub>MIT</sub> | Implicit material point simulation of viscoelasticity, plasticity and fracture. | Paper code. |
 | [taichi-dev/<br>mpm_3d_exercise](https://github.com/taichi-dev/mpm_3d_exercise)<br><sub>Python</sub><br><sub>MIT</sub> | Exercise for writing a 3D material point method, with a 2D reference implementation. | Starter code with the main step left blank. |
 | [taichi-dev/<br>taichi_elements](https://github.com/taichi-dev/taichi_elements)<br><sub>Python</sub><br><sub>MIT</sub> | Multi-material MPM engine for elastic solids, water, snow and sand in Taichi. | README describes it as work in progress. |
@@ -42,6 +43,7 @@
 | [JinshuaiBai/<br>RPIM_NNS](https://github.com/JinshuaiBai/RPIM_NNS)<br><sub>MATLAB</sub><br><sub>none found</sub> | Radial point interpolation meshless method with neural network solvers. | Requires MATLAB. |
 | [saullocastro/<br>meshless](https://github.com/saullocastro/meshless)<br><sub>Python</sub><br><sub>BSD-2-Clause</sub> | Meshless methods for computational mechanics, including ES-PIM. |  |
 | [SlicerCBM/<br>SlicerCBM](https://github.com/SlicerCBM/SlicerCBM)<br><sub>Python</sub><br><sub>BSD-3-Clause</sub> | 3D Slicer extension for patient-specific biomechanics, with a meshless TLED (MTLED) simulator. | Requires 3D Slicer; some external solvers are GPL. |
+| [treverhines/<br>RBF](https://github.com/treverhines/RBF)<br><sub>Python and Cython</sub><br><sub>MIT</sub> | Radial basis function tools for scattered-data interpolation and RBF-FD solution of PDEs on irregular domains, with elasticity examples. |  |
 
 ## <a id="peridynamics"></a>6.4 Peridynamics
 

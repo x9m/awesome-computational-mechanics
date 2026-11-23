@@ -1,6 +1,6 @@
 # Awesome Computational Mechanics and AI
 
-**549 entries for computational mechanics, from finite elements and soft tissue to AI-coupled CFD, LLM agents, solvers and validation**, with licenses, commercial-software requirements and known usage restrictions noted.
+**578 entries for computational mechanics, from finite elements and soft tissue to AI-coupled CFD, LLM agents, solvers and validation**, with licenses, commercial-software requirements and known usage restrictions noted.
 
 <p align="center">
 <img src="assets/banner.png" width="420" alt="A soft cube with circular cuts at 0, 25 and 50 mm of stretch, colored by displacement">
@@ -29,25 +29,25 @@
 3. [Virtual element method](topics/virtual-element-method.md) (30)
 4. [Contact mechanics](topics/contact-mechanics.md) (9)
 5. [Third medium contact](topics/third-medium-contact.md) (12)
-6. [Meshfree and particle methods](topics/meshfree-and-particle-methods.md) (28)
+6. [Meshfree and particle methods](topics/meshfree-and-particle-methods.md) (30)
 7. [Soft-body, real-time and differentiable simulation](topics/soft-body-real-time-and-differentiable-simulation.md) (26)
 8. [Multibody dynamics and biomechanics](topics/multibody-dynamics-and-biomechanics.md) (10)
 9. [Constitutive modeling and material identification](topics/constitutive-modeling-and-material-identification.md) (39)
 10. [Multiscale and homogenization](topics/multiscale-and-homogenization.md) (15)
 11. [Thermal, multiphysics and additive manufacturing](topics/thermal-multiphysics-and-additive-manufacturing.md) (11)
 12. [Optimization and inverse problems](topics/optimization-and-inverse-problems.md) (18)
-13. [Physics-informed learning and energy methods](topics/physics-informed-learning-and-energy-methods.md) (17)
-14. [Surrogates and reduced-order models](topics/surrogates-and-reduced-order-models.md) (49)
-15. [Hybrid AI and numerical solvers](topics/hybrid-ai-and-numerical-solvers.md) (30)
-16. [Hybrid AI and computational fluid dynamics](topics/hybrid-ai-and-computational-fluid-dynamics.md) (31)
+13. [Physics-informed learning and energy methods](topics/physics-informed-learning-and-energy-methods.md) (28)
+14. [Surrogates and reduced-order models](topics/surrogates-and-reduced-order-models.md) (61)
+15. [Hybrid AI and numerical solvers](topics/hybrid-ai-and-numerical-solvers.md) (32)
+16. [Hybrid AI and computational fluid dynamics](topics/hybrid-ai-and-computational-fluid-dynamics.md) (32)
 17. [LLMs and simulation agents](topics/llms-and-simulation-agents.md) (22)
 18. [Meshing, pre- and post-processing](topics/meshing-pre--and-post-processing.md) (20)
 19. [Linear, eigenvalue and nonlinear solvers](topics/linear-eigenvalue-and-nonlinear-solvers.md) (35)
 20. [Verification, validation and uncertainty](topics/verification-validation-and-uncertainty.md) (33)
-21. [Courses and references](topics/courses-and-references.md) (29)
+21. [Courses and references](topics/courses-and-references.md) (30)
 
 <details>
-<summary>All 99 sub-topics</summary>
+<summary>All 100 sub-topics</summary>
 
 1. [Finite and boundary element methods](topics/finite-and-boundary-element-methods.md) (76)<br>
    1.1 [General-purpose frameworks](topics/finite-and-boundary-element-methods.md#general-purpose-frameworks) (20)<br>
@@ -77,10 +77,10 @@
    5.1 [Modules and examples in FEM libraries](topics/third-medium-contact.md#modules-and-examples-in-fem-libraries) (7)<br>
    5.2 [Optimization and metamaterials](topics/third-medium-contact.md#optimization-and-metamaterials) (4)<br>
    5.3 [Standalone study codes](topics/third-medium-contact.md#standalone-study-codes) (1)
-6. [Meshfree and particle methods](topics/meshfree-and-particle-methods.md) (28)<br>
-   6.1 [Material point method](topics/meshfree-and-particle-methods.md#material-point-method) (11)<br>
+6. [Meshfree and particle methods](topics/meshfree-and-particle-methods.md) (30)<br>
+   6.1 [Material point method](topics/meshfree-and-particle-methods.md#material-point-method) (12)<br>
    6.2 [Smoothed particle hydrodynamics](topics/meshfree-and-particle-methods.md#smoothed-particle-hydrodynamics) (4)<br>
-   6.3 [Meshless methods](topics/meshfree-and-particle-methods.md#meshless-methods) (5)<br>
+   6.3 [Meshless methods](topics/meshfree-and-particle-methods.md#meshless-methods) (6)<br>
    6.4 [Peridynamics](topics/meshfree-and-particle-methods.md#peridynamics) (3)<br>
    6.5 [Discrete and coarse-grained particle models](topics/meshfree-and-particle-methods.md#discrete-and-coarse-grained-particle-models) (5)
 7. [Soft-body, real-time and differentiable simulation](topics/soft-body-real-time-and-differentiable-simulation.md) (26)<br>
@@ -113,31 +113,32 @@
     12.1 [Topology optimization solvers](topics/optimization-and-inverse-problems.md#topology-optimization-solvers) (9)<br>
     12.2 [Learning-based topology optimization](topics/optimization-and-inverse-problems.md#learning-based-topology-optimization) (5)<br>
     12.3 [Inverse problems](topics/optimization-and-inverse-problems.md#inverse-problems) (4)
-13. [Physics-informed learning and energy methods](topics/physics-informed-learning-and-energy-methods.md) (17)<br>
-    13.1 [Deep energy methods](topics/physics-informed-learning-and-energy-methods.md#deep-energy-methods) (8)<br>
-    13.2 [Residual-based networks](topics/physics-informed-learning-and-energy-methods.md#residual-based-networks) (6)<br>
-    13.3 [PINN libraries and examples](topics/physics-informed-learning-and-energy-methods.md#pinn-libraries-and-examples) (3)
-14. [Surrogates and reduced-order models](topics/surrogates-and-reduced-order-models.md) (49)<br>
+13. [Physics-informed learning and energy methods](topics/physics-informed-learning-and-energy-methods.md) (28)<br>
+    13.1 [Deep energy methods](topics/physics-informed-learning-and-energy-methods.md#deep-energy-methods) (10)<br>
+    13.2 [Residual-based networks](topics/physics-informed-learning-and-energy-methods.md#residual-based-networks) (11)<br>
+    13.3 [PINN libraries and examples](topics/physics-informed-learning-and-energy-methods.md#pinn-libraries-and-examples) (7)
+14. [Surrogates and reduced-order models](topics/surrogates-and-reduced-order-models.md) (61)<br>
     14.1 [Stress-field prediction](topics/surrogates-and-reduced-order-models.md#stress-field-prediction) (7)<br>
-    14.2 [Deformation and reduced dynamics](topics/surrogates-and-reduced-order-models.md#deformation-and-reduced-dynamics) (8)<br>
-    14.3 [Classical machine learning and equation discovery](topics/surrogates-and-reduced-order-models.md#classical-machine-learning-and-equation-discovery) (8)<br>
-    14.4 [Projection-based model reduction](topics/surrogates-and-reduced-order-models.md#projection-based-model-reduction) (4)<br>
-    14.5 [Graph neural networks](topics/surrogates-and-reduced-order-models.md#graph-neural-networks) (3)<br>
-    14.6 [Biomechanical surrogates](topics/surrogates-and-reduced-order-models.md#biomechanical-surrogates) (2)<br>
-    14.7 [Response histories and operator learning](topics/surrogates-and-reduced-order-models.md#response-histories-and-operator-learning) (7)<br>
-    14.8 [Frameworks and introductory studies](topics/surrogates-and-reduced-order-models.md#frameworks-and-introductory-studies) (4)<br>
-    14.9 [Benchmark datasets](topics/surrogates-and-reduced-order-models.md#benchmark-datasets) (6)
-15. [Hybrid AI and numerical solvers](topics/hybrid-ai-and-numerical-solvers.md) (30)<br>
+    14.2 [Flow-field prediction](topics/surrogates-and-reduced-order-models.md#flow-field-prediction) (5)<br>
+    14.3 [Deformation and reduced dynamics](topics/surrogates-and-reduced-order-models.md#deformation-and-reduced-dynamics) (9)<br>
+    14.4 [Classical machine learning and equation discovery](topics/surrogates-and-reduced-order-models.md#classical-machine-learning-and-equation-discovery) (13)<br>
+    14.5 [Projection-based model reduction](topics/surrogates-and-reduced-order-models.md#projection-based-model-reduction) (4)<br>
+    14.6 [Graph neural networks](topics/surrogates-and-reduced-order-models.md#graph-neural-networks) (4)<br>
+    14.7 [Biomechanical surrogates](topics/surrogates-and-reduced-order-models.md#biomechanical-surrogates) (2)<br>
+    14.8 [Response histories and operator learning](topics/surrogates-and-reduced-order-models.md#response-histories-and-operator-learning) (7)<br>
+    14.9 [Frameworks and introductory studies](topics/surrogates-and-reduced-order-models.md#frameworks-and-introductory-studies) (4)<br>
+    14.10 [Benchmark datasets](topics/surrogates-and-reduced-order-models.md#benchmark-datasets) (6)
+15. [Hybrid AI and numerical solvers](topics/hybrid-ai-and-numerical-solvers.md) (32)<br>
     15.1 [Learned preconditioners and iterative solvers](topics/hybrid-ai-and-numerical-solvers.md#learned-preconditioners-and-iterative-solvers) (5)<br>
     15.2 [Finite element and neural network hybrids](topics/hybrid-ai-and-numerical-solvers.md#finite-element-and-neural-network-hybrids) (7)<br>
     15.3 [Connecting machine learning to solvers](topics/hybrid-ai-and-numerical-solvers.md#connecting-machine-learning-to-solvers) (8)<br>
     15.4 [Neural subspaces inside simulators](topics/hybrid-ai-and-numerical-solvers.md#neural-subspaces-inside-simulators) (4)<br>
-    15.5 [Learned physics inside simulators](topics/hybrid-ai-and-numerical-solvers.md#learned-physics-inside-simulators) (4)<br>
+    15.5 [Learned physics inside simulators](topics/hybrid-ai-and-numerical-solvers.md#learned-physics-inside-simulators) (6)<br>
     15.6 [Learned meshing and coarsening](topics/hybrid-ai-and-numerical-solvers.md#learned-meshing-and-coarsening) (2)
-16. [Hybrid AI and computational fluid dynamics](topics/hybrid-ai-and-computational-fluid-dynamics.md) (31)<br>
+16. [Hybrid AI and computational fluid dynamics](topics/hybrid-ai-and-computational-fluid-dynamics.md) (32)<br>
     16.1 [Differentiable CFD for machine learning](topics/hybrid-ai-and-computational-fluid-dynamics.md#differentiable-cfd-for-machine-learning) (8)<br>
     16.2 [Learned turbulence closures](topics/hybrid-ai-and-computational-fluid-dynamics.md#learned-turbulence-closures) (8)<br>
-    16.3 [Learned correction and acceleration](topics/hybrid-ai-and-computational-fluid-dynamics.md#learned-correction-and-acceleration) (6)<br>
+    16.3 [Learned correction and acceleration](topics/hybrid-ai-and-computational-fluid-dynamics.md#learned-correction-and-acceleration) (7)<br>
     16.4 [Connecting machine learning to CFD codes](topics/hybrid-ai-and-computational-fluid-dynamics.md#connecting-machine-learning-to-cfd-codes) (5)<br>
     16.5 [Reinforcement learning with flow solvers](topics/hybrid-ai-and-computational-fluid-dynamics.md#reinforcement-learning-with-flow-solvers) (4)
 17. [LLMs and simulation agents](topics/llms-and-simulation-agents.md) (22)<br>
@@ -164,15 +165,15 @@
     20.3 [Experimental data for validation](topics/verification-validation-and-uncertainty.md#experimental-data-for-validation) (4)<br>
     20.4 [Calibration and Bayesian inference](topics/verification-validation-and-uncertainty.md#calibration-and-bayesian-inference) (4)<br>
     20.5 [Uncertainty and sensitivity analysis](topics/verification-validation-and-uncertainty.md#uncertainty-and-sensitivity-analysis) (13)
-21. [Courses and references](topics/courses-and-references.md) (29)<br>
-    21.1 [Courses and tutorials](topics/courses-and-references.md#courses-and-tutorials) (17)<br>
+21. [Courses and references](topics/courses-and-references.md) (30)<br>
+    21.1 [Courses and tutorials](topics/courses-and-references.md#courses-and-tutorials) (18)<br>
     21.2 [Element definitions and form languages](topics/courses-and-references.md#element-definitions-and-form-languages) (5)<br>
     21.3 [Reproducible research software](topics/courses-and-references.md#reproducible-research-software) (2)<br>
     21.4 [Curated lists](topics/courses-and-references.md#curated-lists) (5)
 
 </details>
 
-[Archived and unmaintained projects](archive.md) (6)
+[Archived and unmaintained projects](archive.md) (9)
 
 ## Contributing
 

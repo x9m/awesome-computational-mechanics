@@ -12,7 +12,7 @@ Further reading: [Duraisamy et al. (2019)](https://doi.org/10.1146/annurev-fluid
 
 - [16.1 Differentiable CFD for machine learning](#differentiable-cfd-for-machine-learning) (8)
 - [16.2 Learned turbulence closures](#learned-turbulence-closures) (8)
-- [16.3 Learned correction and acceleration](#learned-correction-and-acceleration) (6)
+- [16.3 Learned correction and acceleration](#learned-correction-and-acceleration) (7)
 - [16.4 Connecting machine learning to CFD codes](#connecting-machine-learning-to-cfd-codes) (5)
 - [16.5 Reinforcement learning with flow solvers](#reinforcement-learning-with-flow-solvers) (4)
 
@@ -52,6 +52,7 @@ Further reading: [Duraisamy et al. (2019)](https://doi.org/10.1146/annurev-fluid
 | [tum-pbs/<br>DiffPhys-Cylinder<br>WakeFlow](https://github.com/tum-pbs/DiffPhys-CylinderWakeFlow)<br><sub>Jupyter Notebook</sub><br><sub>MIT</sub> | Coarse differentiable solver with a network that corrects cylinder wake flows. | Paper code. |
 | [tum-pbs/<br>Hybrid-Solver-for-<br>Reactive-Flows](https://github.com/tum-pbs/Hybrid-Solver-for-Reactive-Flows)<br><sub>Python</sub><br><sub>MIT</sub> | Networks that supply unknown physics to a reactive flow solver. | Paper code. |
 | [tum-pbs/<br>Solver-in-the-Loop](https://github.com/tum-pbs/Solver-in-the-Loop)<br><sub>Python</sub><br><sub>MIT</sub> | Learned corrections trained through iterative PDE solvers, with flow examples. | Paper code; built on older TensorFlow and PhiFlow. |
+| [zhong1wan/<br>data-assisted](https://github.com/zhong1wan/data-assisted)<br><sub>Python</sub><br><sub>none found</sub> | LSTM networks that correct truncated projection models of flows with extreme events, including Kolmogorov flow. | Paper code; last commit in 2018. |
 
 ## <a id="connecting-machine-learning-to-cfd-codes"></a>16.4 Connecting machine learning to CFD codes
 

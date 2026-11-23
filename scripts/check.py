@@ -102,6 +102,7 @@ TOPICS = {
     ],
     "Surrogates and reduced-order models": [
         "Stress-field prediction",
+        "Flow-field prediction",
         "Deformation and reduced dynamics",
         "Classical machine learning and equation discovery",
         "Projection-based model reduction",

@@ -21,7 +21,7 @@ For fluids, see [hybrid AI and CFD](hybrid-ai-and-computational-fluid-dynamics.m
 - [15.2 Finite element and neural network hybrids](#finite-element-and-neural-network-hybrids) (7)
 - [15.3 Connecting machine learning to solvers](#connecting-machine-learning-to-solvers) (8)
 - [15.4 Neural subspaces inside simulators](#neural-subspaces-inside-simulators) (4)
-- [15.5 Learned physics inside simulators](#learned-physics-inside-simulators) (4)
+- [15.5 Learned physics inside simulators](#learned-physics-inside-simulators) (6)
 - [15.6 Learned meshing and coarsening](#learned-meshing-and-coarsening) (2)
 
 ## <a id="learned-preconditioners-and-iterative-solvers"></a>15.1 Learned preconditioners and iterative solvers
@@ -73,6 +73,8 @@ For fluids, see [hybrid AI and CFD](hybrid-ai-and-computational-fluid-dynamics.m
 | Name, language and license | Description | Note |
 | --- | --- | --- |
 | [erwincoumans/<br>tiny-<br>differentiable-<br>simulator](https://github.com/erwincoumans/tiny-differentiable-simulator)<br><sub>C++</sub><br><sub>Apache-2.0</sub> | Differentiable rigid body simulator that supports neural augmentation of its physics. | Bundled components have their own licenses. |
+| [m-ulmestrand/<br>gcn-collisions](https://github.com/m-ulmestrand/gcn-collisions)<br><sub>Python</sub><br><sub>Apache-2.0</sub> | Graph convolutional network trained to reproduce particle collision responses from a reference simulation. | Small demonstration; README says the reference algorithm is inexact for multi-particle collisions. |
+| [MilesCranmer/<br>lagrangian_nns](https://github.com/MilesCranmer/lagrangian_nns)<br><sub>Python</sub><br><sub>Apache-2.0</sub> | Networks that learn a system's Lagrangian, so its motion follows from integrating the Euler-Lagrange equations. | Examples are a double pendulum, a relativistic particle and a 1D wave equation; written for JAX 0.1.55. |
 | [NVlabs/<br>neural-robot-<br>dynamics](https://github.com/NVlabs/neural-robot-dynamics)<br><sub>Python</sub><br><sub>Apache-2.0</sub> | Learned dynamics and contact model that replaces low-level solvers inside NVIDIA Warp. | Articulated rigid bodies only. |
 | [PingchuanMa/<br>NCLaw](https://github.com/PingchuanMa/NCLaw)<br><sub>Python</sub><br><sub>none found, with non-commercial bundled Warp</sub> | Neural constitutive laws learned from motion through a material point simulator. | The bundled copy of NVIDIA Warp allows non-commercial use only. |
 | [srl-ethz/<br>residual_physics_<br>sim2real](https://github.com/srl-ethz/residual_physics_sim2real)<br><sub>Python and C++</sub><br><sub>MIT</sub> | Learned residual forces that correct a soft-body simulator against real robots. | Paper code; modified from DiffPD. |

@@ -2,7 +2,7 @@
 
 [← Back to the main list](../README.md#contents)
 
-- [21.1 Courses and tutorials](#courses-and-tutorials) (17)
+- [21.1 Courses and tutorials](#courses-and-tutorials) (18)
 - [21.2 Element definitions and form languages](#element-definitions-and-form-languages) (5)
 - [21.3 Reproducible research software](#reproducible-research-software) (2)
 - [21.4 Curated lists](#curated-lists) (5)
@@ -18,6 +18,7 @@
 | [Ceyron/<br>machine-learning-<br>and-simulation](https://github.com/Ceyron/machine-learning-and-simulation)<br><sub>Jupyter Notebook</sub><br><sub>MIT</sub> | Notes and code for a video course on simulation and machine learning, including continuum mechanics and FEniCS. |  |
 | [cooperrc/<br>computational-<br>mechanics](https://github.com/cooperrc/computational-mechanics)<br><sub>MATLAB</sub><br><sub>CC-BY-4.0 content, BSD-3-Clause code (stated in README)</sub> | Open course materials on computational mechanics. | Includes code written for MATLAB, Octave support not documented. |
 | [dilevin/<br>CSC417-a4-cloth-<br>simulation](https://github.com/dilevin/CSC417-a4-cloth-simulation)<br><sub>C++</sub><br><sub>none found</sub> | Course assignment on finite element cloth simulation with contact. | Starter code for an assignment. |
+| [dynamicslab/<br>databook_python](https://github.com/dynamicslab/databook_python)<br><sub>Jupyter Notebook</sub><br><sub>all rights reserved</sub> | Notebooks for the book Data-Driven Science and Engineering, covering SVD, dynamic mode decomposition, sparse identification and reduced-order models. | Stated in README; much of the book covers general data science and control. |
 | [finite-element/<br>finite-element-<br>course](https://github.com/finite-element/finite-element-course)<br><sub>Python</sub><br><sub>MIT (stated in pyproject.toml)</sub> | Imperial College course on finite element analysis and implementation. | No README. |
 | [gridap/<br>Tutorials](https://github.com/gridap/Tutorials)<br><sub>Julia</sub><br><sub>MIT</sub> | Worked tutorials on solving PDEs with Gridap. |  |
 | [Interactive<br>ComputerGraphics/<br>physics-simulation](https://github.com/InteractiveComputerGraphics/physics-simulation)<br><sub>MIT</sub> | Introduction to simulation of rigid bodies, deformable solids and fluids. | Documents only, no code. |
